@@ -2,8 +2,8 @@
 
 script_name("MVD Helper Mobile")
 
-script_version("5.7.1")
-script_authors("@Sashe4ka_ReZoN", "@daniel29032012", "@makson4ck2", "@osp_x")
+script_version("4.8")
+script_authors("@Sashe4ka_ReZ")
 
 --Libs START
 require('moonloader')
@@ -330,40 +330,40 @@ local servers = {
 
 local smartUkPath = getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/smartUk.json"
 local smartUkUrl = {
-    ["mobile-i"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Mobile1.json",
-    ["mobile-ii"]    = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Mobile2.json",
-    ["mobile-iii"]   = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Mobile%203.json",
-    ["phoenix"]      = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Phoenix.json",
-    ["tucson"]       = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Tucson.json",
-    ["chandler"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Chandler.json",
-    ["scottdale"]    = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Scottdale.json",
-    ["brainburg"]    = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Brainburg.json",
-    ["saint-rose"]   = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Saint-Rose.json",
-    ["mesa"]         = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Mesa.json",
-    ["red-rock"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Red-Rock.json",
-    ["yuma"]         = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Yuma.json",
-    ["surprise"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Surprise.json",
-    ["prescott"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Prescott.json",
-    ["glendale"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Glendale.json",
-    ["kingman"]      = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Kingman.json",
-    ["winslow"]      = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Winslow.json",
-    ["payson"]       = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Payson.json",
-    ["gilbert"]      = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Gilbert.json",
-    ["show-low"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Show%20Low.json",
-    ["casa-grande"]  = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Casa-Grande.json",
-    ["page"]         = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Page.json",
-    ["sun-city"]     = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Sun-City.json",
-    ["queen-creek"]  = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Queen-Creek.json",
-    ["sedona"]       = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Sedona.json",
-    ["holiday"]      = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Holiday.json",
-    ["wednesday"]    = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Wednesday.json",
-    ["yava"]         = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Yava.json",
-    ["faraway"]      = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Faraway.json",
-    ["bumble-bee"]   = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Bumble%20Bee.json",
-    ["christmas"]    = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Christmas.json",
-    ["mirage"]       = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Mirage.json",
-    ["love"]         = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Love.json",
-    ["drake"]        = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/smartUkLink/Drake.json"
+    ["mobile-i"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Mobile1.json",
+    ["mobile-ii"]    = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Mobile2.json",
+    ["mobile-iii"]   = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Mobile%203.json",
+    ["phoenix"]      = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Phoenix.json",
+    ["tucson"]       = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Tucson.json",
+    ["chandler"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Chandler.json",
+    ["scottdale"]    = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Scottdale.json",
+    ["brainburg"]    = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Brainburg.json",
+    ["saint-rose"]   = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Saint-Rose.json",
+    ["mesa"]         = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Mesa.json",
+    ["red-rock"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Red-Rock.json",
+    ["yuma"]         = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Yuma.json",
+    ["surprise"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Surprise.json",
+    ["prescott"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Prescott.json",
+    ["glendale"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Glendale.json",
+    ["kingman"]      = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Kingman.json",
+    ["winslow"]      = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Winslow.json",
+    ["payson"]       = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Payson.json",
+    ["gilbert"]      = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Gilbert.json",
+    ["show-low"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Show%20Low.json",
+    ["casa-grande"]  = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Casa-Grande.json",
+    ["page"]         = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Page.json",
+    ["sun-city"]     = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Sun-City.json",
+    ["queen-creek"]  = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Queen-Creek.json",
+    ["sedona"]       = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Sedona.json",
+    ["holiday"]      = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Holiday.json",
+    ["wednesday"]    = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Wednesday.json",
+    ["yava"]         = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Yava.json",
+    ["faraway"]      = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Faraway.json",
+    ["bumble-bee"]   = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Bumble%20Bee.json",
+    ["christmas"]    = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Christmas.json",
+    ["mirage"]       = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Mirage.json",
+    ["love"]         = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Love.json",
+    ["drake"]        = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/smartUkLink/Drake.json"
 }
 
 local buttonsJson = getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/buttons.json"
@@ -458,7 +458,7 @@ function downloadBinder()
     file = io.open(path, "w")
     file:close()
     file = io.open(path, "a+")
-    downloadFile("https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/refs/heads/main/Binder.json",
+    downloadFile("https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/refs/heads/main/Binder.json",
         path)
     msg('Устанавливается файл биндера, перезагрузка')
     thisScript():reload()
@@ -2144,8 +2144,7 @@ imgui.OnFrame(
                         wait(1500)
                         sampSendChat(" Так же приехав на место, мы не устраиваем пальбу по всем, кого видим")
                         wait(1500)
-                        sampSendChat(
-                            " Открывать огонь по постороннему разрешается только в том случае, если он нацелился на вас оружием, начал атаковать вас или собирать созревшие кусты")
+                        sampSendChat(" Открывать огонь по постороннему разрешается только в том случае, если он нацелился на вас оружием, начал атаковать вас или собирать созревшие кусты")
                         wait(1500)
                         sampSendChat(" Как только спец. операция заканчивается, все оцепление убирается")
                         wait(1500)
@@ -4238,7 +4237,7 @@ function check_update()
     msg('{ffffff}Начинаю проверку на наличие обновлений...')
     local pathupdate = getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/infoupdate.json"
     os.remove(pathupdate)
-    local url = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/infoupdate.json"
+    local url = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/infoupdate.json"
     downloadFile(url, pathupdate)
     local updateInfo = readJsonFile(pathupdate)
     if updateInfo then
@@ -4246,7 +4245,7 @@ function check_update()
         local uText = updateInfo.update_info
         if thisScript().version ~= uVer then
             msg('{ffffff}Доступно обновление!')
-            updateUrl = "https://raw.githubusercontent.com/DanielBagdasarian/MVD-Helper-Mobile/main/MVDHelper.lua"
+            updateUrl = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/MVDHelper.lua"
             version = uVer
             textnewupdate = uText
             updateWin[0] = true
@@ -4515,7 +4514,7 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper")
                 os.remove(getWorkingDirectory():gsub('\\','/').."/config/MVDHelper.ini")
                 os.remove(helper_path)
-                msg("Скрипт удален. Если вы его удалили из-за багов или других недочетов пожалуйста сообщите об этом в лс @daniel2903_pon")
+                msg("Скрипт удален. Если вы его удалили из-за багов или других недочетов пожалуйста сообщите об этом в лс @Sashe4ka_ReZ")
                 thisScript():reload()
                 imgui.CloseCurrentPopup()
             end
@@ -4897,13 +4896,13 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
         end
     elseif page == 6 then -- Информация
         imgui.Text(u8 'Версия: ' .. thisScript().version)
-        imgui.Text(u8 'Разработчики: @Sashe4ka_ReZoN, @daniel2903_pon')
+        imgui.Text(u8 'Разработчики: @Sashe4ka_ReZ')
         imgui.Text(u8 'ТГ канал: t.me/lua_arz')
         if imgui.IsItemClicked() then
             openLink("https://t.me/lua_arz")
         end
         imgui.Text(u8 'Поддержать: Временно не доступно')
-        imgui.Text(u8 'Спонсоры: arzfun.com, @Negt, @King_Rostislavia, @sidrusha, @Timur77998, @osp_x, @Theopka')
+        imgui.Text(u8 'Спонсор: arzfun.com')
     end
     imgui.EndChild()
     imgui.End()
