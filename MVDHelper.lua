@@ -2,7 +2,7 @@
 
 script_name("MVD Helper Mobile")
 
-script_version("4.8")
+script_version("5.7.2")
 script_authors("@Sashe4ka_ReZ")
 
 --Libs START
@@ -22,7 +22,7 @@ local md5              = require("md5")
 local memory           = require("memory") 
 --Libs END
 
---Кодировка
+--пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 encoding.default       = 'CP1251'
 local u8               = encoding.UTF8
 
@@ -50,15 +50,15 @@ local BinderWindow     = imgui.new.bool(false)
 local leaderPanel      = imgui.new.bool(false)
 local MainWindow       = imgui.new.bool(false)
 --Windows buffs END
---Конфиг
+--пїЅпїЅпїЅпїЅпїЅпїЅ
 local directIni = 'MVDHelper.ini'
 local mainIni = inicfg.load({
     Accent = {
-        accent = '[Молдавский акцент]: '
+        accent = '[пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ]: '
     },
     Info = {
-        org = u8 'Вы не состоите в ПД',
-        dl = u8 'Вы не состоите в ПД',
+        org = u8 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ',
+        dl = u8 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ',
         rang_n = 0
     },
     theme = {
@@ -72,7 +72,7 @@ local mainIni = inicfg.load({
         autoAccent = false,
         standartBinds = true,
         Jone = false,
-        ObuchalName = "Мастурбек",
+        ObuchalName = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
         button = false
     },
     statTimers = {
@@ -138,7 +138,7 @@ local mainIni = inicfg.load({
 }, directIni)
 inicfg.save(mainIni, directIni)
 
---Остальные переменные
+--пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 local new             = imgui.new
 local button_megafon  = imgui.new.bool(mainIni.settings.button or false)
 local AI_PAGE         = {}
@@ -163,15 +163,15 @@ local newUkUr         = imgui.new.int(0)
 local spawn           = true
 local autogun         = new.bool(mainIni.settings.autoRpGun)
 local selected_theme  = imgui.new.int(mainIni.theme.selected)
-local theme_a         = { u8 'Стандартная', 'MoonMonet' }
+local theme_a         = { u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'MoonMonet' }
 local theme_t         = { u8 'standart', 'moonmonet' }
 local items           = imgui.new['const char*'][#theme_a](theme_a)
 local AutoAccentBool  = new.bool(mainIni.settings.autoAccent)
 local AutoAccentInput = new.char[255](u8(mainIni.Accent.accent))
-local org             = u8 'Вы не состоите в ПД'
-local org_g           = u8 'Вы не состоите в ПД'
-local dol             = 'Вы не состоите в ПД'
-local dl              = u8 'Вы не состоите в ПД'
+local org             = u8 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
+local org_g           = u8 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
+local dol             = 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
+local dl              = u8 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
 local rang_n          = 0
 local notes           = {}
 local newNoteTitle    = imgui.new.char[256]()
@@ -197,54 +197,54 @@ local dolzh           = imgui.new.char[255](mainIni.Info.dl)
 local spawncar_bool   = false
 local jsonFile        = getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/gunCommands.json"
 local weapons         = {
-    "Дубинка",
-    "Граната",
-    "Слезоточивый газ",
-    "Тайзер",
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+    "пїЅпїЅпїЅпїЅпїЅпїЅ",
     "Colt-45",
     "Desert Eagle",
-    "Дробовик",
-    "Обрезы",
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "пїЅпїЅпїЅпїЅпїЅпїЅ",
     "Spas",
-    "УЗИ",
-    "МП5",
+    "пїЅпїЅпїЅ",
+    "пїЅпїЅ5",
     "AK-47",
-    "М4",
+    "пїЅ4",
     "TEC-9",
-    "Винтовка",
-    "Снайперская винтовка",
-    "Фотокамера",
-    "Без оружия"
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"
 }
 local gunCommands     = {
-    "/me достал дубинку с поясного держателя",
-    "/me взял с пояса гранату",
-    "/me взял гранату слезоточивого газа с пояса",
-    "/me достал тайзер с кобуры, убрал предохранитель",
-    "/me достал пистолет Colt-45, снял предохранитель",
-    "/me достал Desert Eagle с кобуры, убрал предохранитель",
-    "/me достал чехол со спины, взял дробовик и убрал предохранитель",
-    "/me резким движением обоих рук, снял военный рюкзак с плеч и достал Обрезы",
-    "/me достал дробовик Spas, снял предохранитель",
-    "/me резким движением обоих рук, снял военный рюкзак с плеч и достал УЗИ",
-    "/me достал чехол со спины, взял МП5 и убрал предохранитель",
-    "/me достал карабин AK-47 со спины",
-    "/me достал карабин М4 со спины",
-    "/me резким движением обоих рук, снял военный рюкзак с плеч и достал TEC-9",
-    "/me достал винтовку без прицела из военной сумки",
-    "/me достал Снайперскую винтовку с военной сумки",
-    "/me достал фотокамеру из рюкзака",
-    "/me поставил предохранитель, убрал оружие"
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Colt-45, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ Desert Eagle пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Spas, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ5 пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ AK-47 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ4 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ TEC-9",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+    "/me пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"
 }
 local newButtonText   = imgui.new.char[255]()
 local newButtonCommand= imgui.new.char[2555]()
 local pages = {
-    { icon = faicons("HOUSE"), title = "  Главная", index = 8 },
-    { icon = faicons("BOOK"), title = "  Биндер", index = 2 },
-    { icon = faicons("TOWER_BROADCAST"), title = "  Гос. волна ", index = 3 },
-    { icon = faicons("RECTANGLE_LIST"), title = "  Заметки", index = 5 },
-    { icon = faicons("CIRCLE_INFO"), title = "  Инфо", index = 6 },
-    { icon = faicons("GEAR"), title = "  Настройки", index = 1 },
+    { icon = faicons("HOUSE"), title = "  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", index = 8 },
+    { icon = faicons("BOOK"), title = "  пїЅпїЅпїЅпїЅпїЅпїЅ", index = 2 },
+    { icon = faicons("TOWER_BROADCAST"), title = "  пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ ", index = 3 },
+    { icon = faicons("RECTANGLE_LIST"), title = "  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", index = 5 },
+    { icon = faicons("CIRCLE_INFO"), title = "  пїЅпїЅпїЅпїЅ", index = 6 },
+    { icon = faicons("GEAR"), title = "  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", index = 1 },
 }
 local serversList = {
     "mobile-i", "mobile-ii", "mobile-iii", "phoenix", "tucson", "chandler", "scottdale", "brainburg",
@@ -368,7 +368,7 @@ local smartUkUrl = {
 
 local buttonsJson = getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/buttons.json"
 local standartButtons = {
-    ['10-55'] = {'/m Водитель, снизьте скорость и прижмитесь к обочине.', '/m Держите руки на руле и заглушите двигатель'}
+    ['10-55'] = {'/m пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.', '/m пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'}
 }
 local search = false
 
@@ -451,7 +451,7 @@ function downloadFile(url, path)
         f:write(response.text)
         f:close()
     else
-        print('Ошибка скачивания...')
+        print('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...')
     end
 end
 function downloadBinder()
@@ -460,7 +460,7 @@ function downloadBinder()
     file = io.open(path, "a+")
     downloadFile("https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/refs/heads/main/Binder.json",
         path)
-    msg('Устанавливается файл биндера, перезагрузка')
+    msg('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
     thisScript():reload()
 end
 function loadCommands()
@@ -471,13 +471,13 @@ function loadCommands()
         local decodedJson = decodeJson(content)
         if decodedJson then
             gunCommands = decodedJson
-            print("Загружено из файла:", gunCommands)
+            print("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:", gunCommands)
         else
-            msg("Ошибка декодирования JSON. Загружаю стандартные.")
+            msg("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ JSON. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             saveCommands()
         end
     else
-        msg("Не удалось загрузить JSON файл с отыгровками оружий. Загружаю стандартные")
+        msg("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ JSON пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
         saveCommands()
     end
 end
@@ -487,7 +487,7 @@ function saveCommands()
         file:write(encodeJson(gunCommands))
         file:close()
     else
-        msg("Не удалось открыть файл для записи!")
+        msg("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!")
     end
 end
 function readButtons()
@@ -519,7 +519,7 @@ function load_settings()
     if not doesFileExist(path) then
         settings = default_settings_binder
         downloadBinder()
-        print('[Binder] Файл с настройками не найден, использую стандартные настройки!')
+        print('[Binder] пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
     else
         local file = io.open(path, 'r')
         if file then
@@ -527,7 +527,7 @@ function load_settings()
             file:close()
             if #contents == 0 then
                 settings = default_settings_binder
-                print('[Binder] Не удалось открыть файл с настройками, использую стандартные настройки!')
+                print('[Binder] пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
             else
                 local result, loaded = pcall(decodeJson, contents)
                 if result then
@@ -542,21 +542,21 @@ function load_settings()
                             end
                         end
                     end
-                    print('[Binder] Настройки успешно загружены!')
+                    print('[Binder] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
                 else
-                    print('[Binder] Не удалось открыть файл с настройками, использую стандартные настройки!')
+                    print('[Binder] пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
                 end
             end
         else
             settings = default_settings_binder
             downloadBinder()
-            print('[Binder] Не удалось открыть файл с настройками, использую стандартные настройки!')
+            print('[Binder] пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
         end
     end
     --Smart UK
-    local file = io.open(smartUkPath, "r") -- Открываем файл в режиме чтения
+    local file = io.open(smartUkPath, "r") -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if not file then
-        tableUk = { Ur = { 6 }, Text = { "Нападение на полицейского 14.4" } }
+        tableUk = { Ur = { 6 }, Text = { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 14.4" } }
         file = io.open(smartUkPath, "w")
         file:write(encodeJson(tableUk))
         file:close()
@@ -581,7 +581,7 @@ function save_settings()
         file:close()
         return result
     else
-        print('[Binder] Не удалось сохранить настройки хелпера, ошибка: ', errstr)
+        print('[Binder] пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ: ', errstr)
         return false
     end
 end
@@ -596,8 +596,8 @@ local message_color_hex = '{00CCFF}'
 
 local sizeX, sizeY = getScreenResolution()
 local ComboTags = new.int()
-local item_list = { u8 'Без аргумента', u8 '{arg} - принимает что угодно, буквы/цифры/символы', u8 '{arg_id} - принимает только ID игрока',
-    u8 '{arg_id} {arg2} - принимает 2 аругмента: ID игрока и второе что угодно' }
+local item_list = { u8 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', u8 '{arg} - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', u8 '{arg_id} - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅ',
+    u8 '{arg_id} {arg2} - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ID пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' }
 local ImItems = imgui.new['const char*'][#item_list](item_list)
 local change_cmd = ''
 local change_description = ''
@@ -615,15 +615,15 @@ local tagReplacements = {
     end,
 }
 local binder_tags_text = [[
-{my_id} - Ваш игровой ID
-{my_nick} - Ваш игровой Nick
-{my_ru_nick} - Ваше Имя и Фамилия указанные в хелпере
+{my_id} - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID
+{my_nick} - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Nick
+{my_ru_nick} - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-{get_time} - Получить текущее время
+{get_time} - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-{get_nick({arg_id})} - получить Nick игрока из аргумента ID игрока
-{get_rp_nick({arg_id})}  - получить Nick игрока без символа _ из аргумента ID игрока
-{get_ru_nick({arg_id})}  - получить Nick игрока на кирилице из аргумента ID игрока
+{get_nick({arg_id})} - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Nick пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅ
+{get_rp_nick({arg_id})}  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Nick пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ _ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅ
+{get_ru_nick({arg_id})}  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Nick пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅпїЅ
 ]]
 
 
@@ -645,7 +645,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
                     modifiedText = modifiedText:gsub('{arg}', arg or "")
                     arg_check = true
                 else
-                    msg('[Binder] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [аргумент]',
+                    msg('[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' .. message_color_hex .. '/' .. chat_cmd .. ' [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ]',
                         message_color)
                     play_error_sound()
                 end
@@ -660,7 +660,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
                     modifiedText = modifiedText:gsub('%{arg_id%}', arg or "")
                     arg_check = true
                 else
-                    msg('[Binder] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока]',
+                    msg('[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ]',
                         message_color)
                     play_error_sound()
                 end
@@ -680,14 +680,14 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
                         arg_check = true
                     else
                         msg(
-                            '[Binder] {ffffff}Используйте ' ..
-                            message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент]', message_color)
+                            '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                            message_color_hex .. '/' .. chat_cmd .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ] [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ]', message_color)
                         play_error_sound()
                     end
                 else
                     msg(
-                        '[Binder] {ffffff}Используйте ' ..
-                        message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент]',
+                        '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                        message_color_hex .. '/' .. chat_cmd .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ] [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ]',
                         message_color)
                     play_error_sound()
                 end
@@ -705,7 +705,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
                         if command_stop then
                             command_stop = false
                             isActiveCommand = false
-                            msg('[Binder] {ffffff}Отыгровка команды /' .. chat_cmd .. " успешно остановлена!",
+                            msg('[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /' .. chat_cmd .. " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!",
                                 message_color)
                             return
                         end
@@ -719,7 +719,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
                 end)
             end
         else
-            msg('[Binder] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+            msg('[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!', message_color)
         end
     end)
 end
@@ -747,7 +747,7 @@ imgui.OnInitialize(function()
     config.MergeMode = true
     config.PixelSnapH = true
     iconRanges = imgui.new.ImWchar[3](faicons.min_range, faicons.max_range, 0)
-    imgui.GetIO().Fonts:AddFontFromMemoryCompressedBase85TTF(faicons.get_font_data_base85('solid'), 14 * MDS, config, iconRanges) -- solid - тип иконок, так же есть thin, regular, light и duotone
+    imgui.GetIO().Fonts:AddFontFromMemoryCompressedBase85TTF(faicons.get_font_data_base85('solid'), 14 * MDS, config, iconRanges) -- solid - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ thin, regular, light пїЅ duotone
     local tmp = imgui.ColorConvertU32ToFloat4(mainIni.theme['moonmonet'])
     gen_color = monet.buildColors(mainIni.theme.moonmonet, 1.0, true)
     mmcolor = imgui.new.float[3](tmp.z, tmp.y, tmp.x)
@@ -798,35 +798,35 @@ local MainWindowFrame = imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(600 * MONET_DPI_SCALE, 425 * MONET_DPI_SCALE), imgui.Cond.FirstUseEver)
-        imgui.Begin(fa.TERMINAL .. u8 " Binder by MTG MODS - Главное меню", MainWindow,
+        imgui.Begin(fa.TERMINAL .. u8 " Binder by MTG MODS - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", MainWindow,
             imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize)
 
         if imgui.BeginChild('##1', imgui.ImVec2(700 * MONET_DPI_SCALE, 700 * MONET_DPI_SCALE), true) then
             imgui.Columns(3)
-            imgui.CenterColumnText(u8 "Команда")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 170 * MONET_DPI_SCALE)
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Описание")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 300 * MONET_DPI_SCALE)
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Действие")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 230 * MONET_DPI_SCALE)
             imgui.Columns(1)
             imgui.Separator()
             imgui.Columns(3)
             imgui.CenterColumnText(u8 "/binder")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Открыть главное меню биндера")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Недоступно")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.Columns(1)
             imgui.Separator()
             imgui.Columns(3)
-            imgui.CenterColumnText(u8 "/stop [Недоступен]")
+            imgui.CenterColumnText(u8 "/stop [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ]")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Остановить любую отыгровку из биндера [Недоступен]")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ]")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Недоступно")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.Columns(1)
             imgui.Separator()
             for index, command in ipairs(settings.commands) do
@@ -852,7 +852,7 @@ local MainWindowFrame = imgui.OnFrame(
                             sampUnregisterChatCommand(command.cmd)
                         end
                         if imgui.IsItemHovered() then
-                            imgui.SetTooltip(u8 "Отключение команды /" .. command.cmd)
+                            imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                         end
                     else
                         if imgui.SmallButton(fa.TOGGLE_OFF .. '##' .. command.cmd) then
@@ -861,7 +861,7 @@ local MainWindowFrame = imgui.OnFrame(
                             register_command(command.cmd, command.arg, command.text, tonumber(command.waiting))
                         end
                         if imgui.IsItemHovered() then
-                            imgui.SetTooltip(u8 "Включение команды /" .. command.cmd)
+                            imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                         end
                     end
                     imgui.SameLine()
@@ -887,23 +887,23 @@ local MainWindowFrame = imgui.OnFrame(
                         BinderWindow[0] = true
                     end
                     if imgui.IsItemHovered() then
-                        imgui.SetTooltip(u8 "Изменение команды /" .. command.cmd)
+                        imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                     end
                     imgui.SameLine()
                     if imgui.SmallButton(fa.TRASH_CAN .. '##' .. command.cmd) then
-                        imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' Предупреждение ##' .. command.cmd)
+                        imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ##' .. command.cmd)
                     end
                     if imgui.IsItemHovered() then
-                        imgui.SetTooltip(u8 "Удаление команды /" .. command.cmd)
+                        imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                     end
-                    if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' Предупреждение ##' .. command.cmd, _, imgui.WindowFlags.NoResize) then
-                        imgui.CenterText(u8 'Вы действительно хотите удалить команду /' .. u8(command.cmd) .. '?')
+                    if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ##' .. command.cmd, _, imgui.WindowFlags.NoResize) then
+                        imgui.CenterText(u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /' .. u8(command.cmd) .. '?')
                         imgui.Separator()
-                        if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Нет, отменить', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                        if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                             imgui.CloseCurrentPopup()
                         end
                         imgui.SameLine()
-                        if imgui.Button(fa.TRASH_CAN .. u8 ' Да, удалить', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                        if imgui.Button(fa.TRASH_CAN .. u8 ' пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                             command.enable = false
                             command.deleted = true
                             sampUnregisterChatCommand(command.cmd)
@@ -918,10 +918,10 @@ local MainWindowFrame = imgui.OnFrame(
             end
             imgui.EndChild()
         end
-        if imgui.Button(fa.CIRCLE_PLUS .. u8 ' Создать новую команду##new_cmd', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+        if imgui.Button(fa.CIRCLE_PLUS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ##new_cmd', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
             local new_cmd = {
                 cmd = '',
-                description = 'Новая команда созданная вами',
+                description = 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ',
                 text = '',
                 arg = '',
                 enable = true,
@@ -951,62 +951,62 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(600 * MONET_DPI_SCALE, 425 * MONET_DPI_SCALE), imgui.Cond.FirstUseEver)
-        imgui.Begin(fa.TERMINAL .. u8 " Binder by MTG MODS - Редактирование команды /" .. change_cmd, BinderWindow,
+        imgui.Begin(fa.TERMINAL .. u8 " Binder by MTG MODS - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. change_cmd, BinderWindow,
             imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize)
         if imgui.BeginChild('##binder_edit', imgui.ImVec2(589 * MONET_DPI_SCALE, 361 * MONET_DPI_SCALE), true) then
-            imgui.CenterText(fa.FILE_LINES .. u8 ' Описание команды:')
+            imgui.CenterText(fa.FILE_LINES .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:')
             imgui.PushItemWidth(579 * MONET_DPI_SCALE)
             imgui.InputText("##input_description", input_description, 256)
             imgui.Separator()
-            imgui.CenterText(fa.TERMINAL .. u8 ' Команда для использования в чате (без /):')
+            imgui.CenterText(fa.TERMINAL .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ /):')
             imgui.PushItemWidth(579 * MONET_DPI_SCALE)
             imgui.InputText("##input_cmd", input_cmd, 256)
             imgui.Separator()
-            imgui.CenterText(fa.CODE .. u8 ' Аргументы которые принимает команда:')
+            imgui.CenterText(fa.CODE .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:')
             imgui.Combo(u8 '', ComboTags, ImItems, #item_list)
             imgui.Separator()
-            imgui.CenterText(fa.FILE_WORD .. u8 ' Текстовый бинд команды:')
+            imgui.CenterText(fa.FILE_WORD .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:')
             imgui.InputTextMultiline("##text_multiple", input_text, 8192,
                 imgui.ImVec2(579 * MONET_DPI_SCALE, 173 * MONET_DPI_SCALE))
             imgui.EndChild()
         end
-        if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Отмена', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+        if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
             BinderWindow[0] = false
         end
         imgui.SameLine()
-        if imgui.Button(fa.CLOCK .. u8 ' Задержка', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
-            imgui.OpenPopup(fa.CLOCK .. u8 ' Задержка (в секундах) ')
+        if imgui.Button(fa.CLOCK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+            imgui.OpenPopup(fa.CLOCK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) ')
         end
-        if imgui.BeginPopupModal(fa.CLOCK .. u8 ' Задержка (в секундах) ', _, imgui.WindowFlags.NoResize) then
+        if imgui.BeginPopupModal(fa.CLOCK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) ', _, imgui.WindowFlags.NoResize) then
             imgui.PushItemWidth(200 * MONET_DPI_SCALE)
             imgui.SliderFloat(u8 '##waiting', waiting_slider, 0.3, 5)
             imgui.Separator()
-            if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Отмена', imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
+            if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
                 waiting_slider = imgui.new.float(tonumber(change_waiting))
                 imgui.CloseCurrentPopup()
             end
             imgui.SameLine()
-            if imgui.Button(fa.FLOPPY_DISK .. u8 ' Сохранить', imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
+            if imgui.Button(fa.FLOPPY_DISK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
                 imgui.CloseCurrentPopup()
             end
             imgui.End()
         end
         imgui.SameLine()
-        if imgui.Button(fa.TAGS .. u8 ' Тэги ', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
-            imgui.OpenPopup(fa.TAGS .. u8 ' Основные тэги для использования в биндере')
+        if imgui.Button(fa.TAGS .. u8 ' пїЅпїЅпїЅпїЅ ', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+            imgui.OpenPopup(fa.TAGS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
         end
-        if imgui.BeginPopupModal(fa.TAGS .. u8 ' Основные тэги для использования в биндере', _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize) then
+        if imgui.BeginPopupModal(fa.TAGS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize) then
             imgui.Text(u8(binder_tags_text))
             imgui.Separator()
-            if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Закрыть', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+            if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                 imgui.CloseCurrentPopup()
             end
             imgui.End()
         end
         imgui.SameLine()
-        if imgui.Button(fa.FLOPPY_DISK .. u8 ' Сохранить', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+        if imgui.Button(fa.FLOPPY_DISK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
             if ffi.string(input_cmd):find('%W') or ffi.string(input_cmd) == '' or ffi.string(input_description) == '' or ffi.string(input_text) == '' then
-                imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' Ошибка сохранения команды!')
+                imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
             else
                 local new_arg = ''
                 if ComboTags[0] == 0 then
@@ -1033,24 +1033,24 @@ imgui.OnFrame(
                             save_settings()
                             if command.arg == '' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
-                                    message_color_hex .. '/' .. new_command .. ' {ffffff}успешно сохранена!',
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                                    message_color_hex .. '/' .. new_command .. ' {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             elseif command.arg == '{arg}' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
-                                    message_color_hex .. '/' .. new_command .. ' [аргумент] {ffffff}успешно сохранена!',
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                                    message_color_hex .. '/' .. new_command .. ' [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             elseif command.arg == '{arg_id}' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
-                                    message_color_hex .. '/' .. new_command .. ' [ID игрока] {ffffff}успешно сохранена!',
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                                    message_color_hex .. '/' .. new_command .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             elseif command.arg == '{arg_id} {arg2}' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
                                     message_color_hex ..
-                                    '/' .. new_command .. ' [ID игрока] [аргумент] {ffffff}успешно сохранена!',
+                                    '/' .. new_command .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ] [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             end
                             sampUnregisterChatCommand(change_cmd)
@@ -1070,24 +1070,24 @@ imgui.OnFrame(
                             save_settings()
                             if command.arg == '' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
-                                    message_color_hex .. '/' .. new_command .. ' {ffffff}успешно сохранена!',
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                                    message_color_hex .. '/' .. new_command .. ' {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             elseif command.arg == '{arg}' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
-                                    message_color_hex .. '/' .. new_command .. ' [аргумент] {ffffff}успешно сохранена!',
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                                    message_color_hex .. '/' .. new_command .. ' [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             elseif command.arg == '{arg_id}' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
-                                    message_color_hex .. '/' .. new_command .. ' [ID игрока] {ffffff}успешно сохранена!',
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
+                                    message_color_hex .. '/' .. new_command .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             elseif command.arg == '{arg_id} {arg2}' then
                                 msg(
-                                    '[Binder] {ffffff}Команда ' ..
+                                    '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' ..
                                     message_color_hex ..
-                                    '/' .. new_command .. ' [ID игрока] [аргумент] {ffffff}успешно сохранена!',
+                                    '/' .. new_command .. ' [ID пїЅпїЅпїЅпїЅпїЅпїЅ] [пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!',
                                     message_color)
                             end
                             sampUnregisterChatCommand(change_cmd)
@@ -1099,20 +1099,20 @@ imgui.OnFrame(
                 BinderWindow[0] = false
             end
         end
-        if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' Ошибка сохранения команды!', _, imgui.WindowFlags.AlwaysAutoResize) then
+        if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!', _, imgui.WindowFlags.AlwaysAutoResize) then
             if ffi.string(input_cmd):find('%W') then
-                imgui.BulletText(u8 " В команде можно использовать только англ. буквы и/или цифры!")
+                imgui.BulletText(u8 " пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅ/пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!")
             elseif ffi.string(input_cmd) == '' then
-                imgui.BulletText(u8 " Команда не может быть пустая!")
+                imgui.BulletText(u8 " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!")
             end
             if ffi.string(input_description) == '' then
-                imgui.BulletText(u8 " Описание команды не может быть пустое!")
+                imgui.BulletText(u8 " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!")
             end
             if ffi.string(input_text) == '' then
-                imgui.BulletText(u8 " Бинд команды не может быть пустой!")
+                imgui.BulletText(u8 " пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!")
             end
             imgui.Separator()
-            if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Закрыть', imgui.ImVec2(300 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+            if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(300 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                 imgui.CloseCurrentPopup()
             end
             imgui.End()
@@ -1140,72 +1140,72 @@ function play_error_sound()
 end
 
 local russian_characters = {
-    [168] = 'Ё',
-    [184] = 'ё',
-    [192] = 'А',
-    [193] = 'Б',
-    [194] = 'В',
-    [195] = 'Г',
-    [196] = 'Д',
-    [197] = 'Е',
-    [198] = 'Ж',
-    [199] = 'З',
-    [200] = 'И',
-    [201] = 'Й',
-    [202] = 'К',
-    [203] = 'Л',
-    [204] = 'М',
-    [205] = 'Н',
-    [206] = 'О',
-    [207] = 'П',
-    [208] = 'Р',
-    [209] = 'С',
-    [210] = 'Т',
-    [211] = 'У',
-    [212] = 'Ф',
-    [213] = 'Х',
-    [214] = 'Ц',
-    [215] = 'Ч',
-    [216] = 'Ш',
-    [217] = 'Щ',
-    [218] = 'Ъ',
-    [219] = 'Ы',
-    [220] = 'Ь',
-    [221] = 'Э',
-    [222] = 'Ю',
-    [223] = 'Я',
-    [224] = 'а',
-    [225] = 'б',
-    [226] = 'в',
-    [227] = 'г',
-    [228] = 'д',
-    [229] = 'е',
-    [230] = 'ж',
-    [231] = 'з',
-    [232] = 'и',
-    [233] = 'й',
-    [234] = 'к',
-    [235] = 'л',
-    [236] = 'м',
-    [237] = 'н',
-    [238] = 'о',
-    [239] = 'п',
-    [240] = 'р',
-    [241] = 'с',
-    [242] = 'т',
-    [243] = 'у',
-    [244] = 'ф',
-    [245] = 'х',
-    [246] = 'ц',
-    [247] = 'ч',
-    [248] = 'ш',
-    [249] = 'щ',
-    [250] = 'ъ',
-    [251] = 'ы',
-    [252] = 'ь',
-    [253] = 'э',
-    [254] = 'ю',
-    [255] = 'я',
+    [168] = 'пїЅ',
+    [184] = 'пїЅ',
+    [192] = 'пїЅ',
+    [193] = 'пїЅ',
+    [194] = 'пїЅ',
+    [195] = 'пїЅ',
+    [196] = 'пїЅ',
+    [197] = 'пїЅ',
+    [198] = 'пїЅ',
+    [199] = 'пїЅ',
+    [200] = 'пїЅ',
+    [201] = 'пїЅ',
+    [202] = 'пїЅ',
+    [203] = 'пїЅ',
+    [204] = 'пїЅ',
+    [205] = 'пїЅ',
+    [206] = 'пїЅ',
+    [207] = 'пїЅ',
+    [208] = 'пїЅ',
+    [209] = 'пїЅ',
+    [210] = 'пїЅ',
+    [211] = 'пїЅ',
+    [212] = 'пїЅ',
+    [213] = 'пїЅ',
+    [214] = 'пїЅ',
+    [215] = 'пїЅ',
+    [216] = 'пїЅ',
+    [217] = 'пїЅ',
+    [218] = 'пїЅ',
+    [219] = 'пїЅ',
+    [220] = 'пїЅ',
+    [221] = 'пїЅ',
+    [222] = 'пїЅ',
+    [223] = 'пїЅ',
+    [224] = 'пїЅ',
+    [225] = 'пїЅ',
+    [226] = 'пїЅ',
+    [227] = 'пїЅ',
+    [228] = 'пїЅ',
+    [229] = 'пїЅ',
+    [230] = 'пїЅ',
+    [231] = 'пїЅ',
+    [232] = 'пїЅ',
+    [233] = 'пїЅ',
+    [234] = 'пїЅ',
+    [235] = 'пїЅ',
+    [236] = 'пїЅ',
+    [237] = 'пїЅ',
+    [238] = 'пїЅ',
+    [239] = 'пїЅ',
+    [240] = 'пїЅ',
+    [241] = 'пїЅ',
+    [242] = 'пїЅ',
+    [243] = 'пїЅ',
+    [244] = 'пїЅ',
+    [245] = 'пїЅ',
+    [246] = 'пїЅ',
+    [247] = 'пїЅ',
+    [248] = 'пїЅ',
+    [249] = 'пїЅ',
+    [250] = 'пїЅ',
+    [251] = 'пїЅ',
+    [252] = 'пїЅ',
+    [253] = 'пїЅ',
+    [254] = 'пїЅ',
+    [255] = 'пїЅ',
 }
 function string.rlower(s)
     s = s:lower()
@@ -1217,7 +1217,7 @@ function string.rlower(s)
         local ch = s:byte(i)
         if ch >= 192 and ch <= 223 then -- upper russian characters
             output = output .. russian_characters[ch + 32]
-        elseif ch == 168 then           -- Ё
+        elseif ch == 168 then           -- пїЅ
             output = output .. russian_characters[184]
         else
             output = output .. string.char(ch)
@@ -1236,7 +1236,7 @@ function string.rupper(s)
         local ch = s:byte(i)
         if ch >= 224 and ch <= 255 then -- lower russian characters
             output = output .. russian_characters[ch - 32]
-        elseif ch == 184 then           -- ё
+        elseif ch == 184 then           -- пїЅ
             output = output .. russian_characters[168]
         else
             output = output .. string.char(ch)
@@ -1247,10 +1247,10 @@ end
 
 function TranslateNick(name)
     if name:match('%a+') then
-        for k, v in pairs({ ['ph'] = 'ф', ['Ph'] = 'Ф', ['Ch'] = 'Ч', ['ch'] = 'ч', ['Th'] = 'Т', ['th'] = 'т', ['Sh'] = 'Ш', ['sh'] = 'ш', ['ea'] = 'и', ['Ae'] = 'Э', ['ae'] = 'э', ['size'] = 'сайз', ['Jj'] = 'Джейджей', ['Whi'] = 'Вай', ['lack'] = 'лэк', ['whi'] = 'вай', ['Ck'] = 'К', ['ck'] = 'к', ['Kh'] = 'Х', ['kh'] = 'х', ['hn'] = 'н', ['Hen'] = 'Ген', ['Zh'] = 'Ж', ['zh'] = 'ж', ['Yu'] = 'Ю', ['yu'] = 'ю', ['Yo'] = 'Ё', ['yo'] = 'ё', ['Cz'] = 'Ц', ['cz'] = 'ц', ['ia'] = 'я', ['ea'] = 'и', ['Ya'] = 'Я', ['ya'] = 'я', ['ove'] = 'ав', ['ay'] = 'эй', ['rise'] = 'райз', ['oo'] = 'у', ['Oo'] = 'У', ['Ee'] = 'И', ['ee'] = 'и', ['Un'] = 'Ан', ['un'] = 'ан', ['Ci'] = 'Ци', ['ci'] = 'ци', ['yse'] = 'уз', ['cate'] = 'кейт', ['eow'] = 'яу', ['rown'] = 'раун', ['yev'] = 'уев', ['Babe'] = 'Бэйби', ['Jason'] = 'Джейсон', ['liy'] = 'лий', ['ane'] = 'ейн', ['ame'] = 'ейм' }) do
+        for k, v in pairs({ ['ph'] = 'пїЅ', ['Ph'] = 'пїЅ', ['Ch'] = 'пїЅ', ['ch'] = 'пїЅ', ['Th'] = 'пїЅ', ['th'] = 'пїЅ', ['Sh'] = 'пїЅ', ['sh'] = 'пїЅ', ['ea'] = 'пїЅ', ['Ae'] = 'пїЅ', ['ae'] = 'пїЅ', ['size'] = 'пїЅпїЅпїЅпїЅ', ['Jj'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', ['Whi'] = 'пїЅпїЅпїЅ', ['lack'] = 'пїЅпїЅпїЅ', ['whi'] = 'пїЅпїЅпїЅ', ['Ck'] = 'пїЅ', ['ck'] = 'пїЅ', ['Kh'] = 'пїЅ', ['kh'] = 'пїЅ', ['hn'] = 'пїЅ', ['Hen'] = 'пїЅпїЅпїЅ', ['Zh'] = 'пїЅ', ['zh'] = 'пїЅ', ['Yu'] = 'пїЅ', ['yu'] = 'пїЅ', ['Yo'] = 'пїЅ', ['yo'] = 'пїЅ', ['Cz'] = 'пїЅ', ['cz'] = 'пїЅ', ['ia'] = 'пїЅ', ['ea'] = 'пїЅ', ['Ya'] = 'пїЅ', ['ya'] = 'пїЅ', ['ove'] = 'пїЅпїЅ', ['ay'] = 'пїЅпїЅ', ['rise'] = 'пїЅпїЅпїЅпїЅ', ['oo'] = 'пїЅ', ['Oo'] = 'пїЅ', ['Ee'] = 'пїЅ', ['ee'] = 'пїЅ', ['Un'] = 'пїЅпїЅ', ['un'] = 'пїЅпїЅ', ['Ci'] = 'пїЅпїЅ', ['ci'] = 'пїЅпїЅ', ['yse'] = 'пїЅпїЅ', ['cate'] = 'пїЅпїЅпїЅпїЅ', ['eow'] = 'пїЅпїЅ', ['rown'] = 'пїЅпїЅпїЅпїЅ', ['yev'] = 'пїЅпїЅпїЅ', ['Babe'] = 'пїЅпїЅпїЅпїЅпїЅ', ['Jason'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', ['liy'] = 'пїЅпїЅпїЅ', ['ane'] = 'пїЅпїЅпїЅ', ['ame'] = 'пїЅпїЅпїЅ' }) do
             name = name:gsub(k, v)
         end
-        for k, v in pairs({ ['B'] = 'Б', ['Z'] = 'З', ['T'] = 'Т', ['Y'] = 'Й', ['P'] = 'П', ['J'] = 'Дж', ['X'] = 'Кс', ['G'] = 'Г', ['V'] = 'В', ['H'] = 'Х', ['N'] = 'Н', ['E'] = 'Е', ['I'] = 'И', ['D'] = 'Д', ['O'] = 'О', ['K'] = 'К', ['F'] = 'Ф', ['y`'] = 'ы', ['e`'] = 'э', ['A'] = 'А', ['C'] = 'К', ['L'] = 'Л', ['M'] = 'М', ['W'] = 'В', ['Q'] = 'К', ['U'] = 'А', ['R'] = 'Р', ['S'] = 'С', ['zm'] = 'зьм', ['h'] = 'х', ['q'] = 'к', ['y'] = 'и', ['a'] = 'а', ['w'] = 'в', ['b'] = 'б', ['v'] = 'в', ['g'] = 'г', ['d'] = 'д', ['e'] = 'е', ['z'] = 'з', ['i'] = 'и', ['j'] = 'ж', ['k'] = 'к', ['l'] = 'л', ['m'] = 'м', ['n'] = 'н', ['o'] = 'о', ['p'] = 'п', ['r'] = 'р', ['s'] = 'с', ['t'] = 'т', ['u'] = 'у', ['f'] = 'ф', ['x'] = 'x', ['c'] = 'к', ['``'] = 'ъ', ['`'] = 'ь', ['_'] = ' ' }) do
+        for k, v in pairs({ ['B'] = 'пїЅ', ['Z'] = 'пїЅ', ['T'] = 'пїЅ', ['Y'] = 'пїЅ', ['P'] = 'пїЅ', ['J'] = 'пїЅпїЅ', ['X'] = 'пїЅпїЅ', ['G'] = 'пїЅ', ['V'] = 'пїЅ', ['H'] = 'пїЅ', ['N'] = 'пїЅ', ['E'] = 'пїЅ', ['I'] = 'пїЅ', ['D'] = 'пїЅ', ['O'] = 'пїЅ', ['K'] = 'пїЅ', ['F'] = 'пїЅ', ['y`'] = 'пїЅ', ['e`'] = 'пїЅ', ['A'] = 'пїЅ', ['C'] = 'пїЅ', ['L'] = 'пїЅ', ['M'] = 'пїЅ', ['W'] = 'пїЅ', ['Q'] = 'пїЅ', ['U'] = 'пїЅ', ['R'] = 'пїЅ', ['S'] = 'пїЅ', ['zm'] = 'пїЅпїЅпїЅ', ['h'] = 'пїЅ', ['q'] = 'пїЅ', ['y'] = 'пїЅ', ['a'] = 'пїЅ', ['w'] = 'пїЅ', ['b'] = 'пїЅ', ['v'] = 'пїЅ', ['g'] = 'пїЅ', ['d'] = 'пїЅ', ['e'] = 'пїЅ', ['z'] = 'пїЅ', ['i'] = 'пїЅ', ['j'] = 'пїЅ', ['k'] = 'пїЅ', ['l'] = 'пїЅ', ['m'] = 'пїЅ', ['n'] = 'пїЅ', ['o'] = 'пїЅ', ['p'] = 'пїЅ', ['r'] = 'пїЅ', ['s'] = 'пїЅ', ['t'] = 'пїЅ', ['u'] = 'пїЅ', ['f'] = 'пїЅ', ['x'] = 'x', ['c'] = 'пїЅ', ['``'] = 'пїЅ', ['`'] = 'пїЅ', ['_'] = ' ' }) do
             name = name:gsub(k, v)
         end
         return name
@@ -1315,13 +1315,13 @@ local Radio = {
 }
 
 local tWeekdays = {
-    [0] = 'Воскресенье',
-    [1] = 'Понедельник',
-    [2] = 'Вторник',
-    [3] = 'Среда',
-    [4] = 'Четверг',
-    [5] = 'Пятница',
-    [6] = 'Суббота'
+    [0] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    [1] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    [2] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    [3] = 'пїЅпїЅпїЅпїЅпїЅ',
+    [4] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    [5] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    [6] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'
 }
 
 imgui.OnFrame(function() return to[0] and not recon end,
@@ -1351,31 +1351,31 @@ imgui.OnFrame(function() return to[0] and not recon end,
 
         imgui.PushStyleVarVec2(imgui.StyleVar.ItemSpacing, imgui.ImVec2(5, 2))
         if not sampIsLocalPlayerSpawned() then
-            --imgui.CenterTextColoredRGB("Подключение: " .. get_clock(connectingTime))
+            --imgui.CenterTextColoredRGB("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " .. get_clock(connectingTime))
         else
-            if cfg.statTimers.sesOnline then imgui.CenterTextColoredRGB("Сессия (чистый): " .. get_clock(sesOnline[0])) end
-            if cfg.statTimers.sesAfk then imgui.CenterTextColoredRGB("AFK за сессию: " .. get_clock(sesAfk[0])) end
-            if cfg.statTimers.sesFull then imgui.CenterTextColoredRGB("Онлайн за сессию: " .. get_clock(sesFull[0])) end
+            if cfg.statTimers.sesOnline then imgui.CenterTextColoredRGB("пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ): " .. get_clock(sesOnline[0])) end
+            if cfg.statTimers.sesAfk then imgui.CenterTextColoredRGB("AFK пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " .. get_clock(sesAfk[0])) end
+            if cfg.statTimers.sesFull then imgui.CenterTextColoredRGB("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " .. get_clock(sesFull[0])) end
             if cfg.statTimers.dayOnline then
-                imgui.CenterTextColoredRGB("За день (чистый): " ..
+                imgui.CenterTextColoredRGB("пїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ): " ..
                     get_clock(cfg.onDay.online))
             end
-            if cfg.statTimers.dayAfk then imgui.CenterTextColoredRGB("АФК за день: " .. get_clock(cfg.onDay.afk)) end
-            if cfg.statTimers.dayFull then imgui.CenterTextColoredRGB("Онлайн за день: " .. get_clock(cfg.onDay.full)) end
+            if cfg.statTimers.dayAfk then imgui.CenterTextColoredRGB("пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ: " .. get_clock(cfg.onDay.afk)) end
+            if cfg.statTimers.dayFull then imgui.CenterTextColoredRGB("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ: " .. get_clock(cfg.onDay.full)) end
             if cfg.statTimers.weekOnline then
-                imgui.CenterTextColoredRGB("За неделю (чистый): " ..
+                imgui.CenterTextColoredRGB("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ): " ..
                     get_clock(cfg.onWeek.online))
             end
-            if cfg.statTimers.weekAfk then imgui.CenterTextColoredRGB("АФК за неделю: " .. get_clock(cfg.onWeek.afk)) end
-            if cfg.statTimers.weekFull then imgui.CenterTextColoredRGB("Онлайн за неделю: " .. get_clock(cfg.onWeek.full)) end
+            if cfg.statTimers.weekAfk then imgui.CenterTextColoredRGB("пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " .. get_clock(cfg.onWeek.afk)) end
+            if cfg.statTimers.weekFull then imgui.CenterTextColoredRGB("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " .. get_clock(cfg.onWeek.full)) end
         end
         imgui.PopStyleVar()
-        if editpos and imgui.Button(u8 "Закрепить", imgui.ImVec2(-1, 35)) then
+        if editpos and imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(-1, 35)) then
             editpos = false
             settingsonline[0] = true
             cfg.pos.x, cfg.pos.y = pos.x, pos.y
             if not deliting_script then saveIni() end
-            msg('Позиция окна сохранена!')
+            msg('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
         end
 
         imgui.End()
@@ -1395,37 +1395,37 @@ imgui.OnFrame(function() return settingsonline[0] end,
         imgui.PopFont()
         imgui.BeginChild('##RadioButtons', imgui.ImVec2(190 * MDS, 280 * MDS), true)
 
-        if imgui.RadioButtonBool(u8 'Текущее дата и время', Radio['clock']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ', Radio['clock']) then
             Radio['clock'] = not Radio['clock']; cfg.statTimers.clock = Radio['clock']
         end
-        if imgui.RadioButtonBool(u8 'Онлайн сессию', Radio['sesOnline']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', Radio['sesOnline']) then
             Radio['sesOnline'] = not Radio['sesOnline']; cfg.statTimers.sesOnline = Radio['sesOnline']
         end
-        imgui.Hint('##1234', u8 'Без учёта АФК (Чистый онлайн)')
-        if imgui.RadioButtonBool(u8 'AFK за сессию', Radio['sesAfk']) then
+        imgui.Hint('##1234', u8 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)')
+        if imgui.RadioButtonBool(u8 'AFK пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', Radio['sesAfk']) then
             Radio['sesAfk'] = not Radio['sesAfk']; cfg.statTimers.sesAfk = Radio['sesAfk']
         end
-        if imgui.RadioButtonBool(u8 'Общий за сессию', Radio['sesFull']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', Radio['sesFull']) then
             Radio['sesFull'] = not Radio['sesFull']; cfg.statTimers.sesFull = Radio['sesFull']
         end
-        if imgui.RadioButtonBool(u8 'Онлайн за день', Radio['dayOnline']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ', Radio['dayOnline']) then
             Radio['dayOnline'] = not Radio['dayOnline']; cfg.statTimers.dayOnline = Radio['dayOnline']
         end
-        imgui.Hint('##1233', u8 'Без учёта АФК (Чистый онлайн)')
-        if imgui.RadioButtonBool(u8 'АФК за день', Radio['dayAfk']) then
+        imgui.Hint('##1233', u8 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)')
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ', Radio['dayAfk']) then
             Radio['dayAfk'] = not Radio['dayAfk']; cfg.statTimers.dayAfk = Radio['dayAfk']
         end
-        if imgui.RadioButtonBool(u8 'Общий за день', Radio['dayFull']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ', Radio['dayFull']) then
             Radio['dayFull'] = not Radio['dayFull']; cfg.statTimers.dayFull = Radio['dayFull']
         end
-        if imgui.RadioButtonBool(u8 'Онлайн за неделю', Radio['weekOnline']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', Radio['weekOnline']) then
             Radio['weekOnline'] = not Radio['weekOnline']; cfg.statTimers.weekOnline = Radio['weekOnline']
         end
-        imgui.Hint('##123', u8 'Без учёта АФК (Чистый онлайн)')
-        if imgui.RadioButtonBool(u8 'АФК за неделю', Radio['weekAfk']) then
+        imgui.Hint('##123', u8 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)')
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', Radio['weekAfk']) then
             Radio['weekAfk'] = not Radio['weekAfk']; cfg.statTimers.weekAfk = Radio['weekAfk']
         end
-        if imgui.RadioButtonBool(u8 'Общий за неделю', Radio['weekFull']) then
+        if imgui.RadioButtonBool(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', Radio['weekFull']) then
             Radio['weekFull'] = not Radio['weekFull']; cfg.statTimers.weekFull = Radio['weekFull']
         end
         imgui.EndChild()
@@ -1437,29 +1437,29 @@ imgui.OnFrame(function() return settingsonline[0] end,
         end
         imgui.SameLine()
         if to[0] then
-            imgui.TextColored(imgui.ImVec4(0.00, 0.53, 0.76, 1.00), u8 'Включено')
+            imgui.TextColored(imgui.ImVec4(0.00, 0.53, 0.76, 1.00), u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
         else
-            imgui.TextDisabled(u8 'Выключено')
+            imgui.TextDisabled(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
         end
-        if imgui.Button(u8 'Местоположение', imgui.ImVec2(-1, 30 * MDS)) then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(-1, 30 * MDS)) then
             editpos = true
             settingsonline[0] = false
-            msg('Перемещайте окно')
+            msg('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ')
         end
         if cfg.statTimers.server == sampGetCurrentServerAddress() then
             if imgui.Button(u8(sampGetCurrentServerName()), imgui.ImVec2(-1, 30 * MDS)) then
                 cfg.statTimers.server = nil
-                msg('Теперь этот сервер не считается основным!')
+                msg('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
             end
         else
-            if imgui.Button(u8 'Установить этот сервер основным', imgui.ImVec2(-1, 30 * MDS)) then
+            if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(-1, 30 * MDS)) then
                 cfg.statTimers.server = sampGetCurrentServerAddress()
-                msg('Теперь онлайн будет считаться только на этом сервере!')
+                msg('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
             end
-            imgui.Hint('##1123', u8 'Скрипт будет запускаться только на этом сервере!')
+            imgui.Hint('##1123', u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
         end
         imgui.PushItemWidth(-1)
-        if imgui.SliderFloat('##Round', sRound, 0.0, 10.0, u8 "Скругление краёв: %.2f") then
+        if imgui.SliderFloat('##Round', sRound, 0.0, 10.0, u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %.2f") then
             cfg.style.round = sRound[0]
         end
         imgui.PopItemWidth()
@@ -1471,7 +1471,7 @@ imgui.OnFrame(function() return settingsonline[0] end,
             cfg.style.colorW = argbW
         end
         imgui.SameLine()
-        imgui.Text(u8 'Цвет фона')
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ')
         if imgui.ColorEdit4(u8 '##Texta', colorT, imgui.ColorEditFlags.NoInputs) then
             argbT = imgui.ColorConvertFloat4ToU32(
                 imgui.ImVec4(colorT[0], colorT[1], colorT[2], colorT[3])
@@ -1479,10 +1479,10 @@ imgui.OnFrame(function() return settingsonline[0] end,
             cfg.style.colorT = argbT
         end
         imgui.SameLine()
-        imgui.Text(u8 'Цвет текста')
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ')
 
         imgui.EndChild()
-        if imgui.Button(u8 'Сохранить и закрыть', imgui.ImVec2(-1, 30 * MDS)) then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(-1, 30 * MDS)) then
             if not deliting_script then saveIni() end 
         end
         imgui.End()
@@ -1496,62 +1496,62 @@ imgui.OnFrame(function() return myOnline[0] end,
         imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.AlwaysAutoResize)
     imgui.SetCursorPos(imgui.ImVec2(15 * MDS, 10 * MDS))
     imgui.PushFont(fsClock)
-    imgui.CenterTextColoredRGB('Онлайн за неделю')
+    imgui.CenterTextColoredRGB('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ')
     imgui.PopFont()
-    imgui.CenterTextColoredRGB('{0087FF}Всего отыграно: ' .. get_clock(cfg.onWeek.full))
+    imgui.CenterTextColoredRGB('{0087FF}пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. get_clock(cfg.onWeek.full))
     imgui.NewLine()
-    for day = 1, 6 do -- ПН -> СБ
+    for day = 1, 6 do -- пїЅпїЅ -> пїЅпїЅ
         imgui.Text(u8(tWeekdays[day])); imgui.SameLine(250 * MDS)
         imgui.Text(get_clock(cfg.myWeekOnline[day]))
     end
-    --> ВС
+    --> пїЅпїЅ
     imgui.Text(u8(tWeekdays[0])); imgui.SameLine(250 * MDS)
     imgui.Text(get_clock(cfg.myWeekOnline[0]))
 
     imgui.SetCursorPosX((imgui.GetWindowWidth() - 200 * MDS) / 2)
-    if imgui.Button(u8 'Закрыть', imgui.ImVec2(200 * MDS, 25 * MDS)) then myOnline[0] = false end
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MDS, 25 * MDS)) then myOnline[0] = false end
     imgui.End()
 end)
 
 
 function time()
-    startTime = os.time() -- "Точка отсчёта"
+    startTime = os.time() -- "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
     connectingTime = 0
     while true do
         wait(1000)
         nowTime = os.date("%H:%M:%S", os.time())
-        if sampIsLocalPlayerSpawned() then                       -- Игровой статус равен "Подключён к серверу" (Что бы онлайн считало только, когда, мы подключены к серверу)
-            sesOnline[0] = sesOnline[0] + 1                      -- Онлайн за сессию без учёта АФК
-            sesFull[0] = os.time() - startTime                   -- Общий онлайн за сессию
-            sesAfk[0] = sesFull[0] - sesOnline[0]                -- АФК за сессию
+        if sampIsLocalPlayerSpawned() then                       -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" (пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+            sesOnline[0] = sesOnline[0] + 1                      -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+            sesFull[0] = os.time() - startTime                   -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+            sesAfk[0] = sesFull[0] - sesOnline[0]                -- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-            cfg.onDay.online = cfg.onDay.online + 1              -- Онлайн за день без учёта АФК
-            cfg.onDay.full = dayFull[0] + sesFull[0]             -- Общий онлайн за день
-            cfg.onDay.afk = cfg.onDay.full - cfg.onDay.online    -- АФК за день
+            cfg.onDay.online = cfg.onDay.online + 1              -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+            cfg.onDay.full = dayFull[0] + sesFull[0]             -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+            cfg.onDay.afk = cfg.onDay.full - cfg.onDay.online    -- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 
-            cfg.onWeek.online = cfg.onWeek.online + 1            -- Онлайн за неделю без учёта АФК
-            cfg.onWeek.full = weekFull[0] + sesFull[0]           -- Общий онлайн за неделю
-            cfg.onWeek.afk = cfg.onWeek.full - cfg.onWeek.online -- АФК за неделю
+            cfg.onWeek.online = cfg.onWeek.online + 1            -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+            cfg.onWeek.full = weekFull[0] + sesFull[0]           -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+            cfg.onWeek.afk = cfg.onWeek.full - cfg.onWeek.online -- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
             local today = tonumber(os.date('%w', os.time()))
             cfg.myWeekOnline[today] = cfg.onDay.full
 
             connectingTime = 0
         else
-            connectingTime = connectingTime + 1 -- Вермя подключения к серверу
-            startTime = startTime + 1           -- Смещение начала отсчета таймеров
+            connectingTime = connectingTime + 1 -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            startTime = startTime + 1           -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         end
     end
 end
 
 function autoSave()
     while true do
-        wait(60000) -- сохранение каждые 60 секунд
+        wait(60000) -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 60 пїЅпїЅпїЅпїЅпїЅпїЅ
         if not deliting_script then saveIni() end
     end
 end
 
-function number_week() -- получение номера недели в году
+function number_week() -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     local current_time = os.date '*t'
     local start_year = os.time { year = current_time.year, day = 1, month = 1 }
     local week_day = (os.date('%w', start_year) - 1) % 7
@@ -1559,8 +1559,8 @@ function number_week() -- получение номера недели в году
 end
 
 function getStrDate(unixTime)
-    local tMonths = { 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября',
-        'ноября', 'декабря' }
+    local tMonths = { 'пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+        'пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' }
     local day = tonumber(os.date('%d', unixTime))
     local month = tMonths[tonumber(os.date('%m', unixTime))]
     local weekday = tWeekdays[tonumber(os.date('%w', unixTime))]
@@ -1570,11 +1570,11 @@ end
 function get_clock(time)
     local timezone_offset = 86400 - os.date('%H', 0) * 3600
     if tonumber(time) >= 86400 then onDay = true else onDay = false end
-    return os.date((onDay and math.floor(time / 86400) .. 'д ' or '') .. '%H:%M:%S', time + timezone_offset)
+    return os.date((onDay and math.floor(time / 86400) .. 'пїЅ ' or '') .. '%H:%M:%S', time + timezone_offset)
 end
 function timerMain()
     if cfg.statTimers.server ~= nil and cfg.statTimers.server ~= sampGetCurrentServerAddress() then
-        msg('Вы зашли на свой не основной сервер. Скрипт отключён!')
+        msg('пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
         thisScript():unload()
     end
     if mainIni.settings.button then
@@ -1616,22 +1616,22 @@ local childRounding = imgui.new.int(mainIni.menuSettings.ChildRoundind)
 imgui.OnFrame(function() return menuSizes[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.SetNextWindowSize(imgui.ImVec2(850, 300), imgui.Cond.FirstUseEver)
-    imgui.Begin(u8 'Настройки окна', menuSizes)
-    imgui.SliderInt(u8 "Ширина окна", xsize, 200, 1000)
-    imgui.SliderInt(u8 "Высота окна", ysize, 200, 1000)
-    imgui.SliderInt(u8 "Ширина таб бара", tabsize, 100, 700)
-    imgui.SliderInt(u8 "Положение крестика", xpos, 1, 1000)
-    imgui.SliderInt(u8 "Положение обводки выбранного таба", vtpos, 1, 15)
-    imgui.SliderInt(u8 "Закругление окна и чаилдов(нужно будет перезагрузить скрипт)", childRounding, 0, 25)
-    --Темы
-    if imgui.Combo(u8 'Темы', selected_theme, items, #theme_a) then
+    imgui.Begin(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ', menuSizes)
+    imgui.SliderInt(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", xsize, 200, 1000)
+    imgui.SliderInt(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", ysize, 200, 1000)
+    imgui.SliderInt(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", tabsize, 100, 700)
+    imgui.SliderInt(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", xpos, 1, 1000)
+    imgui.SliderInt(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", vtpos, 1, 15)
+    imgui.SliderInt(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)", childRounding, 0, 25)
+    --пїЅпїЅпїЅпїЅ
+    if imgui.Combo(u8 'пїЅпїЅпїЅпїЅ', selected_theme, items, #theme_a) then
         themeta = theme_t[selected_theme[0] + 1]
         mainIni.theme.themeta = themeta
         mainIni.theme.selected = selected_theme[0]
         if not deliting_script then saveIni() end
         apply_n_t()
     end
-    imgui.Text(u8 'Цвет MoonMonet - ')
+    imgui.Text(u8 'пїЅпїЅпїЅпїЅ MoonMonet - ')
     imgui.SameLine()
     if imgui.ColorEdit3('## COLOR', mmcolor, imgui.ColorEditFlags.NoInputs) then
         r, g, b = mmcolor[0] * 255, mmcolor[1] * 255, mmcolor[2] * 255
@@ -1640,14 +1640,14 @@ imgui.OnFrame(function() return menuSizes[0] end, function(player)
         if not deliting_script then saveIni() end
         apply_n_t()
     end
-    --Конец тем
+    --пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
     mainIni.menuSettings.x = xsize[0]
     mainIni.menuSettings.y = ysize[0]
     mainIni.menuSettings.tab = tabsize[0]
     mainIni.menuSettings.xpos = xpos[0]
     mainIni.menuSettings.vtpos = vtpos[0]
     mainIni.menuSettings.ChildRoundind = childRounding[0]
-    if imgui.Button(u8 "Сохранить") then
+    if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") then
         if not deliting_script then saveIni() end
     end
     imgui.End()
@@ -1676,7 +1676,7 @@ imgui.OnFrame(function() return vzWindow[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 8.5, sizeY / 2.3), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.Begin(u8 '', vzWindow,
         imgui.WindowFlags.NoResize + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.NoTitleBar)
-    if imgui.Button(u8 "Взаимодействие") then
+    if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") then
         if #get_players_in_radius() == 1 then
             id = imgui.new.int(get_players_in_radius()[1])
             fastVzaimWindow[0] = true
@@ -1693,8 +1693,8 @@ end)
 imgui.OnFrame(function() return vzaimWindow[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.SetNextWindowSize(imgui.ImVec2(850, 500), imgui.Cond.FirstUseEver)
-    imgui.Begin(u8 'Взаимодействие', vzaimWindow)
-    imgui.Text(u8 "Выберите игрока для взаимодействия")
+    imgui.Begin(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', vzaimWindow)
+    imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
     for i = 1, #get_players_in_radius() do
         if imgui.Button(u8(sampGetPlayerNickname(get_players_in_radius()[i]))) then
             id = imgui.new.int(get_players_in_radius()[i])
@@ -1708,168 +1708,168 @@ end)
 imgui.OnFrame(function() return fastVzaimWindow[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.SetNextWindowSize(imgui.ImVec2(850, 500), imgui.Cond.FirstUseEver)
-    imgui.Begin(u8 'Взаимодействие с ' .. sampGetPlayerNickname(id[0]), fastVzaimWindow)
-    if imgui.Button(u8 'Приветствие') then
+    imgui.Begin(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ' .. sampGetPlayerNickname(id[0]), fastVzaimWindow)
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sampSendChat("Доброго времени суток, я «" .. nickname .. "» «" .. u8:decode(mainIni.Info.dl) .. "».")
+            sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅ" .. nickname .. "пїЅ пїЅ" .. u8:decode(mainIni.Info.dl) .. "пїЅ.")
             wait(1500)
-            sampSendChat("/do Удостоверение в руках.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" показал своё удостоверение человеку на против")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do «" .. nickname .. "».")
+            sampSendChat("/do пїЅ" .. nickname .. "пїЅ.")
             wait(1500)
-            sampSendChat("/do «" .. u8:decode(mainIni.Info.dl) .. "» " .. mainIni.Info.org .. ".")
+            sampSendChat("/do пїЅ" .. u8:decode(mainIni.Info.dl) .. "пїЅ " .. mainIni.Info.org .. ".")
             wait(1500)
-            sampSendChat("Предъявите ваши документы, а именно паспорт. Не беспокойтесь, это всего лишь проверка.")
+            sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
             sampSendChat("/showbadge ")
         end)
     end
-    if imgui.Button(u8 'Найти игрока') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sampSendChat("/do КПК в левом кармане.")
+            sampSendChat("/do пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" достал левой рукой КПК из кармана")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do КПК в левой руке.")
+            sampSendChat("/do пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" включил КПК и зашел в базу данных Полиции")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" открыл дело номер " .. id[0] .. " преступника")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ " .. id[0] .. " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Данные преступника получены.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" подключился к камерам слежения штата")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do На навигаторе появился маршрут.")
+            sampSendChat("/do пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
             sampSendChat("/pursuit " .. id[0])
         end)
     end
-    if imgui.Button(u8 'Арест') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sendMe(" взял ручку из кармана рубашки, затем открыл бардачок и взял оттуда бланк протокола")
+            sendMe(" пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Бланк протокола и ручка в руках.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" заполняет описание внешности нарушителя")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" заполняет характеристику о нарушителе")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" заполняет данные о нарушении")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" проставил дату и подпись")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" положил ручку в карман рубашки")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Ручка в кармане рубашки.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" передал бланк составленного протокола в участок")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" передал преступника в Управление Полиции под стражу")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
             sampSendChat("/arrest")
-            msg("Встаньте на чекпоинт", 0x8B00FF)
+            msg("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0x8B00FF)
         end)
     end
-    if imgui.Button(u8 'Надеть наручники') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sampSendChat("/do Наручники висят на поясе.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" снял с держателя наручники")
+            sendMe(" пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Наручники в руках.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" резким движением обеих рук, надел наручники на преступника")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Преступник скован.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
             sampSendChat("/cuff " .. id[0])
         end)
     end
-    if imgui.Button(u8 'Снять наручники') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sampSendChat("/do Ключ от наручников в кармане.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" движением правой руки достал из кармана ключ и открыл наручники")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Преступник раскован.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
             sampSendChat("/uncuff " .. id[0])
         end)
     end
-    if imgui.Button(u8 'Вести за собой') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sampSendChat("/me заломил правую руку нарушителю")
+            sampSendChat("/me пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" ведет нарушителя за собой")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
             sampSendChat("/gotome " .. id[0])
         end)
     end
-    if imgui.Button(u8 'Перестать вести за собой') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sendMe(" отпустил правую руку преступника")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Преступник свободен.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
             sampSendChat("/ungotome " .. id[0])
         end)
     end
-    if imgui.Button(u8 'В машину(автоматически на 3-е место)') then
+    if imgui.Button(u8 'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 3-пїЅ пїЅпїЅпїЅпїЅпїЅ)') then
         lua_thread.create(function()
-            sampSendChat("/do Двери в машине закрыты.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" открыл заднюю дверь в машине")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" посадил преступника в машину")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" заблокировал двери")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Двери заблокированы.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
             sampSendChat("/incar " .. id[0] .. "3")
         end)
     end
-    if imgui.Button(u8 'Обыск') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sendMe(" нырнув руками в карманы, вытянул оттуда белые перчатки и натянул их на руки")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Перчатки надеты.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" проводит руками по верхней части тела")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" проверяет карманы")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sendMe(" проводит руками по ногам")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
             sampSendChat("/frisk " .. id[0])
         end)
     end
-    if imgui.Button(u8 'Мегафон') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sampSendChat("/do Мегафон в бардачке.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" достал мегафон с бардачка после чего включил его")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/m Водитель авто, остановитесь и заглушите двигатель, держите руки на руле.")
+            sampSendChat("/m пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ.")
         end)
     end
-    if imgui.Button(u8 'Вытащить из авто') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ') then
         lua_thread.create(function()
-            sendMe(" сняв дубинку с поясного держателя разбил стекло в транспорте")
+            sendMe(" пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
-            sampSendChat("/do Стекло разбито.")
+            sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
             wait(1500)
-            sendMe(" схватив за плечи человека ударил его после чего надел наручники")
+            sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             wait(1500)
             sampSendChat("/pull " .. id[0])
             wait(1500)
             sampSendChat("/cuff " .. id[0])
         end)
     end
-    if imgui.Button(u8 'Выдача розыска') then
+    if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
         windowTwo[0] = not windowTwo[0]
     end
     imgui.End()
@@ -1883,8 +1883,8 @@ local selectedGun = nil
 imgui.OnFrame(function() return gunsWindow[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.SetNextWindowSize(imgui.ImVec2(850, 500), imgui.Cond.FirstUseEver)
-    imgui.Begin(u8 'Изменение отыгровок оружия', gunsWindow)
-    imgui.Text(u8 "Выберите оружие")
+    imgui.Begin(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', gunsWindow)
+    imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
 
     for i = 1, #weapons do
         if imgui.Button(u8(weapons[i])) then
@@ -1892,16 +1892,16 @@ imgui.OnFrame(function() return gunsWindow[0] end, function(player)
 
             local command = gunCommands[i]
             otInput = imgui.new.char[255](u8(command))
-            msg("Выбрано оружие: " .. weapons[i] .. " Команда: " .. command)
+            msg("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " .. weapons[i] .. " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " .. command)
         end
         if selectedGun ~= nil and selectedGun ~= "" and selectedGun == i then
             imgui.SameLine()
-            imgui.Text(u8("Вы выбрали " .. weapons[selectedGun]))
-            imgui.InputText(u8 "Отыгровка", otInput, 255)
-            if imgui.Button(u8 "Сохранить", imgui.ImVec2(100, 50)) then
+            imgui.Text(u8("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ " .. weapons[selectedGun]))
+            imgui.InputText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", otInput, 255)
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(100, 50)) then
                 gunCommands[selectedGun] = ffi.string(otInput)
                 saveCommands()
-                msg("Отыгровки сохранены")
+                msg("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             end
         end
     end
@@ -1934,21 +1934,21 @@ function allNotes()
     for i, note in ipairs(notes) do
         imgui.Text(note.title)
         imgui.SameLine()
-        if imgui.Button(u8 "Открыть##" .. i) then
+        if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ##" .. i) then
             note_name = note.title
             note_text = note.content
             NoteWindow[0] = true
         end
         imgui.SameLine()
-        if imgui.Button(u8 "Редактировать##" .. i) then
+        if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ##" .. i) then
             selectedNote = i
             imgui.StrCopy(editNoteTitle, note.title)
             imgui.StrCopy(editNoteContent, note.content)
-            imgui.OpenPopup(u8 "Редактировать заметку")
+            imgui.OpenPopup(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             showEditWindow[0] = true
         end
         imgui.SameLine()
-        if imgui.Button(u8 "Удалить##" .. i) then
+        if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ##" .. i) then
             table.remove(notes, i)
             saveNotesToFile()
         end
@@ -1962,7 +1962,7 @@ imgui.OnFrame(
         imgui.Begin(note_name, NoteWindow, imgui.WindowFlags.AlwaysAutoResize)
         imgui.Text(note_text:gsub('&', '\n'))
         imgui.Separator()
-        if imgui.Button(u8 ' Закрыть', imgui.ImVec2(imgui.GetMiddleButtonX(1), 25 * MONET_DPI_SCALE)) then
+        if imgui.Button(u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(1), 25 * MONET_DPI_SCALE)) then
             NoteWindow[0] = false
         end
         imgui.End()
@@ -1971,7 +1971,7 @@ imgui.OnFrame(
 --Notes END
 
 --Sobes menu START
-local namesobeska     = imgui.new.char[256](u8 'Неизвестно')
+local namesobeska     = imgui.new.char[256](u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
 local rabotaet        = false
 local rabota          = imgui.new.char[256]()
 local let_v_shtate    = false
@@ -1987,13 +1987,13 @@ local chatsobes       = {}
 local sobesmessage    = imgui.new.char[256]()
 local select_id       = imgui.new.int(1)
 local sobes           = {
-    pass = u8 'Не проверено',
-    mc = u8 'Не проверено',
-    lic = u8 'Не проверено'
+    pass = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    mc = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    lic = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'
 }
 local pages1          = {
-    { icon = faicons("GEAR"), title = u8 "Главное", index = 1 },
-    { icon = faicons("BOOK"), title = u8 "Меню собес", index = 2 },
+    { icon = faicons("GEAR"), title = u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", index = 1 },
+    { icon = faicons("BOOK"), title = u8 "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", index = 2 },
 }
 imgui.OnFrame(
     function() return leaderPanel[0] end,
@@ -2003,7 +2003,7 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(910 * MDS, 480 * MDS), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Панель руководства фракцией", leaderPanel)
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", leaderPanel)
         imgui.BeginChild('tabs', imgui.ImVec2(173 * MDS, -1), true)
         imgui.CenterText(u8('MVD Helper v' .. thisScript().version))
         imgui.Separator()
@@ -2017,265 +2017,265 @@ imgui.OnFrame(
         imgui.SameLine()
         imgui.BeginChild('workspace', imgui.ImVec2(-1, -1), true)
         if menu2 == 1 then
-            if imgui.CollapsingHeader(u8 'Лекции') then
-                if imgui.Button(u8 'Арест и задержание') then
+            if imgui.CollapsingHeader(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ') then
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
                     lua_thread.create(function()
-                        sampSendChat("Здравствуйте уважаемые сотрудники нашего департамента!")
+                        sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
                         wait(1500)
-                        sampSendChat("Сейчас будет проведена лекция на тему арест и задержание преступников.")
+                        sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("Для начала объясню различие между задержанием и арестом.")
-                        wait(1500)
-                        sampSendChat(
-                            "Задержание - это кратковременное лишение свободы лица, подозреваемого в совершении преступления.")
+                        sampSendChat("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
                         sampSendChat(
-                            "В свою очередь, арест - это вид уголовного наказания, заключающегося в содержании совершившего преступление..")
-                        wait(1500)
-                        sampSendChat("..и осуждённого по приговору суда в условиях строгой изоляции от общества.")
-                        wait(1500)
-                        sampSendChat("Вам разрешено задерживать лица на период 48 часов с момента их задержания.")
+                            "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
                         sampSendChat(
-                            "Если в течение 48 часов вы не предъявите доказательства вины, вы обязаны отпустить гражданина.")
+                            "пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ..")
                         wait(1500)
-                        sampSendChat("Обратите внимание, гражданин может подать на вас иск за незаконное задержание.")
+                        sampSendChat("..пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
+                        wait(1500)
+                        sampSendChat("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 48 пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
                         sampSendChat(
-                            "Во время задержания вы обязаны провести первичный обыск на месте задержания и вторичный у капота своего автомобиля.")
+                            "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 48 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
+                        wait(1500)
+                        sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
                         sampSendChat(
-                            "Все найденные вещи положить в 'ZIP-lock', или в контейнер для вещ. доков, Все личные вещи преступника кладутся в мешок для личных вещей задержанного")
+                            "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("На этом данная лекция подходит к концу. У кого-то имеются вопросы?")
+                        sampSendChat(
+                            "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 'ZIP-lock', пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+                        wait(1500)
+                        sampSendChat("пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ?")
                     end)
                 end
-                if imgui.Button(u8 "Суббординация") then
+                if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") then
                     lua_thread.create(function()
-                        sampSendChat(" Уважаемые сотрудники Полицейского Департамента!")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
                         wait(1500)
-                        sampSendChat(" Приветствую вас на лекции о субординации")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Для начала расскажу, что такое субординация")
+                        sampSendChat(" пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
                         sampSendChat(
-                            " Субординация - правила подчинения младших по званию к старшим по званию, уважение, отношение к ним")
+                            " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" То есть младшие сотрудники должны выполнять приказы начальства")
+                        sampSendChat(" пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Кто ослушается  получит выговор, сперва устный")
+                        sampSendChat(" пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Вы должны с уважением относится к начальству на 'Вы'")
+                        sampSendChat(" пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 'пїЅпїЅ'")
                         wait(1500)
-                        sampSendChat(" Не нарушайте правила и не нарушайте субординацию дабы не получить наказание")
+                        sampSendChat(" пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Лекция окончена спасибо за внимание!")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
                     end)
                 end
-                if imgui.Button(u8 "Правила поведения в строю.") then
+                if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.") then
                     lua_thread.create(function()
-                        sampSendChat(" Уважаемые сотрудники Полицейского Департамента!")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
                         wait(1500)
-                        sampSendChat(" Приветствую вас на лекции правила поведения в строю")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" /b Запрещены разговоры в любые чаты (in ic, /r, /n, /fam, /sms,)")
+                        sampSendChat(" /b пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (in ic, /r, /n, /fam, /sms,)")
                         wait(1500)
-                        sampSendChat(" Запрещено пользоваться мобильными телефонами")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Запрещено доставать оружие")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Запрещено открывать огонь без приказа")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" /b Запрещено уходить в AFK более чем на 30 секунд")
+                        sampSendChat(" /b пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ AFK пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ 30 пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Запрещено самовольно покидать строй не предупредив об этом старший состав")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" /b Запрещены любые движения в строю (/anim) Исключение: ст. состав")
+                        sampSendChat(" /b пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ (/anim) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" /b Запрещено использование сигарет [/smoke в строю]")
+                        sampSendChat(" /b пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ [/smoke пїЅ пїЅпїЅпїЅпїЅпїЅ]")
                     end)
                 end
-                if imgui.Button(u8 'Допрос') then
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ') then
                     lua_thread.create(function()
                         sampSendChat(
-                            " Здравствуйте уважаемые сотрудники департамента сегодня, я проведу лекцию на тему Допрос подозреваемого.")
+                            " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat(" Сотрудник ПД обязан сначала поприветствовать, представиться;")
-                        wait(1500)
-                        sampSendChat(
-                            " Сотрудник ПД обязан попросить документы вызванного, спросить, где работает, звание, должность, место жительства;")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ;")
                         wait(1500)
                         sampSendChat(
-                            " Сотрудник ПД обязан спросить, что он делал (назвать промежуток времени, где он что-то нарушил, по которому он был вызван);")
+                            " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ;")
                         wait(1500)
                         sampSendChat(
-                            " Если подозреваемый был задержан за розыск, старайтесь узнать за что он получил розыск;")
-                        wait(1500)
-                        sampSendChat(" В конце допроса полицейский выносит вердикт вызванному.")
+                            " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ);")
                         wait(1500)
                         sampSendChat(
-                            " При оглашении вердикта, необходимо предельно точно огласить вину допрашиваемого (Рассказать ему причину, за что он будет посажен);")
+                            " пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ;")
+                        wait(1500)
+                        sampSendChat(" пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
                         sampSendChat(
-                            " При вынесении вердикта, не стоит забывать о отягчающих и смягчающих факторах (Раскаяние, адекватное поведение, признание вины или ложь, неадекватное поведение, провокации, представление полезной информации и тому подобное).")
+                            " пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ);")
                         wait(1500)
                         sampSendChat(
-                            " На этом лекция подошла к концу, если у кого-то есть вопросы, отвечу на любой по данной лекции (Если задали вопрос, то нужно ответить на него)")
+                            " пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ).")
+                        wait(1500)
+                        sampSendChat(
+                            " пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ)")
                     end)
                 end
-                if imgui.Button(u8 "Правила поведения до и во время облавы на наркопритон.") then
+                if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.") then
                     lua_thread.create(function()
                         sampSendChat(
-                            " Добрый день, сейчас я проведу вам лекцию на тему Правила поведения до и во время облавы на наркопритон")
+                            " пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" В строю, перед облавой, вы должны внимательно слушать то, что говорят вам Агенты")
+                        sampSendChat(" пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Убедительная просьба, заранее убедиться, что при себе у вас имеются балаклавы")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" По пути к наркопритону, подъезжая к опасному району, все обязаны их одеть")
-                        wait(1500)
-                        sampSendChat(
-                            " Приехав на территорию притона, нужно поставить оцепление так, чтобы загородить все возможные пути к созревающим кустам Конопли")
+                        sampSendChat(" пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
                         sampSendChat(
-                            " Очень важным замечанием является то, что никому, кроме агентов, запрещено подходить к кустам, а тем более их собирать")
+                            " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Нарушение данного пункта строго наказывается, вплоть до увольнение")
+                        sampSendChat(
+                            " пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Так же приехав на место, мы не устраиваем пальбу по всем, кого видим")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Открывать огонь по постороннему разрешается только в том случае, если он нацелился на вас оружием, начал атаковать вас или собирать созревшие кусты")
+                        sampSendChat(" пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" Как только спец. операция заканчивается, все оцепление убирается")
+                        sampSendChat(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat(" На этом лекция окончена, всем спасибо")
+                        sampSendChat(" пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+                        wait(1500)
+                        sampSendChat(" пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     end)
                 end
-                if imgui.Button(u8 "Правило миранды.") then
+                if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.") then
                     lua_thread.create(function()
-                        sampSendChat("Правило Миранды — юридическое требование в США")
+                        sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ")
                         wait(1500)
                         sampSendChat(
-                            "Согласно которому во время задержания задерживаемый должен быть уведомлен о своих правах.")
+                            "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("Это правило зачитываются задержанному, а читает её кто сам задержал его.")
+                        sampSendChat("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("Это фраза говорится, когда вы надели на задержанного наручники.")
+                        sampSendChat("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("Цитирую саму фразу:")
+                        sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:")
                         wait(1500)
-                        sampSendChat("- Вы имеете право хранить молчание.")
+                        sampSendChat("- пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("- Всё, что вы скажете, может и будет использовано против вас в суде.")
+                        sampSendChat("- пїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("- Ваш адвокат может присутствовать при допросе.")
+                        sampSendChat("- пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
                         sampSendChat(
-                            "- Если вы не можете оплатить услуги адвоката, он будет предоставлен вам государством.")
+                            "- пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                         wait(1500)
-                        sampSendChat("- Вы понимаете свои права?")
+                        sampSendChat("- пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ?")
                     end)
                 end
-                if imgui.Button(u8 "Первая Помощь.") then
+                if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.") then
                     lua_thread.create(function()
-                        sampSendChat("Для начала определимся что с пострадавшим")
+                        sampSendChat("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
-                        sampSendChat("Если, у пострадавшего кровотечение, то необходимо остановить поток крови жгутом")
-                        wait(1500)
-                        sampSendChat(
-                            "Если ранение небольшое достаточно достать набор первой помощи и перевязать рану бинтом")
+                        sampSendChat("пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
                         sampSendChat(
-                            "Если в ране пуля, и рана не глубокая, Вы должны вызвать скорую либо вытащить ее скальпелем, скальпель также находится в аптечке первой помощи")
-                        wait(1500)
-                        sampSendChat("Если человек без сознания вам нужно ... ")
+                            "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
                         wait(1500)
                         sampSendChat(
-                            " ... достать из набор первой помощи вату и спирт, затем намочить вату спиртом ... ")
+                            "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
+                        wait(1500)
+                        sampSendChat("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ... ")
                         wait(1500)
                         sampSendChat(
-                            " ... и провести ваткой со спиртом около носа пострадавшего, в этом случае, он должен очнуться")
+                            " ... пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ... ")
                         wait(1500)
-                        sampSendChat("На этом лекция окончена. У кого-то есть вопросы по данной лекции?")
+                        sampSendChat(
+                            " ... пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+                        wait(1500)
+                        sampSendChat("пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ?")
                         wait(1500)
                     end)
                 end
             end
-            imgui.InputInt(u8 'ID игрока с которым хотите взаимодействовать', id, 10)
-            if imgui.Button(u8 'Уволить сотрудника') then
+            imgui.InputInt(u8 'ID пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', id, 10)
+            if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
                 lua_thread.create(function()
-                    sampSendChat("/do КПК весит на поясе.")
+                    sampSendChat("/do пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
-                    sendMe(" снял КПК с пояса и зашел в программу управления")
+                    sendMe(" пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sendMe(" нашел в списке сотрудника и нажал на кнопку Уволить")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("/do На КПК высветилась надпись 'Сотрудник успешно уволен!'")
+                    sampSendChat("/do пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!'")
                     wait(1500)
-                    sendMe(" выключил КПК и повесил обратно на пояс")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("Ну что ж, вы уволенны. Оставьте погоны в моем кабинете.")
+                    sampSendChat("пїЅпїЅ пїЅпїЅпїЅ пїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
                     sampSendChat("/uninvite" .. id[0])
                 end)
             end
 
-            if imgui.Button(u8 'Принять гражданина') then
+            if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
                 lua_thread.create(function()
-                    sampSendChat("/do КПК весит на поясе.")
+                    sampSendChat("/do пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
-                    sendMe(" снял КПК с пояса и зашел в программу управления")
+                    sendMe(" пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sendMe(" зашел в таблицу и ввел данные о новом сотруднике")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
                     sampSendChat(
-                        "/do На КПК высветилась надпись: 'Сотрудник успешно добавлен! Пожелайте ему хорошей службы :)'")
+                        "/do пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ :)'")
                     wait(1500)
-                    sendMe(" выключил КПК и повесил обратно на пояс")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("Поздровляю, вы приняты! Форму возьмете в раздевалке.")
+                    sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
                     sampSendChat("/invite" .. id[0])
                 end)
             end
 
-            if imgui.Button(u8 'Выдать выговор сотруднику') then
+            if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
                 lua_thread.create(function()
-                    sampSendChat("/do КПК весит на поясе.")
+                    sampSendChat("/do пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
-                    sendMe(" снял КПК с пояса и зашел в программу управления")
+                    sendMe(" пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sendMe(" нашел в списке сотрудника и нажал на кнопку Выдать выговор")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("/do На КПК высветилась надпись: 'Выговор выдан!'")
+                    sampSendChat("/do пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!'")
                     wait(1500)
-                    sendMe(" выключил КПК и повесил обратно на пояс")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("Ну что ж, выговор выдан. Отрабатывайте.")
+                    sampSendChat("пїЅпїЅ пїЅпїЅпїЅ пїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
                     sampSendChat("/fwarn" .. id[0])
                 end)
             end
 
-            if imgui.Button(u8 'Снять выговор сотруднику') then
+            if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
                 lua_thread.create(function()
-                    sampSendChat("/do КПК весит на поясе.")
+                    sampSendChat("/do пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
-                    sendMe(" снял КПК с пояса и зашел в программу управления")
+                    sendMe(" пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sendMe(" нашел в списке сотрудника и нажал на кнопку Снять выговор")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("/do На КПК высветилась надпись: 'Выговор снят!'")
+                    sampSendChat("/do пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!'")
                     wait(1500)
-                    sendMe(" выключил КПК и повесил обратно на пояс")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ")
                     wait(1500)
-                    sampSendChat("Ну что ж, отработали.")
+                    sampSendChat("пїЅпїЅ пїЅпїЅпїЅ пїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
                     sampSendChat("/unfwarn" .. id[0])
                 end)
             end
         elseif menu2 == 2 then
-            imgui.Text(u8("Введите id игрока:"))
+            imgui.Text(u8("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅпїЅпїЅпїЅпїЅ:"))
             imgui.SameLine()
             imgui.PushItemWidth(200)
             imgui.InputInt("                ##select id for sobes", select_id)
@@ -2283,100 +2283,100 @@ imgui.OnFrame(
             if namesobeska then
                 imgui.Text(u8(namesobeska))
             else
-                imgui.Text(u8 'Неизвестно')
+                imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
             end
             imgui.Separator()
             imgui.BeginChild('sobesvoprosi', imgui.ImVec2(-1, 143 * MONET_DPI_SCALE), true)
-            if imgui.Button(u8 " Начать собеседование", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
-                sampSendChat("Здравствуйте, вы пришли на собеседование?")
+            if imgui.Button(u8 " пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+                sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?")
             end
             imgui.SameLine()
-            if imgui.Button(u8 " Попросить документы", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+            if imgui.Button(u8 " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
                 lua_thread.create(function()
-                    sampSendChat("Отлично, предоставьте мне паспорт, мед. карту и лицензии.")
+                    sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(1000)
                     sampSendChat(
-                        "/b Чтобы показать документацию введите: /showpass - паспорт, /showmc - мед.карта, /showlic - лиценззии")
+                        "/b пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: /showpass - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, /showmc - пїЅпїЅпїЅ.пїЅпїЅпїЅпїЅпїЅ, /showlic - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(2000)
-                    sampSendChat("/b РП должно быть обязательно!")
+                    sampSendChat("/b пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
                 end)
             end
             imgui.SameLine()
-            if imgui.Button(u8 " Расскажите о себе", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+            if imgui.Button(u8 " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
                 lua_thread.create(function()
-                    sampSendChat("Хорошо, теперь я задам пару вопросов.")
+                    sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(2000)
-                    sampSendChat("Расскажите о себе.")
+                    sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.")
                 end)
             end
             imgui.SameLine()
-            if imgui.Button(u8 " Почему именно мы?", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
-                sampSendChat("Почему вы выбрали именно наш департамент?")
+            if imgui.Button(u8 " пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ?", imgui.ImVec2(imgui.GetMiddleButtonX(4), 0)) then
+                sampSendChat("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?")
             end
             imgui.Separator()
             imgui.Columns(3, nil, false)
-            imgui.Text(u8 'Паспорт: ' .. sobes['pass'])
-            imgui.Text(u8 'Мед.карта: ' .. sobes['mc'])
-            imgui.Text(u8 'Лицензии: ' .. sobes['lic'])
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. sobes['pass'])
+            imgui.Text(u8 'пїЅпїЅпїЅ.пїЅпїЅпїЅпїЅпїЅ: ' .. sobes['mc'])
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. sobes['lic'])
             imgui.NextColumn()
-            imgui.Text(u8 "Лет в штате:")
+            imgui.Text(u8 "пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if let_v_shtate then
                 imgui.Text(goda)
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             end
-            imgui.Text(u8 "Законка:")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if zakonoposlushen then
                 imgui.Text(zakonka)
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             end
-            imgui.Text(u8 "Лиц. на авто:")
+            imgui.Text(u8 "пїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if lic_na_avto then
-                imgui.Text(u8 "Есть")
+                imgui.Text(u8 "пїЅпїЅпїЅпїЅ")
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно/Нету")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅ")
             end
-            imgui.Text(u8 "Военник:")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if voenik then
-                imgui.Text(u8 "Есть")
+                imgui.Text(u8 "пїЅпїЅпїЅпїЅ")
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно/Нету")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅ")
             end
             imgui.NextColumn()
-            imgui.Text(u8 "Зависимость:")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if narkozavisim then
                 imgui.Text(narkozavisimost)
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             end
-            imgui.Text(u8 "Здоровье:")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             imgui.Text(tostring(sampGetPlayerHealth(select_id[0])))
-            imgui.Text(u8 "Черный список:")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if cherny_spisok then
-                imgui.Text(u8('ЕСТЬ'))
+                imgui.Text(u8('пїЅпїЅпїЅпїЅ'))
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно/Нету")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅ")
             end
-            imgui.Text(u8 "Работает:")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:")
             imgui.SameLine()
             if rabotaet then
                 imgui.Text(u8(str(rabota)))
             else
-                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "Неизвестно")
+                imgui.TextColored(imgui.ImVec4(1, 0, 0, 1), u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             end
             imgui.EndChild()
             imgui.Columns(1)
             imgui.Separator()
 
-            imgui.Text(u8 "Локальный чат")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ")
             imgui.BeginChild("ChatWindow", imgui.ImVec2(0, 100), true)
             for i, v in pairs(chatsobes) do
                 imgui.Text(u8(v))
@@ -2386,21 +2386,21 @@ imgui.OnFrame(
             imgui.PushItemWidth(800)
             imgui.InputText("##input", sobesmessage, 256)
             imgui.SameLine()
-            if imgui.Button(u8 "Отправить") then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") then
                 sampSendChat(u8:decode(str(sobesmessage)))
             end
             imgui.PopItemWidth()
 
             imgui.Separator()
-            if imgui.Button(u8 " Собеседование пройдено", imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
+            if imgui.Button(u8 " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
                 lua_thread.create(function()
-                    sampSendChat("/todo Поздравляю! Вы прошли собеседование!* с улыбкой на лице")
+                    sampSendChat("/todo пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!* пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ")
                     wait(2000)
                     sampSendChat('/invite ' .. select_id[0])
                 end)
             end
             imgui.SameLine()
-            if imgui.Button(u8 "Прекратить собеседование", imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(2), 0)) then
                 select_id[0] = -1
                 sobes_1 = {
                     false,
@@ -2409,9 +2409,9 @@ imgui.OnFrame(
                 }
 
                 sobes = {
-                    pass = u8 'Не проверено',
-                    mc = u8 'Не проверено',
-                    lic = u8 'Не проверено'
+                    pass = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+                    mc = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+                    lic = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'
                 }
                 chatsobes = {}
                 voenik = false
@@ -2438,26 +2438,26 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(900, 700), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Настройка умного розыска", setUkWindow)
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", setUkWindow)
 
-        if imgui.Button(u8 'Скачать УК для своего сервера') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             DownloadUk()
         end
-        if imgui.Button(u8 "Скачать УК для любого сервера") then
+        if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ") then
             importUkWindow[0] = not importUkWindow[0]
         end
         if imgui.BeginChild('Name', imgui.ImVec2(0, imgui.GetWindowSize().y - 36 - imgui.GetCursorPosY() - imgui.GetStyle().FramePadding.y * 2), true) then
             for i = 1, #tableUk["Text"] do
-                imgui.Text(u8(tableUk["Text"][i] .. ' Уровень розыска: ' .. tostring(tableUk["Ur"][i])))
+                imgui.Text(u8(tableUk["Text"][i] .. ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. tostring(tableUk["Ur"][i])))
                 Uk = #tableUk["Text"]
             end
             imgui.EndChild()
         end
-        if imgui.Button(u8 'Добавить', imgui.ImVec2(GetMiddleButtonX(2), 36)) then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(GetMiddleButtonX(2), 36)) then
             addUkWindow[0] = not addUkWindow[0]
         end
         imgui.SameLine()
-        if imgui.Button(u8 'Удалить', imgui.ImVec2(GetMiddleButtonX(2), 36)) then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(GetMiddleButtonX(2), 36)) then
             Uk = #tableUk["Text"]
             table.remove(tableUk.Text, #tableUk.Text)
             table.remove(tableUk.Ur, #tableUk.Ur)
@@ -2479,11 +2479,11 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(200, 150), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Настройка умного розыска", addUkWindow)
-        imgui.InputText(u8 'Текст статьи(с номером.)', newUkInput, 255)
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", addUkWindow)
+        imgui.InputText(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ(пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.)', newUkInput, 255)
         newUkName = u8:decode(ffi.string(newUkInput))
-        imgui.InputInt(u8 'Уровень розыска(только цифра)', newUkUr, 10)
-        if imgui.Button(u8 'Сохранить') then
+        imgui.InputInt(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)', newUkUr, 10)
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             Uk = #tableUk["Text"]
             tableUk["Text"][Uk + 1] = newUkName
             tableUk["Ur"][Uk + 1] = newUkUr[0]
@@ -2503,7 +2503,7 @@ local importUkFrame = imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(200, 150), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Импорт умного розыска", importUkWindow)
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", importUkWindow)
         local file = io.open(getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/smartUk.json", "r")
         a = file:read("*a")
         file:close()
@@ -2514,9 +2514,9 @@ local importUkFrame = imgui.OnFrame(
                 local url = smartUkUrl[serverKey]
                 if url then
                     downloadFile(url, smartUkPath)
-                    msg(string.format("{FFFFFF} Умный розыск на %s успешно установлен!", serverName), 0x8B00FF)
+                    msg(string.format("{FFFFFF} пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!", serverName), 0x8B00FF)
                 else
-                    msg(string.format("{FFFFFF} К сожалению, на сервер %s не найден умный розыск. Он будет добавлен в следующих обновлениях", serverName), 0x8B00FF)
+                    msg(string.format("{FFFFFF} пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", serverName), 0x8B00FF)
                 end
                 break
             end
@@ -2543,9 +2543,9 @@ function formatPatrolDuration(seconds)
     local secs = seconds % 60
 
     if minutes > 0 then
-        return string.format("%d минут %d секунд", minutes, secs)
+        return string.format("%d пїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅпїЅпїЅ", minutes, secs)
     else
-        return string.format("%d секунд(-ы)", secs)
+        return string.format("%d пїЅпїЅпїЅпїЅпїЅпїЅ(-пїЅ)", secs)
     end
 end
 
@@ -2559,28 +2559,28 @@ imgui.OnFrame(
             imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize)
 
         if isPatrolActive then
-            imgui.Text(u8(' Время патрулирования: ') .. u8(getPatrolDuration()))
+            imgui.Text(u8(' пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ') .. u8(getPatrolDuration()))
             imgui.Separator()
-            if imgui.Button(u8('Доклад'), imgui.ImVec2(100 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+            if imgui.Button(u8('пїЅпїЅпїЅпїЅпїЅпїЅ'), imgui.ImVec2(100 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                 lua_thread.create(function()
-                    sampSendChat('/r' .. nickname .. ' на CONTROL. Продолжаю патруль')
+                    sampSendChat('/r' .. nickname .. ' пїЅпїЅ CONTROL. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
                 end)
             end
             imgui.SameLine()
-            if imgui.Button(u8('Завершить'), imgui.ImVec2(100 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+            if imgui.Button(u8('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), imgui.ImVec2(100 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                 lua_thread.create(function()
                     isPatrolActive = false
-                    sampSendChat('/r ' .. nickname .. ' на CONTROL. Завершаю патруль')
+                    sampSendChat('/r ' .. nickname .. ' пїЅпїЅ CONTROL. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
                     wait(1200)
-                    sampSendChat('/r Патрулировал ' .. formatPatrolDuration(os.time() - startTime))
+                    sampSendChat('/r пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' .. formatPatrolDuration(os.time() - startTime))
                     patrolDuration = 0
                     patrool_start_time = 0
                     patroolhelpmenu[0] = false
                 end)
             end
         else
-            if imgui.Button(u8(' Начать патруль'), imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
-                sampSendChat('/r ' .. nickname .. ' на CONTROL. Начинаю патруль.')
+            if imgui.Button(u8(' пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ'), imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                sampSendChat('/r ' .. nickname .. ' пїЅпїЅ CONTROL. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.')
                 startPatrul()
             end
         end
@@ -2668,7 +2668,7 @@ function onReceivePacket(id, bs, ...)
             if interfaceid ==104 and subid == 2 then
                 local json = decodeJson(json)
                 if json["level"] then
-                    sobes['pass'] = u8 "Проверено"
+                    sobes['pass'] = u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
                     getPlayerPass(json)
                 end
             end
@@ -2687,12 +2687,12 @@ function sendMe(text)
 end
 function spcars(arg)
     if arg == "" then
-        msg("Используйте: /spcars (5 - 120)", -1)
+        msg("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: /spcars (5 - 120)", -1)
     else
         lua_thread.create(function()
-            sampSendChat("/rb Уважаемые сотрудники, через " .. arg .. " секунд будет спавн всего транспорта организации!")
+            sampSendChat("/rb пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ " .. arg .. " пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
             wait(1000)
-            sampSendChat("/rb Займите свой транспорт, в противном случае он пропадет!")
+            sampSendChat("/rb пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
             wait(arg * 1000)
             spawncar_bool = true
             sampSendChat("/lmenu")
@@ -2702,7 +2702,7 @@ end
 
 function cmd_su(p_id)
     if p_id == "" then
-        msg("Введи айди игрока: {FFFFFF}/su [ID].", 0x318CE7FF - 1)
+        msg("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: {FFFFFF}/su [ID].", 0x318CE7FF - 1)
     else
         id = imgui.new.int(tonumber(p_id))
         windowTwo[0] = not windowTwo[0]
@@ -2733,390 +2733,390 @@ end
 
 function calculateZone(x, y, z)
     local streets = {
-        { "Загородный клуб «Ависпа»", -2667.810, -302.135, -28.831, -2646.400, -262.320, 71.169 },
-        { "Международный аэропорт Истер-Бэй", -1315.420, -405.388, 15.406, -1264.400, -209.543, 25.406 },
-        { "Загородный клуб «Ависпа»", -2550.040, -355.493, 0.000, -2470.040, -318.493, 39.700 },
-        { "Международный аэропорт Истер-Бэй", -1490.330, -209.543, 15.406, -1264.400, -148.388, 25.406 },
-        { "Гарсия", -2395.140, -222.589, -5.3, -2354.090, -204.792, 200.000 },
-        { "Шейди-Кэбин", -1632.830, -2263.440, -3.0, -1601.330, -2231.790, 200.000 },
-        { "Восточный Лос-Сантос", 2381.680, -1494.030, -89.084, 2421.030, -1454.350, 110.916 },
-        { "Грузовое депо Лас-Вентураса", 1236.630, 1163.410, -89.084, 1277.050, 1203.280, 110.916 },
-        { "Пересечение Блэкфилд", 1277.050, 1044.690, -89.084, 1315.350, 1087.630, 110.916 },
-        { "Загородный клуб «Ависпа»", -2470.040, -355.493, 0.000, -2270.040, -318.493, 46.100 },
-        { "Темпл", 1252.330, -926.999, -89.084, 1357.000, -910.170, 110.916 },
-        { "Станция «Юнити»", 1692.620, -1971.800, -20.492, 1812.620, -1932.800, 79.508 },
-        { "Грузовое депо Лас-Вентураса", 1315.350, 1044.690, -89.084, 1375.600, 1087.630, 110.916 },
-        { "Лос-Флорес", 2581.730, -1454.350, -89.084, 2632.830, -1393.420, 110.916 },
-        { "Казино «Морская звезда»", 2437.390, 1858.100, -39.084, 2495.090, 1970.850, 60.916 },
-        { "Химзавод Истер-Бэй", -1132.820, -787.391, 0.000, -956.476, -768.027, 200.000 },
-        { "Деловой район", 1370.850, -1170.870, -89.084, 1463.900, -1130.850, 110.916 },
-        { "Восточная Эспаланда", -1620.300, 1176.520, -4.5, -1580.010, 1274.260, 200.000 },
-        { "Станция «Маркет»", 787.461, -1410.930, -34.126, 866.009, -1310.210, 65.874 },
-        { "Станция «Линден»", 2811.250, 1229.590, -39.594, 2861.250, 1407.590, 60.406 },
-        { "Пересечение Монтгомери", 1582.440, 347.457, 0.000, 1664.620, 401.750, 200.000 },
-        { "Мост «Фредерик»", 2759.250, 296.501, 0.000, 2774.250, 594.757, 200.000 },
-        { "Станция «Йеллоу-Белл»", 1377.480, 2600.430, -21.926, 1492.450, 2687.360, 78.074 },
-        { "Деловой район", 1507.510, -1385.210, 110.916, 1582.550, -1325.310, 335.916 },
-        { "Джефферсон", 2185.330, -1210.740, -89.084, 2281.450, -1154.590, 110.916 },
-        { "Малхолланд", 1318.130, -910.170, -89.084, 1357.000, -768.027, 110.916 },
-        { "Загородный клуб «Ависпа»", -2361.510, -417.199, 0.000, -2270.040, -355.493, 200.000 },
-        { "Джефферсон", 1996.910, -1449.670, -89.084, 2056.860, -1350.720, 110.916 },
-        { "Западаная автострада Джулиус", 1236.630, 2142.860, -89.084, 1297.470, 2243.230, 110.916 },
-        { "Джефферсон", 2124.660, -1494.030, -89.084, 2266.210, -1449.670, 110.916 },
-        { "Северная автострада Джулиус", 1848.400, 2478.490, -89.084, 1938.800, 2553.490, 110.916 },
-        { "Родео", 422.680, -1570.200, -89.084, 466.223, -1406.050, 110.916 },
-        { "Станция «Крэнберри»", -2007.830, 56.306, 0.000, -1922.000, 224.782, 100.000 },
-        { "Деловой район", 1391.050, -1026.330, -89.084, 1463.900, -926.999, 110.916 },
-        { "Западный Рэдсэндс", 1704.590, 2243.230, -89.084, 1777.390, 2342.830, 110.916 },
-        { "Маленькая Мексика", 1758.900, -1722.260, -89.084, 1812.620, -1577.590, 110.916 },
-        { "Пересечение Блэкфилд", 1375.600, 823.228, -89.084, 1457.390, 919.447, 110.916 },
-        { "Международный аэропорт Лос-Сантос", 1974.630, -2394.330, -39.084, 2089.000, -2256.590, 60.916 },
-        { "Бекон-Хилл", -399.633, -1075.520, -1.489, -319.033, -977.516, 198.511 },
-        { "Родео", 334.503, -1501.950, -89.084, 422.680, -1406.050, 110.916 },
-        { "Ричман", 225.165, -1369.620, -89.084, 334.503, -1292.070, 110.916 },
-        { "Деловой район", 1724.760, -1250.900, -89.084, 1812.620, -1150.870, 110.916 },
-        { "Стрип", 2027.400, 1703.230, -89.084, 2137.400, 1783.230, 110.916 },
-        { "Деловой район", 1378.330, -1130.850, -89.084, 1463.900, -1026.330, 110.916 },
-        { "Пересечение Блэкфилд", 1197.390, 1044.690, -89.084, 1277.050, 1163.390, 110.916 },
-        { "Конференц Центр", 1073.220, -1842.270, -89.084, 1323.900, -1804.210, 110.916 },
-        { "Монтгомери", 1451.400, 347.457, -6.1, 1582.440, 420.802, 200.000 },
-        { "Долина Фостер", -2270.040, -430.276, -1.2, -2178.690, -324.114, 200.000 },
-        { "Часовня Блэкфилд", 1325.600, 596.349, -89.084, 1375.600, 795.010, 110.916 },
-        { "Международный аэропорт Лос-Сантос", 2051.630, -2597.260, -39.084, 2152.450, -2394.330, 60.916 },
-        { "Малхолланд", 1096.470, -910.170, -89.084, 1169.130, -768.027, 110.916 },
-        { "Поле для гольфа «Йеллоу-Белл»", 1457.460, 2723.230, -89.084, 1534.560, 2863.230, 110.916 },
-        { "Стрип", 2027.400, 1783.230, -89.084, 2162.390, 1863.230, 110.916 },
-        { "Джефферсон", 2056.860, -1210.740, -89.084, 2185.330, -1126.320, 110.916 },
-        { "Малхолланд", 952.604, -937.184, -89.084, 1096.470, -860.619, 110.916 },
-        { "Альдеа-Мальвада", -1372.140, 2498.520, 0.000, -1277.590, 2615.350, 200.000 },
-        { "Лас-Колинас", 2126.860, -1126.320, -89.084, 2185.330, -934.489, 110.916 },
-        { "Лас-Колинас", 1994.330, -1100.820, -89.084, 2056.860, -920.815, 110.916 },
-        { "Ричман", 647.557, -954.662, -89.084, 768.694, -860.619, 110.916 },
-        { "Грузовое депо Лас-Вентураса", 1277.050, 1087.630, -89.084, 1375.600, 1203.280, 110.916 },
-        { "Северная автострада Джулиус", 1377.390, 2433.230, -89.084, 1534.560, 2507.230, 110.916 },
-        { "Уиллоуфилд", 2201.820, -2095.000, -89.084, 2324.000, -1989.900, 110.916 },
-        { "Северная автострада Джулиус", 1704.590, 2342.830, -89.084, 1848.400, 2433.230, 110.916 },
-        { "Темпл", 1252.330, -1130.850, -89.084, 1378.330, -1026.330, 110.916 },
-        { "Маленькая Мексика", 1701.900, -1842.270, -89.084, 1812.620, -1722.260, 110.916 },
-        { "Квинс", -2411.220, 373.539, 0.000, -2253.540, 458.411, 200.000 },
-        { "Аэропорт Лас-Вентурас", 1515.810, 1586.400, -12.500, 1729.950, 1714.560, 87.500 },
-        { "Ричман", 225.165, -1292.070, -89.084, 466.223, -1235.070, 110.916 },
-        { "Темпл", 1252.330, -1026.330, -89.084, 1391.050, -926.999, 110.916 },
-        { "Восточный Лос-Сантос", 2266.260, -1494.030, -89.084, 2381.680, -1372.040, 110.916 },
-        { "Восточная автострада Джулиус", 2623.180, 943.235, -89.084, 2749.900, 1055.960, 110.916 },
-        { "Уиллоуфилд", 2541.700, -1941.400, -89.084, 2703.580, -1852.870, 110.916 },
-        { "Лас-Колинас", 2056.860, -1126.320, -89.084, 2126.860, -920.815, 110.916 },
-        { "Восточная автострада Джулиус", 2625.160, 2202.760, -89.084, 2685.160, 2442.550, 110.916 },
-        { "Родео", 225.165, -1501.950, -89.084, 334.503, -1369.620, 110.916 },
-        { "Лас-Брухас", -365.167, 2123.010, -3.0, -208.570, 2217.680, 200.000 },
-        { "Восточная автострада Джулиус", 2536.430, 2442.550, -89.084, 2685.160, 2542.550, 110.916 },
-        { "Родео", 334.503, -1406.050, -89.084, 466.223, -1292.070, 110.916 },
-        { "Вайнвуд", 647.557, -1227.280, -89.084, 787.461, -1118.280, 110.916 },
-        { "Родео", 422.680, -1684.650, -89.084, 558.099, -1570.200, 110.916 },
-        { "Северная автострада Джулиус", 2498.210, 2542.550, -89.084, 2685.160, 2626.550, 110.916 },
-        { "Деловой район", 1724.760, -1430.870, -89.084, 1812.620, -1250.900, 110.916 },
-        { "Родео", 225.165, -1684.650, -89.084, 312.803, -1501.950, 110.916 },
-        { "Джефферсон", 2056.860, -1449.670, -89.084, 2266.210, -1372.040, 110.916 },
-        { "Хэмптон-Барнс", 603.035, 264.312, 0.000, 761.994, 366.572, 200.000 },
-        { "Темпл", 1096.470, -1130.840, -89.084, 1252.330, -1026.330, 110.916 },
-        { "Мост «Кинкейд»", -1087.930, 855.370, -89.084, -961.950, 986.281, 110.916 },
-        { "Пляж «Верона»", 1046.150, -1722.260, -89.084, 1161.520, -1577.590, 110.916 },
-        { "Коммерческий район", 1323.900, -1722.260, -89.084, 1440.900, -1577.590, 110.916 },
-        { "Малхолланд", 1357.000, -926.999, -89.084, 1463.900, -768.027, 110.916 },
-        { "Родео", 466.223, -1570.200, -89.084, 558.099, -1385.070, 110.916 },
-        { "Малхолланд", 911.802, -860.619, -89.084, 1096.470, -768.027, 110.916 },
-        { "Малхолланд", 768.694, -954.662, -89.084, 952.604, -860.619, 110.916 },
-        { "Южная автострада Джулиус", 2377.390, 788.894, -89.084, 2537.390, 897.901, 110.916 },
-        { "Айдлвуд", 1812.620, -1852.870, -89.084, 1971.660, -1742.310, 110.916 },
-        { "Океанские доки", 2089.000, -2394.330, -89.084, 2201.820, -2235.840, 110.916 },
-        { "Коммерческий район", 1370.850, -1577.590, -89.084, 1463.900, -1384.950, 110.916 },
-        { "Северная автострада Джулиус", 2121.400, 2508.230, -89.084, 2237.400, 2663.170, 110.916 },
-        { "Темпл", 1096.470, -1026.330, -89.084, 1252.330, -910.170, 110.916 },
-        { "Глен Парк", 1812.620, -1449.670, -89.084, 1996.910, -1350.720, 110.916 },
-        { "Международный аэропорт Истер-Бэй", -1242.980, -50.096, 0.000, -1213.910, 578.396, 200.000 },
-        { "Мост «Мартин»", -222.179, 293.324, 0.000, -122.126, 476.465, 200.000 },
-        { "Стрип", 2106.700, 1863.230, -89.084, 2162.390, 2202.760, 110.916 },
-        { "Уиллоуфилд", 2541.700, -2059.230, -89.084, 2703.580, -1941.400, 110.916 },
-        { "Марина", 807.922, -1577.590, -89.084, 926.922, -1416.250, 110.916 },
-        { "Аэропорт Лас-Вентурас", 1457.370, 1143.210, -89.084, 1777.400, 1203.280, 110.916 },
-        { "Айдлвуд", 1812.620, -1742.310, -89.084, 1951.660, -1602.310, 110.916 },
-        { "Восточная Эспаланда", -1580.010, 1025.980, -6.1, -1499.890, 1274.260, 200.000 },
-        { "Деловой район", 1370.850, -1384.950, -89.084, 1463.900, -1170.870, 110.916 },
-        { "Мост «Мако»", 1664.620, 401.750, 0.000, 1785.140, 567.203, 200.000 },
-        { "Родео", 312.803, -1684.650, -89.084, 422.680, -1501.950, 110.916 },
-        { "Площадь «Першинг»", 1440.900, -1722.260, -89.084, 1583.500, -1577.590, 110.916 },
-        { "Малхолланд", 687.802, -860.619, -89.084, 911.802, -768.027, 110.916 },
-        { "Мост «Гант»", -2741.070, 1490.470, -6.1, -2616.400, 1659.680, 200.000 },
-        { "Лас-Колинас", 2185.330, -1154.590, -89.084, 2281.450, -934.489, 110.916 },
-        { "Малхолланд", 1169.130, -910.170, -89.084, 1318.130, -768.027, 110.916 },
-        { "Северная автострада Джулиус", 1938.800, 2508.230, -89.084, 2121.400, 2624.230, 110.916 },
-        { "Коммерческий район", 1667.960, -1577.590, -89.084, 1812.620, -1430.870, 110.916 },
-        { "Родео", 72.648, -1544.170, -89.084, 225.165, -1404.970, 110.916 },
-        { "Рока-Эскаланте", 2536.430, 2202.760, -89.084, 2625.160, 2442.550, 110.916 },
-        { "Родео", 72.648, -1684.650, -89.084, 225.165, -1544.170, 110.916 },
-        { "Маркет", 952.663, -1310.210, -89.084, 1072.660, -1130.850, 110.916 },
-        { "Лас-Колинас", 2632.740, -1135.040, -89.084, 2747.740, -945.035, 110.916 },
-        { "Малхолланд", 861.085, -674.885, -89.084, 1156.550, -600.896, 110.916 },
-        { "Кингс", -2253.540, 373.539, -9.1, -1993.280, 458.411, 200.000 },
-        { "Восточный Рэдсэндс", 1848.400, 2342.830, -89.084, 2011.940, 2478.490, 110.916 },
-        { "Деловой район", -1580.010, 744.267, -6.1, -1499.890, 1025.980, 200.000 },
-        { "Конференц Центр", 1046.150, -1804.210, -89.084, 1323.900, -1722.260, 110.916 },
-        { "Ричман", 647.557, -1118.280, -89.084, 787.461, -954.662, 110.916 },
-        { "Оушен-Флэтс", -2994.490, 277.411, -9.1, -2867.850, 458.411, 200.000 },
-        { "Колледж Грингласс", 964.391, 930.890, -89.084, 1166.530, 1044.690, 110.916 },
-        { "Глен Парк", 1812.620, -1100.820, -89.084, 1994.330, -973.380, 110.916 },
-        { "Грузовое депо Лас-Вентураса", 1375.600, 919.447, -89.084, 1457.370, 1203.280, 110.916 },
-        { "Регьюлар-Том", -405.770, 1712.860, -3.0, -276.719, 1892.750, 200.000 },
-        { "Пляж «Верона»", 1161.520, -1722.260, -89.084, 1323.900, -1577.590, 110.916 },
-        { "Восточный Лос-Сантос", 2281.450, -1372.040, -89.084, 2381.680, -1135.040, 110.916 },
-        { "Дворец Калигулы", 2137.400, 1703.230, -89.084, 2437.390, 1783.230, 110.916 },
-        { "Айдлвуд", 1951.660, -1742.310, -89.084, 2124.660, -1602.310, 110.916 },
-        { "Пилигрим", 2624.400, 1383.230, -89.084, 2685.160, 1783.230, 110.916 },
-        { "Айдлвуд", 2124.660, -1742.310, -89.084, 2222.560, -1494.030, 110.916 },
-        { "Квинс", -2533.040, 458.411, 0.000, -2329.310, 578.396, 200.000 },
-        { "Деловой район", -1871.720, 1176.420, -4.5, -1620.300, 1274.260, 200.000 },
-        { "Коммерческий район", 1583.500, -1722.260, -89.084, 1758.900, -1577.590, 110.916 },
-        { "Восточный Лос-Сантос", 2381.680, -1454.350, -89.084, 2462.130, -1135.040, 110.916 },
-        { "Марина", 647.712, -1577.590, -89.084, 807.922, -1416.250, 110.916 },
-        { "Ричман", 72.648, -1404.970, -89.084, 225.165, -1235.070, 110.916 },
-        { "Вайнвуд", 647.712, -1416.250, -89.084, 787.461, -1227.280, 110.916 },
-        { "Восточный Лос-Сантос", 2222.560, -1628.530, -89.084, 2421.030, -1494.030, 110.916 },
-        { "Родео", 558.099, -1684.650, -89.084, 647.522, -1384.930, 110.916 },
-        { "Истерский Тоннель", -1709.710, -833.034, -1.5, -1446.010, -730.118, 200.000 },
-        { "Родео", 466.223, -1385.070, -89.084, 647.522, -1235.070, 110.916 },
-        { "Восточный Рэдсэндс", 1817.390, 2202.760, -89.084, 2011.940, 2342.830, 110.916 },
-        { "Казино «Карман клоуна»", 2162.390, 1783.230, -89.084, 2437.390, 1883.230, 110.916 },
-        { "Айдлвуд", 1971.660, -1852.870, -89.084, 2222.560, -1742.310, 110.916 },
-        { "Пересечение Монтгомери", 1546.650, 208.164, 0.000, 1745.830, 347.457, 200.000 },
-        { "Уиллоуфилд", 2089.000, -2235.840, -89.084, 2201.820, -1989.900, 110.916 },
-        { "Темпл", 952.663, -1130.840, -89.084, 1096.470, -937.184, 110.916 },
-        { "Прикл-Пайн", 1848.400, 2553.490, -89.084, 1938.800, 2863.230, 110.916 },
-        { "Международный аэропорт Лос-Сантос", 1400.970, -2669.260, -39.084, 2189.820, -2597.260, 60.916 },
-        { "Мост «Гарвер»", -1213.910, 950.022, -89.084, -1087.930, 1178.930, 110.916 },
-        { "Мост «Гарвер»", -1339.890, 828.129, -89.084, -1213.910, 1057.040, 110.916 },
-        { "Мост «Кинкейд»", -1339.890, 599.218, -89.084, -1213.910, 828.129, 110.916 },
-        { "Мост «Кинкейд»", -1213.910, 721.111, -89.084, -1087.930, 950.022, 110.916 },
-        { "Пляж «Верона»", 930.221, -2006.780, -89.084, 1073.220, -1804.210, 110.916 },
-        { "Обсерватория «Зелёный утёс»", 1073.220, -2006.780, -89.084, 1249.620, -1842.270, 110.916 },
-        { "Вайнвуд", 787.461, -1130.840, -89.084, 952.604, -954.662, 110.916 },
-        { "Вайнвуд", 787.461, -1310.210, -89.084, 952.663, -1130.840, 110.916 },
-        { "Коммерческий район", 1463.900, -1577.590, -89.084, 1667.960, -1430.870, 110.916 },
-        { "Маркет", 787.461, -1416.250, -89.084, 1072.660, -1310.210, 110.916 },
-        { "Западный Рокшор", 2377.390, 596.349, -89.084, 2537.390, 788.894, 110.916 },
-        { "Северная автострада Джулиус", 2237.400, 2542.550, -89.084, 2498.210, 2663.170, 110.916 },
-        { "Восточный пляж", 2632.830, -1668.130, -89.084, 2747.740, -1393.420, 110.916 },
-        { "Мост «Фаллоу»", 434.341, 366.572, 0.000, 603.035, 555.680, 200.000 },
-        { "Уиллоуфилд", 2089.000, -1989.900, -89.084, 2324.000, -1852.870, 110.916 },
-        { "Чайнатаун", -2274.170, 578.396, -7.6, -2078.670, 744.170, 200.000 },
-        { "Эль-Кастильо-дель-Дьябло", -208.570, 2337.180, 0.000, 8.430, 2487.180, 200.000 },
-        { "Океанские доки", 2324.000, -2145.100, -89.084, 2703.580, -2059.230, 110.916 },
-        { "Химзавод Истер-Бэй", -1132.820, -768.027, 0.000, -956.476, -578.118, 200.000 },
-        { "Казино «Визаж»", 1817.390, 1703.230, -89.084, 2027.400, 1863.230, 110.916 },
-        { "Оушен-Флэтс", -2994.490, -430.276, -1.2, -2831.890, -222.589, 200.000 },
-        { "Ричман", 321.356, -860.619, -89.084, 687.802, -768.027, 110.916 },
-        { "Нефтяной комплекс «Зеленый оазис»", 176.581, 1305.450, -3.0, 338.658, 1520.720, 200.000 },
-        { "Ричман", 321.356, -768.027, -89.084, 700.794, -674.885, 110.916 },
-        { "Казино «Морская звезда»", 2162.390, 1883.230, -89.084, 2437.390, 2012.180, 110.916 },
-        { "Восточный пляж", 2747.740, -1668.130, -89.084, 2959.350, -1498.620, 110.916 },
-        { "Джефферсон", 2056.860, -1372.040, -89.084, 2281.450, -1210.740, 110.916 },
-        { "Деловой район", 1463.900, -1290.870, -89.084, 1724.760, -1150.870, 110.916 },
-        { "Деловой район", 1463.900, -1430.870, -89.084, 1724.760, -1290.870, 110.916 },
-        { "Мост «Гарвер»", -1499.890, 696.442, -179.615, -1339.890, 925.353, 20.385 },
-        { "Южная автострада Джулиус", 1457.390, 823.228, -89.084, 2377.390, 863.229, 110.916 },
-        { "Восточный Лос-Сантос", 2421.030, -1628.530, -89.084, 2632.830, -1454.350, 110.916 },
-        { "Колледж «Грингласс»", 964.391, 1044.690, -89.084, 1197.390, 1203.220, 110.916 },
-        { "Лас-Колинас", 2747.740, -1120.040, -89.084, 2959.350, -945.035, 110.916 },
-        { "Малхолланд", 737.573, -768.027, -89.084, 1142.290, -674.885, 110.916 },
-        { "Океанские доки", 2201.820, -2730.880, -89.084, 2324.000, -2418.330, 110.916 },
-        { "Восточный Лос-Сантос", 2462.130, -1454.350, -89.084, 2581.730, -1135.040, 110.916 },
-        { "Гантон", 2222.560, -1722.330, -89.084, 2632.830, -1628.530, 110.916 },
-        { "Загородный клуб «Ависпа»", -2831.890, -430.276, -6.1, -2646.400, -222.589, 200.000 },
-        { "Уиллоуфилд", 1970.620, -2179.250, -89.084, 2089.000, -1852.870, 110.916 },
-        { "Северная Эспланада", -1982.320, 1274.260, -4.5, -1524.240, 1358.900, 200.000 },
-        { "Казино «Хай-Роллер»", 1817.390, 1283.230, -89.084, 2027.390, 1469.230, 110.916 },
-        { "Океанские доки", 2201.820, -2418.330, -89.084, 2324.000, -2095.000, 110.916 },
-        { "Мотель «Последний цент»", 1823.080, 596.349, -89.084, 1997.220, 823.228, 110.916 },
-        { "Бэйсайнд-Марина", -2353.170, 2275.790, 0.000, -2153.170, 2475.790, 200.000 },
-        { "Кингс", -2329.310, 458.411, -7.6, -1993.280, 578.396, 200.000 },
-        { "Эль-Корона", 1692.620, -2179.250, -89.084, 1812.620, -1842.270, 110.916 },
-        { "Часовня Блэкфилд", 1375.600, 596.349, -89.084, 1558.090, 823.228, 110.916 },
-        { "«Розовый лебедь»", 1817.390, 1083.230, -89.084, 2027.390, 1283.230, 110.916 },
-        { "Западаная автострада Джулиус", 1197.390, 1163.390, -89.084, 1236.630, 2243.230, 110.916 },
-        { "Лос-Флорес", 2581.730, -1393.420, -89.084, 2747.740, -1135.040, 110.916 },
-        { "Казино «Визаж»", 1817.390, 1863.230, -89.084, 2106.700, 2011.830, 110.916 },
-        { "Прикл-Пайн", 1938.800, 2624.230, -89.084, 2121.400, 2861.550, 110.916 },
-        { "Пляж «Верона»", 851.449, -1804.210, -89.084, 1046.150, -1577.590, 110.916 },
-        { "Пересечение Робада", -1119.010, 1178.930, -89.084, -862.025, 1351.450, 110.916 },
-        { "Линден-Сайд", 2749.900, 943.235, -89.084, 2923.390, 1198.990, 110.916 },
-        { "Океанские доки", 2703.580, -2302.330, -89.084, 2959.350, -2126.900, 110.916 },
-        { "Уиллоуфилд", 2324.000, -2059.230, -89.084, 2541.700, -1852.870, 110.916 },
-        { "Кингс", -2411.220, 265.243, -9.1, -1993.280, 373.539, 200.000 },
-        { "Коммерческий район", 1323.900, -1842.270, -89.084, 1701.900, -1722.260, 110.916 },
-        { "Малхолланд", 1269.130, -768.027, -89.084, 1414.070, -452.425, 110.916 },
-        { "Марина", 647.712, -1804.210, -89.084, 851.449, -1577.590, 110.916 },
-        { "Бэттери-Пойнт", -2741.070, 1268.410, -4.5, -2533.040, 1490.470, 200.000 },
-        { "Казино «4 Дракона»", 1817.390, 863.232, -89.084, 2027.390, 1083.230, 110.916 },
-        { "Блэкфилд", 964.391, 1203.220, -89.084, 1197.390, 1403.220, 110.916 },
-        { "Северная автострада Джулиус", 1534.560, 2433.230, -89.084, 1848.400, 2583.230, 110.916 },
-        { "Поле для гольфа «Йеллоу-Белл»", 1117.400, 2723.230, -89.084, 1457.460, 2863.230, 110.916 },
-        { "Айдлвуд", 1812.620, -1602.310, -89.084, 2124.660, -1449.670, 110.916 },
-        { "Западный Рэдсэндс", 1297.470, 2142.860, -89.084, 1777.390, 2243.230, 110.916 },
-        { "Доэрти", -2270.040, -324.114, -1.2, -1794.920, -222.589, 200.000 },
-        { "Ферма Хиллтоп", 967.383, -450.390, -3.0, 1176.780, -217.900, 200.000 },
-        { "Лас-Барранкас", -926.130, 1398.730, -3.0, -719.234, 1634.690, 200.000 },
-        { "Казино «Пираты в мужских штанах»", 1817.390, 1469.230, -89.084, 2027.400, 1703.230, 110.916 },
-        { "Сити Холл", -2867.850, 277.411, -9.1, -2593.440, 458.411, 200.000 },
-        { "Загородный клуб «Ависпа»", -2646.400, -355.493, 0.000, -2270.040, -222.589, 200.000 },
-        { "Стрип", 2027.400, 863.229, -89.084, 2087.390, 1703.230, 110.916 },
-        { "Хашбери", -2593.440, -222.589, -1.0, -2411.220, 54.722, 200.000 },
-        { "Международный аэропорт Лос-Сантос", 1852.000, -2394.330, -89.084, 2089.000, -2179.250, 110.916 },
-        { "Уайтвуд-Истейтс", 1098.310, 1726.220, -89.084, 1197.390, 2243.230, 110.916 },
-        { "Водохранилище Шермана", -789.737, 1659.680, -89.084, -599.505, 1929.410, 110.916 },
-        { "Эль-Корона", 1812.620, -2179.250, -89.084, 1970.620, -1852.870, 110.916 },
-        { "Деловой район", -1700.010, 744.267, -6.1, -1580.010, 1176.520, 200.000 },
-        { "Долина Фостер", -2178.690, -1250.970, 0.000, -1794.920, -1115.580, 200.000 },
-        { "Лас-Паясадас", -354.332, 2580.360, 2.0, -133.625, 2816.820, 200.000 },
-        { "Долина Окультадо", -936.668, 2611.440, 2.0, -715.961, 2847.900, 200.000 },
-        { "Пересечение Блэкфилд", 1166.530, 795.010, -89.084, 1375.600, 1044.690, 110.916 },
-        { "Гантон", 2222.560, -1852.870, -89.084, 2632.830, -1722.330, 110.916 },
-        { "Международный аэропорт Истер-Бэй", -1213.910, -730.118, 0.000, -1132.820, -50.096, 200.000 },
-        { "Восточный Рэдсэндс", 1817.390, 2011.830, -89.084, 2106.700, 2202.760, 110.916 },
-        { "Восточная Эспаланда", -1499.890, 578.396, -79.615, -1339.890, 1274.260, 20.385 },
-        { "Дворец Калигулы", 2087.390, 1543.230, -89.084, 2437.390, 1703.230, 110.916 },
-        { "Казино «Рояль»", 2087.390, 1383.230, -89.084, 2437.390, 1543.230, 110.916 },
-        { "Ричман", 72.648, -1235.070, -89.084, 321.356, -1008.150, 110.916 },
-        { "Казино «Морская звезда»", 2437.390, 1783.230, -89.084, 2685.160, 2012.180, 110.916 },
-        { "Малхолланд", 1281.130, -452.425, -89.084, 1641.130, -290.913, 110.916 },
-        { "Деловой район", -1982.320, 744.170, -6.1, -1871.720, 1274.260, 200.000 },
-        { "Ханки-Панки-Пойнт", 2576.920, 62.158, 0.000, 2759.250, 385.503, 200.000 },
-        { "Военный склад топлива К.А.С.С.", 2498.210, 2626.550, -89.084, 2749.900, 2861.550, 110.916 },
-        { "Автострада «Гарри-Голд»", 1777.390, 863.232, -89.084, 1817.390, 2342.830, 110.916 },
-        { "Тоннель Бэйсайд", -2290.190, 2548.290, -89.084, -1950.190, 2723.290, 110.916 },
-        { "Океанские доки", 2324.000, -2302.330, -89.084, 2703.580, -2145.100, 110.916 },
-        { "Ричман", 321.356, -1044.070, -89.084, 647.557, -860.619, 110.916 },
-        { "Промсклад имени Рэндольфа", 1558.090, 596.349, -89.084, 1823.080, 823.235, 110.916 },
-        { "Восточный пляж", 2632.830, -1852.870, -89.084, 2959.350, -1668.130, 110.916 },
-        { "Флинт-Уотер", -314.426, -753.874, -89.084, -106.339, -463.073, 110.916 },
-        { "Блуберри", 19.607, -404.136, 3.8, 349.607, -220.137, 200.000 },
-        { "Станция «Линден»", 2749.900, 1198.990, -89.084, 2923.390, 1548.990, 110.916 },
-        { "Глен Парк", 1812.620, -1350.720, -89.084, 2056.860, -1100.820, 110.916 },
-        { "Деловой район", -1993.280, 265.243, -9.1, -1794.920, 578.396, 200.000 },
-        { "Западный Рэдсэндс", 1377.390, 2243.230, -89.084, 1704.590, 2433.230, 110.916 },
-        { "Ричман", 321.356, -1235.070, -89.084, 647.522, -1044.070, 110.916 },
-        { "Мост «Гант»", -2741.450, 1659.680, -6.1, -2616.400, 2175.150, 200.000 },
-        { "Бар «Probe Inn»", -90.218, 1286.850, -3.0, 153.859, 1554.120, 200.000 },
-        { "Пересечение Флинт", -187.700, -1596.760, -89.084, 17.063, -1276.600, 110.916 },
-        { "Лас-Колинас", 2281.450, -1135.040, -89.084, 2632.740, -945.035, 110.916 },
-        { "Собелл-Рейл-Ярдс", 2749.900, 1548.990, -89.084, 2923.390, 1937.250, 110.916 },
-        { "Изумрудный остров", 2011.940, 2202.760, -89.084, 2237.400, 2508.230, 110.916 },
-        { "Эль-Кастильо-дель-Дьябло", -208.570, 2123.010, -7.6, 114.033, 2337.180, 200.000 },
-        { "Санта-Флора", -2741.070, 458.411, -7.6, -2533.040, 793.411, 200.000 },
-        { "Плайя-дель-Севиль", 2703.580, -2126.900, -89.084, 2959.350, -1852.870, 110.916 },
-        { "Маркет", 926.922, -1577.590, -89.084, 1370.850, -1416.250, 110.916 },
-        { "Квинс", -2593.440, 54.722, 0.000, -2411.220, 458.411, 200.000 },
-        { "Пересечение Пилсон", 1098.390, 2243.230, -89.084, 1377.390, 2507.230, 110.916 },
-        { "Спинибед", 2121.400, 2663.170, -89.084, 2498.210, 2861.550, 110.916 },
-        { "Пилигрим", 2437.390, 1383.230, -89.084, 2624.400, 1783.230, 110.916 },
-        { "Блэкфилд", 964.391, 1403.220, -89.084, 1197.390, 1726.220, 110.916 },
-        { "«Большое ухо»", -410.020, 1403.340, -3.0, -137.969, 1681.230, 200.000 },
-        { "Диллимор", 580.794, -674.885, -9.5, 861.085, -404.790, 200.000 },
-        { "Эль-Кебрадос", -1645.230, 2498.520, 0.000, -1372.140, 2777.850, 200.000 },
-        { "Северная Эспланада", -2533.040, 1358.900, -4.5, -1996.660, 1501.210, 200.000 },
-        { "Международный аэропорт Истер-Бэй", -1499.890, -50.096, -1.0, -1242.980, 249.904, 200.000 },
-        { "Рыбацкая лагуна", 1916.990, -233.323, -100.000, 2131.720, 13.800, 200.000 },
-        { "Малхолланд", 1414.070, -768.027, -89.084, 1667.610, -452.425, 110.916 },
-        { "Восточный пляж", 2747.740, -1498.620, -89.084, 2959.350, -1120.040, 110.916 },
-        { "Сан-Андреас Саунд", 2450.390, 385.503, -100.000, 2759.250, 562.349, 200.000 },
-        { "Тенистые ручьи", -2030.120, -2174.890, -6.1, -1820.640, -1771.660, 200.000 },
-        { "Маркет", 1072.660, -1416.250, -89.084, 1370.850, -1130.850, 110.916 },
-        { "Западный Рокшор", 1997.220, 596.349, -89.084, 2377.390, 823.228, 110.916 },
-        { "Прикл-Пайн", 1534.560, 2583.230, -89.084, 1848.400, 2863.230, 110.916 },
-        { "«Бухта Пасхи»", -1794.920, -50.096, -1.04, -1499.890, 249.904, 200.000 },
-        { "Лифи-Холлоу", -1166.970, -1856.030, 0.000, -815.624, -1602.070, 200.000 },
-        { "Грузовое депо Лас-Вентураса", 1457.390, 863.229, -89.084, 1777.400, 1143.210, 110.916 },
-        { "Прикл-Пайн", 1117.400, 2507.230, -89.084, 1534.560, 2723.230, 110.916 },
-        { "Блуберри", 104.534, -220.137, 2.3, 349.607, 152.236, 200.000 },
-        { "Эль-Кастильо-дель-Дьябло", -464.515, 2217.680, 0.000, -208.570, 2580.360, 200.000 },
-        { "Деловой район", -2078.670, 578.396, -7.6, -1499.890, 744.267, 200.000 },
-        { "Восточный Рокшор", 2537.390, 676.549, -89.084, 2902.350, 943.235, 110.916 },
-        { "Залив Сан-Фиерро", -2616.400, 1501.210, -3.0, -1996.660, 1659.680, 200.000 },
-        { "Парадизо", -2741.070, 793.411, -6.1, -2533.040, 1268.410, 200.000 },
-        { "Казино «Носок верблюда»", 2087.390, 1203.230, -89.084, 2640.400, 1383.230, 110.916 },
-        { "Олд-Вентурас-Стрип", 2162.390, 2012.180, -89.084, 2685.160, 2202.760, 110.916 },
-        { "Джанипер-Хилл", -2533.040, 578.396, -7.6, -2274.170, 968.369, 200.000 },
-        { "Джанипер-Холлоу", -2533.040, 968.369, -6.1, -2274.170, 1358.900, 200.000 },
-        { "Рока-Эскаланте", 2237.400, 2202.760, -89.084, 2536.430, 2542.550, 110.916 },
-        { "Восточная автострада Джулиус", 2685.160, 1055.960, -89.084, 2749.900, 2626.550, 110.916 },
-        { "Пляж «Верона»", 647.712, -2173.290, -89.084, 930.221, -1804.210, 110.916 },
-        { "Долина Фостер", -2178.690, -599.884, -1.2, -1794.920, -324.114, 200.000 },
-        { "Арко-дель-Оэсте", -901.129, 2221.860, 0.000, -592.090, 2571.970, 200.000 },
-        { "«Упавшее дерево»", -792.254, -698.555, -5.3, -452.404, -380.043, 200.000 },
-        { "Ферма", -1209.670, -1317.100, 114.981, -908.161, -787.391, 251.981 },
-        { "Дамба Шермана", -968.772, 1929.410, -3.0, -481.126, 2155.260, 200.000 },
-        { "Северная Эспланада", -1996.660, 1358.900, -4.5, -1524.240, 1592.510, 200.000 },
-        { "Финансовый район", -1871.720, 744.170, -6.1, -1701.300, 1176.420, 300.000 },
-        { "Гарсия", -2411.220, -222.589, -1.14, -2173.040, 265.243, 200.000 },
-        { "Монтгомери", 1119.510, 119.526, -3.0, 1451.400, 493.323, 200.000 },
-        { "Крик", 2749.900, 1937.250, -89.084, 2921.620, 2669.790, 110.916 },
-        { "Международный аэропорт Лос-Сантос", 1249.620, -2394.330, -89.084, 1852.000, -2179.250, 110.916 },
-        { "Пляж «Санта-Мария»", 72.648, -2173.290, -89.084, 342.648, -1684.650, 110.916 },
-        { "Пересечение Малхолланд", 1463.900, -1150.870, -89.084, 1812.620, -768.027, 110.916 },
-        { "Эйнджел-Пайн", -2324.940, -2584.290, -6.1, -1964.220, -2212.110, 200.000 },
-        { "Вёрдант-Медоус", 37.032, 2337.180, -3.0, 435.988, 2677.900, 200.000 },
-        { "Октан-Спрингс", 338.658, 1228.510, 0.000, 664.308, 1655.050, 200.000 },
-        { "Казино Кам-э-Лот", 2087.390, 943.235, -89.084, 2623.180, 1203.230, 110.916 },
-        { "Западный Рэдсэндс", 1236.630, 1883.110, -89.084, 1777.390, 2142.860, 110.916 },
-        { "Пляж «Санта-Мария»", 342.648, -2173.290, -89.084, 647.712, -1684.650, 110.916 },
-        { "Обсерватория «Зелёный утёс", 1249.620, -2179.250, -89.084, 1692.620, -1842.270, 110.916 },
-        { "Аэропорт Лас-Вентурас", 1236.630, 1203.280, -89.084, 1457.370, 1883.110, 110.916 },
-        { "Округ Флинт", -594.191, -1648.550, 0.000, -187.700, -1276.600, 200.000 },
-        { "Обсерватория «Зелёный утёс", 930.221, -2488.420, -89.084, 1249.620, -2006.780, 110.916 },
-        { "Паломино Крик", 2160.220, -149.004, 0.000, 2576.920, 228.322, 200.000 },
-        { "Океанские доки", 2373.770, -2697.090, -89.084, 2809.220, -2330.460, 110.916 },
-        { "Международный аэропорт Истер-Бэй", -1213.910, -50.096, -4.5, -947.980, 578.396, 200.000 },
-        { "Уайтвуд-Истейтс", 883.308, 1726.220, -89.084, 1098.310, 2507.230, 110.916 },
-        { "Калтон-Хайтс", -2274.170, 744.170, -6.1, -1982.320, 1358.900, 200.000 },
-        { "«Бухта Пасхи»", -1794.920, 249.904, -9.1, -1242.980, 578.396, 200.000 },
-        { "Залив Лос-Сантос", -321.744, -2224.430, -89.084, 44.615, -1724.430, 110.916 },
-        { "Доэрти", -2173.040, -222.589, -1.0, -1794.920, 265.243, 200.000 },
-        { "Гора Чилиад", -2178.690, -2189.910, -47.917, -2030.120, -1771.660, 576.083 },
-        { "Форт-Карсон", -376.233, 826.326, -3.0, 123.717, 1220.440, 200.000 },
-        { "Долина Фостер", -2178.690, -1115.580, 0.000, -1794.920, -599.884, 200.000 },
-        { "Оушен-Флэтс", -2994.490, -222.589, -1.0, -2593.440, 277.411, 200.000 },
-        { "Ферн-Ридж", 508.189, -139.259, 0.000, 1306.660, 119.526, 200.000 },
-        { "Бэйсайд", -2741.070, 2175.150, 0.000, -2353.170, 2722.790, 200.000 },
-        { "Аэропорт Лас-Вентурас", 1457.370, 1203.280, -89.084, 1777.390, 1883.110, 110.916 },
-        { "Поместье Блуберри", -319.676, -220.137, 0.000, 104.534, 293.324, 200.000 },
-        { "Пэлисейдс", -2994.490, 458.411, -6.1, -2741.070, 1339.610, 200.000 },
-        { "Норт-Рок", 2285.370, -768.027, 0.000, 2770.590, -269.740, 200.000 },
-        { "Карьер «Хантер»", 337.244, 710.840, -115.239, 860.554, 1031.710, 203.761 },
-        { "Международный аэропорт Лос-Сантос", 1382.730, -2730.880, -89.084, 2201.820, -2394.330, 110.916 },
-        { "Миссионер-Хилл", -2994.490, -811.276, 0.000, -2178.690, -430.276, 200.000 },
-        { "Залив Сан-Фиерро", -2616.400, 1659.680, -3.0, -1996.660, 2175.150, 200.000 },
-        { "Запретная Зона", -91.586, 1655.050, -50.000, 421.234, 2123.010, 250.000 },
-        { "Гора «Чилиад»", -2997.470, -1115.580, -47.917, -2178.690, -971.913, 576.083 },
-        { "Гора «Чилиад»", -2178.690, -1771.660, -47.917, -1936.120, -1250.970, 576.083 },
-        { "Международный аэропорт Истер-Бэй", -1794.920, -730.118, -3.0, -1213.910, -50.096, 200.000 },
-        { "Паноптикум", -947.980, -304.320, -1.1, -319.676, 327.071, 200.000 },
-        { "Тенистые ручьи", -1820.640, -2643.680, -8.0, -1226.780, -1771.660, 200.000 },
-        { "Бэк-о-Бейонд", -1166.970, -2641.190, 0.000, -321.744, -1856.030, 200.000 },
-        { "Гора «Чилиад»", -2994.490, -2189.910, -47.917, -2178.690, -1115.580, 576.083 },
-        { "Тьерра Робада", -1213.910, 596.349, -242.990, -480.539, 1659.680, 900.000 },
-        { "Округ Флинт", -1213.910, -2892.970, -242.990, 44.615, -768.027, 900.000 },
-        { "Уэтстоун", -2997.470, -2892.970, -242.990, -1213.910, -1115.580, 900.000 },
-        { "Пустынный округ", -480.539, 596.349, -242.990, 869.461, 2993.870, 900.000 },
-        { "Тьерра Робада", -2997.470, 1659.680, -242.990, -480.539, 2993.870, 900.000 },
-        { "Сан Фиерро", -2997.470, -1115.580, -242.990, -1213.910, 1659.680, 900.000 },
-        { "Лас Вентурас", 869.461, 596.349, -242.990, 2997.060, 2993.870, 900.000 },
-        { "Туманный округ", -1213.910, -768.027, -242.990, 2997.060, 596.349, 900.000 },
-        { "Лос Сантос", 44.615, -2892.970, -242.990, 2997.060, -768.027, 900.000 }
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2667.810, -302.135, -28.831, -2646.400, -262.320, 71.169 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1315.420, -405.388, 15.406, -1264.400, -209.543, 25.406 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2550.040, -355.493, 0.000, -2470.040, -318.493, 39.700 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1490.330, -209.543, 15.406, -1264.400, -148.388, 25.406 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", -2395.140, -222.589, -5.3, -2354.090, -204.792, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -1632.830, -2263.440, -3.0, -1601.330, -2231.790, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2381.680, -1494.030, -89.084, 2421.030, -1454.350, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1236.630, 1163.410, -89.084, 1277.050, 1203.280, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1277.050, 1044.690, -89.084, 1315.350, 1087.630, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2470.040, -355.493, 0.000, -2270.040, -318.493, 46.100 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 1252.330, -926.999, -89.084, 1357.000, -910.170, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 1692.620, -1971.800, -20.492, 1812.620, -1932.800, 79.508 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1315.350, 1044.690, -89.084, 1375.600, 1087.630, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2581.730, -1454.350, -89.084, 2632.830, -1393.420, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2437.390, 1858.100, -39.084, 2495.090, 1970.850, 60.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1132.820, -787.391, 0.000, -956.476, -768.027, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1370.850, -1170.870, -89.084, 1463.900, -1130.850, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1620.300, 1176.520, -4.5, -1580.010, 1274.260, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 787.461, -1410.930, -34.126, 866.009, -1310.210, 65.874 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2811.250, 1229.590, -39.594, 2861.250, 1407.590, 60.406 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1582.440, 347.457, 0.000, 1664.620, 401.750, 200.000 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2759.250, 296.501, 0.000, 2774.250, 594.757, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1377.480, 2600.430, -21.926, 1492.450, 2687.360, 78.074 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1507.510, -1385.210, 110.916, 1582.550, -1325.310, 335.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2185.330, -1210.740, -89.084, 2281.450, -1154.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1318.130, -910.170, -89.084, 1357.000, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2361.510, -417.199, 0.000, -2270.040, -355.493, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1996.910, -1449.670, -89.084, 2056.860, -1350.720, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1236.630, 2142.860, -89.084, 1297.470, 2243.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2124.660, -1494.030, -89.084, 2266.210, -1449.670, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1848.400, 2478.490, -89.084, 1938.800, 2553.490, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 422.680, -1570.200, -89.084, 466.223, -1406.050, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2007.830, 56.306, 0.000, -1922.000, 224.782, 100.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1391.050, -1026.330, -89.084, 1463.900, -926.999, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1704.590, 2243.230, -89.084, 1777.390, 2342.830, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1758.900, -1722.260, -89.084, 1812.620, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1375.600, 823.228, -89.084, 1457.390, 919.447, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1974.630, -2394.330, -39.084, 2089.000, -2256.590, 60.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", -399.633, -1075.520, -1.489, -319.033, -977.516, 198.511 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 334.503, -1501.950, -89.084, 422.680, -1406.050, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 225.165, -1369.620, -89.084, 334.503, -1292.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1724.760, -1250.900, -89.084, 1812.620, -1150.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 2027.400, 1703.230, -89.084, 2137.400, 1783.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1378.330, -1130.850, -89.084, 1463.900, -1026.330, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1197.390, 1044.690, -89.084, 1277.050, 1163.390, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1073.220, -1842.270, -89.084, 1323.900, -1804.210, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1451.400, 347.457, -6.1, 1582.440, 420.802, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2270.040, -430.276, -1.2, -2178.690, -324.114, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1325.600, 596.349, -89.084, 1375.600, 795.010, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2051.630, -2597.260, -39.084, 2152.450, -2394.330, 60.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1096.470, -910.170, -89.084, 1169.130, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1457.460, 2723.230, -89.084, 1534.560, 2863.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 2027.400, 1783.230, -89.084, 2162.390, 1863.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2056.860, -1210.740, -89.084, 2185.330, -1126.320, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 952.604, -937.184, -89.084, 1096.470, -860.619, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1372.140, 2498.520, 0.000, -1277.590, 2615.350, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2126.860, -1126.320, -89.084, 2185.330, -934.489, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1994.330, -1100.820, -89.084, 2056.860, -920.815, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 647.557, -954.662, -89.084, 768.694, -860.619, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1277.050, 1087.630, -89.084, 1375.600, 1203.280, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1377.390, 2433.230, -89.084, 1534.560, 2507.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2201.820, -2095.000, -89.084, 2324.000, -1989.900, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1704.590, 2342.830, -89.084, 1848.400, 2433.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 1252.330, -1130.850, -89.084, 1378.330, -1026.330, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1701.900, -1842.270, -89.084, 1812.620, -1722.260, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -2411.220, 373.539, 0.000, -2253.540, 458.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1515.810, 1586.400, -12.500, 1729.950, 1714.560, 87.500 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 225.165, -1292.070, -89.084, 466.223, -1235.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 1252.330, -1026.330, -89.084, 1391.050, -926.999, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2266.260, -1494.030, -89.084, 2381.680, -1372.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2623.180, 943.235, -89.084, 2749.900, 1055.960, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2541.700, -1941.400, -89.084, 2703.580, -1852.870, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2056.860, -1126.320, -89.084, 2126.860, -920.815, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2625.160, 2202.760, -89.084, 2685.160, 2442.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 225.165, -1501.950, -89.084, 334.503, -1369.620, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -365.167, 2123.010, -3.0, -208.570, 2217.680, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2536.430, 2442.550, -89.084, 2685.160, 2542.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 334.503, -1406.050, -89.084, 466.223, -1292.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 647.557, -1227.280, -89.084, 787.461, -1118.280, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 422.680, -1684.650, -89.084, 558.099, -1570.200, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2498.210, 2542.550, -89.084, 2685.160, 2626.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1724.760, -1430.870, -89.084, 1812.620, -1250.900, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 225.165, -1684.650, -89.084, 312.803, -1501.950, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2056.860, -1449.670, -89.084, 2266.210, -1372.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", 603.035, 264.312, 0.000, 761.994, 366.572, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 1096.470, -1130.840, -89.084, 1252.330, -1026.330, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1087.930, 855.370, -89.084, -961.950, 986.281, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1046.150, -1722.260, -89.084, 1161.520, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1323.900, -1722.260, -89.084, 1440.900, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1357.000, -926.999, -89.084, 1463.900, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 466.223, -1570.200, -89.084, 558.099, -1385.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 911.802, -860.619, -89.084, 1096.470, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 768.694, -954.662, -89.084, 952.604, -860.619, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2377.390, 788.894, -89.084, 2537.390, 897.901, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1812.620, -1852.870, -89.084, 1971.660, -1742.310, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2089.000, -2394.330, -89.084, 2201.820, -2235.840, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1370.850, -1577.590, -89.084, 1463.900, -1384.950, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2121.400, 2508.230, -89.084, 2237.400, 2663.170, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 1096.470, -1026.330, -89.084, 1252.330, -910.170, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 1812.620, -1449.670, -89.084, 1996.910, -1350.720, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1242.980, -50.096, 0.000, -1213.910, 578.396, 200.000 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -222.179, 293.324, 0.000, -122.126, 476.465, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 2106.700, 1863.230, -89.084, 2162.390, 2202.760, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2541.700, -2059.230, -89.084, 2703.580, -1941.400, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 807.922, -1577.590, -89.084, 926.922, -1416.250, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1457.370, 1143.210, -89.084, 1777.400, 1203.280, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1812.620, -1742.310, -89.084, 1951.660, -1602.310, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1580.010, 1025.980, -6.1, -1499.890, 1274.260, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1370.850, -1384.950, -89.084, 1463.900, -1170.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1664.620, 401.750, 0.000, 1785.140, 567.203, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 312.803, -1684.650, -89.084, 422.680, -1501.950, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1440.900, -1722.260, -89.084, 1583.500, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 687.802, -860.619, -89.084, 911.802, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -2741.070, 1490.470, -6.1, -2616.400, 1659.680, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2185.330, -1154.590, -89.084, 2281.450, -934.489, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1169.130, -910.170, -89.084, 1318.130, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1938.800, 2508.230, -89.084, 2121.400, 2624.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1667.960, -1577.590, -89.084, 1812.620, -1430.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 72.648, -1544.170, -89.084, 225.165, -1404.970, 110.916 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2536.430, 2202.760, -89.084, 2625.160, 2442.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 72.648, -1684.650, -89.084, 225.165, -1544.170, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 952.663, -1310.210, -89.084, 1072.660, -1130.850, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2632.740, -1135.040, -89.084, 2747.740, -945.035, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 861.085, -674.885, -89.084, 1156.550, -600.896, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -2253.540, 373.539, -9.1, -1993.280, 458.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1848.400, 2342.830, -89.084, 2011.940, 2478.490, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1580.010, 744.267, -6.1, -1499.890, 1025.980, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1046.150, -1804.210, -89.084, 1323.900, -1722.260, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 647.557, -1118.280, -89.084, 787.461, -954.662, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -2994.490, 277.411, -9.1, -2867.850, 458.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 964.391, 930.890, -89.084, 1166.530, 1044.690, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 1812.620, -1100.820, -89.084, 1994.330, -973.380, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1375.600, 919.447, -89.084, 1457.370, 1203.280, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -405.770, 1712.860, -3.0, -276.719, 1892.750, 200.000 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1161.520, -1722.260, -89.084, 1323.900, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2281.450, -1372.040, -89.084, 2381.680, -1135.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2137.400, 1703.230, -89.084, 2437.390, 1783.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1951.660, -1742.310, -89.084, 2124.660, -1602.310, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2624.400, 1383.230, -89.084, 2685.160, 1783.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2124.660, -1742.310, -89.084, 2222.560, -1494.030, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -2533.040, 458.411, 0.000, -2329.310, 578.396, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1871.720, 1176.420, -4.5, -1620.300, 1274.260, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1583.500, -1722.260, -89.084, 1758.900, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2381.680, -1454.350, -89.084, 2462.130, -1135.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 647.712, -1577.590, -89.084, 807.922, -1416.250, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 72.648, -1404.970, -89.084, 225.165, -1235.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 647.712, -1416.250, -89.084, 787.461, -1227.280, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2222.560, -1628.530, -89.084, 2421.030, -1494.030, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 558.099, -1684.650, -89.084, 647.522, -1384.930, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1709.710, -833.034, -1.5, -1446.010, -730.118, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 466.223, -1385.070, -89.084, 647.522, -1235.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 2202.760, -89.084, 2011.940, 2342.830, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2162.390, 1783.230, -89.084, 2437.390, 1883.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1971.660, -1852.870, -89.084, 2222.560, -1742.310, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1546.650, 208.164, 0.000, 1745.830, 347.457, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2089.000, -2235.840, -89.084, 2201.820, -1989.900, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 952.663, -1130.840, -89.084, 1096.470, -937.184, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1848.400, 2553.490, -89.084, 1938.800, 2863.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1400.970, -2669.260, -39.084, 2189.820, -2597.260, 60.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1213.910, 950.022, -89.084, -1087.930, 1178.930, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1339.890, 828.129, -89.084, -1213.910, 1057.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1339.890, 599.218, -89.084, -1213.910, 828.129, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1213.910, 721.111, -89.084, -1087.930, 950.022, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 930.221, -2006.780, -89.084, 1073.220, -1804.210, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ", 1073.220, -2006.780, -89.084, 1249.620, -1842.270, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 787.461, -1130.840, -89.084, 952.604, -954.662, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 787.461, -1310.210, -89.084, 952.663, -1130.840, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1463.900, -1577.590, -89.084, 1667.960, -1430.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 787.461, -1416.250, -89.084, 1072.660, -1310.210, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2377.390, 596.349, -89.084, 2537.390, 788.894, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2237.400, 2542.550, -89.084, 2498.210, 2663.170, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2632.830, -1668.130, -89.084, 2747.740, -1393.420, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 434.341, 366.572, 0.000, 603.035, 555.680, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2089.000, -1989.900, -89.084, 2324.000, -1852.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2274.170, 578.396, -7.6, -2078.670, 744.170, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -208.570, 2337.180, 0.000, 8.430, 2487.180, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2324.000, -2145.100, -89.084, 2703.580, -2059.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1132.820, -768.027, 0.000, -956.476, -578.118, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 1703.230, -89.084, 2027.400, 1863.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -2994.490, -430.276, -1.2, -2831.890, -222.589, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 321.356, -860.619, -89.084, 687.802, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 176.581, 1305.450, -3.0, 338.658, 1520.720, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 321.356, -768.027, -89.084, 700.794, -674.885, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2162.390, 1883.230, -89.084, 2437.390, 2012.180, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2747.740, -1668.130, -89.084, 2959.350, -1498.620, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2056.860, -1372.040, -89.084, 2281.450, -1210.740, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1463.900, -1290.870, -89.084, 1724.760, -1150.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1463.900, -1430.870, -89.084, 1724.760, -1290.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1499.890, 696.442, -179.615, -1339.890, 925.353, 20.385 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1457.390, 823.228, -89.084, 2377.390, 863.229, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2421.030, -1628.530, -89.084, 2632.830, -1454.350, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 964.391, 1044.690, -89.084, 1197.390, 1203.220, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2747.740, -1120.040, -89.084, 2959.350, -945.035, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 737.573, -768.027, -89.084, 1142.290, -674.885, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2201.820, -2730.880, -89.084, 2324.000, -2418.330, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2462.130, -1454.350, -89.084, 2581.730, -1135.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 2222.560, -1722.330, -89.084, 2632.830, -1628.530, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2831.890, -430.276, -6.1, -2646.400, -222.589, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1970.620, -2179.250, -89.084, 2089.000, -1852.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1982.320, 1274.260, -4.5, -1524.240, 1358.900, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 1283.230, -89.084, 2027.390, 1469.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2201.820, -2418.330, -89.084, 2324.000, -2095.000, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 1823.080, 596.349, -89.084, 1997.220, 823.228, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -2353.170, 2275.790, 0.000, -2153.170, 2475.790, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -2329.310, 458.411, -7.6, -1993.280, 578.396, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1692.620, -2179.250, -89.084, 1812.620, -1842.270, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1375.600, 596.349, -89.084, 1558.090, 823.228, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 1083.230, -89.084, 2027.390, 1283.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1197.390, 1163.390, -89.084, 1236.630, 2243.230, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2581.730, -1393.420, -89.084, 2747.740, -1135.040, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 1863.230, -89.084, 2106.700, 2011.830, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1938.800, 2624.230, -89.084, 2121.400, 2861.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 851.449, -1804.210, -89.084, 1046.150, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -1119.010, 1178.930, -89.084, -862.025, 1351.450, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 2749.900, 943.235, -89.084, 2923.390, 1198.990, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2703.580, -2302.330, -89.084, 2959.350, -2126.900, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2324.000, -2059.230, -89.084, 2541.700, -1852.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -2411.220, 265.243, -9.1, -1993.280, 373.539, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 1323.900, -1842.270, -89.084, 1701.900, -1722.260, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1269.130, -768.027, -89.084, 1414.070, -452.425, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 647.712, -1804.210, -89.084, 851.449, -1577.590, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -2741.070, 1268.410, -4.5, -2533.040, 1490.470, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 863.232, -89.084, 2027.390, 1083.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 964.391, 1203.220, -89.084, 1197.390, 1403.220, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1534.560, 2433.230, -89.084, 1848.400, 2583.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1117.400, 2723.230, -89.084, 1457.460, 2863.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1812.620, -1602.310, -89.084, 2124.660, -1449.670, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1297.470, 2142.860, -89.084, 1777.390, 2243.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", -2270.040, -324.114, -1.2, -1794.920, -222.589, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 967.383, -450.390, -3.0, 1176.780, -217.900, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -926.130, 1398.730, -3.0, -719.234, 1634.690, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 1469.230, -89.084, 2027.400, 1703.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", -2867.850, 277.411, -9.1, -2593.440, 458.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2646.400, -355.493, 0.000, -2270.040, -222.589, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", 2027.400, 863.229, -89.084, 2087.390, 1703.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2593.440, -222.589, -1.0, -2411.220, 54.722, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1852.000, -2394.330, -89.084, 2089.000, -2179.250, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1098.310, 1726.220, -89.084, 1197.390, 2243.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -789.737, 1659.680, -89.084, -599.505, 1929.410, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1812.620, -2179.250, -89.084, 1970.620, -1852.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1700.010, 744.267, -6.1, -1580.010, 1176.520, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2178.690, -1250.970, 0.000, -1794.920, -1115.580, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -354.332, 2580.360, 2.0, -133.625, 2816.820, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -936.668, 2611.440, 2.0, -715.961, 2847.900, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1166.530, 795.010, -89.084, 1375.600, 1044.690, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 2222.560, -1852.870, -89.084, 2632.830, -1722.330, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1213.910, -730.118, 0.000, -1132.820, -50.096, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1817.390, 2011.830, -89.084, 2106.700, 2202.760, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1499.890, 578.396, -79.615, -1339.890, 1274.260, 20.385 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2087.390, 1543.230, -89.084, 2437.390, 1703.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2087.390, 1383.230, -89.084, 2437.390, 1543.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 72.648, -1235.070, -89.084, 321.356, -1008.150, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2437.390, 1783.230, -89.084, 2685.160, 2012.180, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1281.130, -452.425, -89.084, 1641.130, -290.913, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1982.320, 744.170, -6.1, -1871.720, 1274.260, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", 2576.920, 62.158, 0.000, 2759.250, 385.503, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ.пїЅ.пїЅ.пїЅ.", 2498.210, 2626.550, -89.084, 2749.900, 2861.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1777.390, 863.232, -89.084, 1817.390, 2342.830, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2290.190, 2548.290, -89.084, -1950.190, 2723.290, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2324.000, -2302.330, -89.084, 2703.580, -2145.100, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 321.356, -1044.070, -89.084, 647.557, -860.619, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1558.090, 596.349, -89.084, 1823.080, 823.235, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2632.830, -1852.870, -89.084, 2959.350, -1668.130, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -314.426, -753.874, -89.084, -106.339, -463.073, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 19.607, -404.136, 3.8, 349.607, -220.137, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2749.900, 1198.990, -89.084, 2923.390, 1548.990, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 1812.620, -1350.720, -89.084, 2056.860, -1100.820, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1993.280, 265.243, -9.1, -1794.920, 578.396, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1377.390, 2243.230, -89.084, 1704.590, 2433.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 321.356, -1235.070, -89.084, 647.522, -1044.070, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -2741.450, 1659.680, -6.1, -2616.400, 2175.150, 200.000 },
+        { "пїЅпїЅпїЅ пїЅProbe InnпїЅ", -90.218, 1286.850, -3.0, 153.859, 1554.120, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -187.700, -1596.760, -89.084, 17.063, -1276.600, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2281.450, -1135.040, -89.084, 2632.740, -945.035, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 2749.900, 1548.990, -89.084, 2923.390, 1937.250, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2011.940, 2202.760, -89.084, 2237.400, 2508.230, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -208.570, 2123.010, -7.6, 114.033, 2337.180, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -2741.070, 458.411, -7.6, -2533.040, 793.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 2703.580, -2126.900, -89.084, 2959.350, -1852.870, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 926.922, -1577.590, -89.084, 1370.850, -1416.250, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -2593.440, 54.722, 0.000, -2411.220, 458.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 1098.390, 2243.230, -89.084, 1377.390, 2507.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2121.400, 2663.170, -89.084, 2498.210, 2861.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2437.390, 1383.230, -89.084, 2624.400, 1783.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 964.391, 1403.220, -89.084, 1197.390, 1726.220, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ", -410.020, 1403.340, -3.0, -137.969, 1681.230, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 580.794, -674.885, -9.5, 861.085, -404.790, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1645.230, 2498.520, 0.000, -1372.140, 2777.850, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2533.040, 1358.900, -4.5, -1996.660, 1501.210, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1499.890, -50.096, -1.0, -1242.980, 249.904, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 1916.990, -233.323, -100.000, 2131.720, 13.800, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1414.070, -768.027, -89.084, 1667.610, -452.425, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2747.740, -1498.620, -89.084, 2959.350, -1120.040, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", 2450.390, 385.503, -100.000, 2759.250, 562.349, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -2030.120, -2174.890, -6.1, -1820.640, -1771.660, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", 1072.660, -1416.250, -89.084, 1370.850, -1130.850, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 1997.220, 596.349, -89.084, 2377.390, 823.228, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1534.560, 2583.230, -89.084, 1848.400, 2863.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1794.920, -50.096, -1.04, -1499.890, 249.904, 200.000 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -1166.970, -1856.030, 0.000, -815.624, -1602.070, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1457.390, 863.229, -89.084, 1777.400, 1143.210, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 1117.400, 2507.230, -89.084, 1534.560, 2723.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 104.534, -220.137, 2.3, 349.607, 152.236, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -464.515, 2217.680, 0.000, -208.570, 2580.360, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -2078.670, 578.396, -7.6, -1499.890, 744.267, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 2537.390, 676.549, -89.084, 2902.350, 943.235, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -2616.400, 1501.210, -3.0, -1996.660, 1659.680, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2741.070, 793.411, -6.1, -2533.040, 1268.410, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2087.390, 1203.230, -89.084, 2640.400, 1383.230, 110.916 },
+        { "пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", 2162.390, 2012.180, -89.084, 2685.160, 2202.760, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", -2533.040, 578.396, -7.6, -2274.170, 968.369, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -2533.040, 968.369, -6.1, -2274.170, 1358.900, 200.000 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2237.400, 2202.760, -89.084, 2536.430, 2542.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 2685.160, 1055.960, -89.084, 2749.900, 2626.550, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 647.712, -2173.290, -89.084, 930.221, -1804.210, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2178.690, -599.884, -1.2, -1794.920, -324.114, 200.000 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -901.129, 2221.860, 0.000, -592.090, 2571.970, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -792.254, -698.555, -5.3, -452.404, -380.043, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ", -1209.670, -1317.100, 114.981, -908.161, -787.391, 251.981 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -968.772, 1929.410, -3.0, -481.126, 2155.260, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -1996.660, 1358.900, -4.5, -1524.240, 1592.510, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1871.720, 744.170, -6.1, -1701.300, 1176.420, 300.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", -2411.220, -222.589, -1.14, -2173.040, 265.243, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1119.510, 119.526, -3.0, 1451.400, 493.323, 200.000 },
+        { "пїЅпїЅпїЅпїЅ", 2749.900, 1937.250, -89.084, 2921.620, 2669.790, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1249.620, -2394.330, -89.084, 1852.000, -2179.250, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 72.648, -2173.290, -89.084, 342.648, -1684.650, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1463.900, -1150.870, -89.084, 1812.620, -768.027, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", -2324.940, -2584.290, -6.1, -1964.220, -2212.110, 200.000 },
+        { "ВёпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 37.032, 2337.180, -3.0, 435.988, 2677.900, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 338.658, 1228.510, 0.000, 664.308, 1655.050, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅ-пїЅпїЅпїЅ", 2087.390, 943.235, -89.084, 2623.180, 1203.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1236.630, 1883.110, -89.084, 1777.390, 2142.860, 110.916 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 342.648, -2173.290, -89.084, 647.712, -1684.650, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ", 1249.620, -2179.250, -89.084, 1692.620, -1842.270, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1236.630, 1203.280, -89.084, 1457.370, 1883.110, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -594.191, -1648.550, 0.000, -187.700, -1276.600, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ", 930.221, -2488.420, -89.084, 1249.620, -2006.780, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2160.220, -149.004, 0.000, 2576.920, 228.322, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", 2373.770, -2697.090, -89.084, 2809.220, -2330.460, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1213.910, -50.096, -4.5, -947.980, 578.396, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 883.308, 1726.220, -89.084, 1098.310, 2507.230, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -2274.170, 744.170, -6.1, -1982.320, 1358.900, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1794.920, 249.904, -9.1, -1242.980, 578.396, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -321.744, -2224.430, -89.084, 44.615, -1724.430, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ", -2173.040, -222.589, -1.0, -1794.920, 265.243, 200.000 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2178.690, -2189.910, -47.917, -2030.120, -1771.660, 576.083 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -376.233, 826.326, -3.0, 123.717, 1220.440, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2178.690, -1115.580, 0.000, -1794.920, -599.884, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ", -2994.490, -222.589, -1.0, -2593.440, 277.411, 200.000 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", 508.189, -139.259, 0.000, 1306.660, 119.526, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2741.070, 2175.150, 0.000, -2353.170, 2722.790, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 1457.370, 1203.280, -89.084, 1777.390, 1883.110, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -319.676, -220.137, 0.000, 104.534, 293.324, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2994.490, 458.411, -6.1, -2741.070, 1339.610, 200.000 },
+        { "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", 2285.370, -768.027, 0.000, 2770.590, -269.740, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 337.244, 710.840, -115.239, 860.554, 1031.710, 203.761 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", 1382.730, -2730.880, -89.084, 2201.820, -2394.330, 110.916 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ", -2994.490, -811.276, 0.000, -2178.690, -430.276, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -2616.400, 1659.680, -3.0, -1996.660, 2175.150, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", -91.586, 1655.050, -50.000, 421.234, 2123.010, 250.000 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2997.470, -1115.580, -47.917, -2178.690, -971.913, 576.083 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2178.690, -1771.660, -47.917, -1936.120, -1250.970, 576.083 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅ", -1794.920, -730.118, -3.0, -1213.910, -50.096, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -947.980, -304.320, -1.1, -319.676, 327.071, 200.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1820.640, -2643.680, -8.0, -1226.780, -1771.660, 200.000 },
+        { "пїЅпїЅпїЅ-пїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ", -1166.970, -2641.190, 0.000, -321.744, -1856.030, 200.000 },
+        { "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2994.490, -2189.910, -47.917, -2178.690, -1115.580, 576.083 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -1213.910, 596.349, -242.990, -480.539, 1659.680, 900.000 },
+        { "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1213.910, -2892.970, -242.990, 44.615, -768.027, 900.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -2997.470, -2892.970, -242.990, -1213.910, -1115.580, 900.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -480.539, 596.349, -242.990, 869.461, 2993.870, 900.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2997.470, 1659.680, -242.990, -480.539, 2993.870, 900.000 },
+        { "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", -2997.470, -1115.580, -242.990, -1213.910, 1659.680, 900.000 },
+        { "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 869.461, 596.349, -242.990, 2997.060, 2993.870, 900.000 },
+        { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", -1213.910, -768.027, -242.990, 2997.060, 596.349, 900.000 },
+        { "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 44.615, -2892.970, -242.990, 2997.060, -768.027, 900.000 }
     }
     for i, v in ipairs(streets) do
         if (x >= v[2]) and (y >= v[3]) and (z >= v[4]) and (x <= v[5]) and (y <= v[6]) and (z <= v[7]) then
             return v[1]
         end
     end
-    return 'Пригород'
+    return 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'
 end
 --Other function END
 
@@ -3180,8 +3180,8 @@ function sampev.onSendSpawn()
         server = servers[sampGetCurrentServerAddress()] and servers[sampGetCurrentServerAddress()].name or "Unknown"
         print(server)
         sampSendChat('/stats')
-        msg("{FFFFFF}MVDHelper успешно загружен!", 0x8B00FF)
-        msg("{FFFFFF}Команда: /mvd", 0x8B00FF)
+        msg("{FFFFFF}MVDHelper пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!", 0x8B00FF)
+        msg("{FFFFFF}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: /mvd", 0x8B00FF)
         if autogun[0] then
             lua_thread.create(function()
                 while true do
@@ -3233,13 +3233,13 @@ function sampev.onSendSpawn()
     end
 end
 function sampev.onServerMessage(color, message)
-    if message:find("Вы посадили игрока (%w+_%w+) в тюрьму на (.+) минут.") then
-        local player, duration = message:match("Вы посадили игрока (%w+_%w+) в тюрьму на (.+) минут.")
-        addLogEntry("Арест", player, nil, duration)
+    if message:find("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (%w+_%w+) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ (.+) пїЅпїЅпїЅпїЅпїЅ.") then
+        local player, duration = message:match("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (%w+_%w+) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ (.+) пїЅпїЅпїЅпїЅпїЅ.")
+        addLogEntry("пїЅпїЅпїЅпїЅпїЅ", player, nil, duration)
     end
-    if message:find("(%w+_%w+) оплатил штраф в размере (.+)") then
-        local player, amount = message:match("(%w+_%w+) оплатил штраф в размере (.+)")
-        addLogEntry("Штраф", player, amount, nil)
+    if message:find("(%w+_%w+) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (.+)") then
+        local player, amount = message:match("(%w+_%w+) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (.+)")
+        addLogEntry("пїЅпїЅпїЅпїЅпїЅ", player, amount, nil)
     end
     if message:find('%[D%]') then
         if message:find('[' .. (str(departsettings.myorgname)) .. ']') then
@@ -3277,53 +3277,53 @@ function sampev.onSendChat(cmd)
     return { cmd }
 end
 function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
-    if spawncar_bool and title:find('$') and text:find('Спавн транспорта') then -- спавн транспорта
+    if spawncar_bool and title:find('$') and text:find('пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         sampSendDialogResponse(dialogId, 2, 3, 0)
         spawncar_bool = false
         return false
     end
     
-    if dialogId == 235 and title == "{BFBBBA}Основная статистика" then
+    if dialogId == 235 and title == "{BFBBBA}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" then
         statsCheck = true
-        if string.find(text, "Имя:")then
-            nickname = string.match(text, "Имя: {B83434}%[(%D+)%]")
+        if string.find(text, "пїЅпїЅпїЅ:")then
+            nickname = string.match(text, "пїЅпїЅпїЅ: {B83434}%[(%D+)%]")
             checkUser()
         end
-        if string.match(text, "Организация: {B83434}%[(%D+)%]") == "Полиция ЛВ" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "Полиция ЛС" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "Полиция СФ" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "SFa" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "LSa" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "RCSD" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "Областная полиция" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "ФБР" or string.match(text, "Организация: {B83434}%[(%D+)%]") == "FBI" then
-            org = string.match(text, "Организация: {B83434}%[(%D+)%]")
-            if org ~= 'Не имеется' then dol = string.match(text, "Должность: {B83434}(%D+)%(%d+%)") end
+        if string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "SFa" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "LSa" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "RCSD" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "пїЅпїЅпїЅ" or string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]") == "FBI" then
+            org = string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%[(%D+)%]")
+            if org ~= 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' then dol = string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}(%D+)%(%d+%)") end
             dl = u8(dol)
-            if org == 'Полиция ЛВ' then
+            if org == 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ' then
                 org_g = u8 'LVPD'
             end
-            if org == 'Полиция ЛС' then
+            if org == 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ' then
                 org_g = u8 'LSPD'
             end
-            if org == 'Полиция СФ' then
+            if org == 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ' then
                 org_g = u8 'SFPD'
             end
-            if org == 'ФБР' then
+            if org == 'пїЅпїЅпїЅ' then
                 org_g = u8 'FBI'
             end
             if org == 'FBI' then
                 org_g = u8 'FBI'
             end
-            if org == 'RCSD' or org == 'Областная полиция' then
+            if org == 'RCSD' or org == 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' then
                 org_g = u8 'RCSD'
             end
-            if org == 'LSa' or org == 'Армия Лос Сантос' then
+            if org == 'LSa' or org == 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' then
                 org_g = u8 'LSa'
             end
-            if org == 'SFa' or org == 'Армия Сан Фиерро' then
+            if org == 'SFa' or org == 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' then
                 org_g = u8 'SFa'
             end
-            if org == '[Не имеется]' then
-                org = 'Вы не состоите в ПД'
-                org_g = 'Вы не состоите в ПД'
-                dol = 'Вы не состоите в ПД'
-                dl = 'Вы не состоите в ПД'
+            if org == '[пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ]' then
+                org = 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
+                org_g = 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
+                dol = 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
+                dl = 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ'
             else
-                rang_n = tonumber(string.match(text, "Должность: {B83434}%D+%((%d+)%)"))
+                rang_n = tonumber(string.match(text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {B83434}%D+%((%d+)%)"))
             end
         end
     end
@@ -3784,7 +3784,7 @@ imgui.PageButton = function(bool, icon, name, but_wide, but_high)
                     (pressed and p1.y + but_high - 23 + mainIni.menuSettings.vtpos or p1.y + but_high + mainIni.menuSettings.vtpos)),
                 ToU32(col))
             DL:AddRectFilled(imgui.ImVec2(p1.x, p1.y + mainIni.menuSettings.vtpos),
-                imgui.ImVec2(p1.x + but_wide + 2, p1.y + but_high + mainIni.menuSettings.vtpos), --Вот эти десятки
+                imgui.ImVec2(p1.x + but_wide + 2, p1.y + but_high + mainIni.menuSettings.vtpos), --пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 ToU32(imgui.ImVec4(col.x, col.y, col.z, 0.6)), 15, 10)
         end
     else
@@ -3815,7 +3815,7 @@ function imgui.CenterTextColoredRGB(text)
     local designText = function(text__)
         local pos = imgui.GetCursorPos()
         if false then
-            for i = 1, 1 --[[Степень тени]] do
+            for i = 1, 1 --[[пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ]] do
                 imgui.SetCursorPos(imgui.ImVec2(pos.x + i, pos.y))
                 imgui.TextColored(imgui.ImVec4(0, 0, 0, 1), text__) -- shadow
                 imgui.SetCursorPos(imgui.ImVec2(pos.x - i, pos.y))
@@ -4111,11 +4111,11 @@ function imgui.CenterTextDisabled(text)
 end
 
 function imgui.GetMiddleButtonX(count)
-    local width = imgui.GetWindowContentRegionWidth() -- ширины контекста окно
+    local width = imgui.GetWindowContentRegionWidth() -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     local space = imgui.GetStyle().ItemSpacing.x
     return count == 1 and width or
         width / count -
-        ((space * (count - 1)) / count) -- вернется средние ширины по количеству
+        ((space * (count - 1)) / count) -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 end
 function imgui.CenterText(text)
     imgui.SetCursorPosX(imgui.GetWindowWidth() / 2 - imgui.CalcTextSize(u8(text)).x / 2)
@@ -4132,12 +4132,12 @@ function imgui.ToggleButton(label, label_true, bool, a_speed)
 
     local bebrochka  = false
 
-    local label      = label or ""                          -- Текст false
-    local label_true = label_true or ""                     -- Текст true
-    local h          = imgui.GetTextLineHeightWithSpacing() -- Высота кнопки
-    local w          = h * 1.7                              -- Ширина кнопки
-    local r          = h / 2                                -- Радиус кружка
-    local s          = a_speed or 0.2                       -- Скорость анимации
+    local label      = label or ""                          -- пїЅпїЅпїЅпїЅпїЅ false
+    local label_true = label_true or ""                     -- пїЅпїЅпїЅпїЅпїЅ true
+    local h          = imgui.GetTextLineHeightWithSpacing() -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    local w          = h * 1.7                              -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    local r          = h / 2                                -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    local s          = a_speed or 0.2                       -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     local x_begin    = bool[0] and 1.0 or 0.0
     local t_begin    = bool[0] and 0.0 or 1.0
@@ -4160,9 +4160,9 @@ function imgui.ToggleButton(label, label_true, bool, a_speed)
         local time = os.clock() - LastTime[label]
     end
 
-    local bg_color = imgui.ImVec4(x_begin * 0.13, x_begin * 0.9, x_begin * 0.13, imgui.IsItemHovered(0) and 0.7 or 0.9) -- Цвет прямоугольника
-    local t_color  = imgui.ImVec4(1, 1, 1, x_begin)                                                                     -- Цвет текста при false
-    local t2_color = imgui.ImVec4(1, 1, 1, t_begin)                                                                     -- Цвет текста при true
+    local bg_color = imgui.ImVec4(x_begin * 0.13, x_begin * 0.9, x_begin * 0.13, imgui.IsItemHovered(0) and 0.7 or 0.9) -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    local t_color  = imgui.ImVec4(1, 1, 1, x_begin)                                                                     -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ false
+    local t2_color = imgui.ImVec4(1, 1, 1, t_begin)                                                                     -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ true
 
     dl:AddRectFilled(imgui.ImVec2(p.x, p.y), imgui.ImVec2(p.x + w, p.y + h), imgui.GetColorU32Vec4(bg_color), r)
     dl:AddCircleFilled(imgui.ImVec2(p.x + r + x_begin * (w - r * 2), p.y + r),
@@ -4183,13 +4183,13 @@ function DownloadUk()
 
     if url then
         downloadFile(url, smartUkPath)
-        msg(string.format("{FFFFFF} Умный розыск на %s успешно установлен!", server), 0x8B00FF)
+        msg(string.format("{FFFFFF} пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!", server), 0x8B00FF)
         local file = io.open(getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/smartUk.json", "r")
         a = file:read("*a")
         file:close()
         tableUk = decodeJson(a)
     else
-        msg("{FFFFFF} Произошла ошибка. Попробуйте скачать УК вручную(для любого сервера и выберите свой).", 0x8B00FF)
+        msg("{FFFFFF} пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ).", 0x8B00FF)
     end
 end
 --Download files END
@@ -4199,18 +4199,18 @@ imgui.OnFrame(
     function() return updateWin[0] end,
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-        imgui.Begin(u8 "Обновление!", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize)
-        imgui.Text(u8 'Найдена новая версия хелпера: ' .. u8(version))
-        imgui.Text(u8 'В нем есть новый функционал!')
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize)
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. u8(version))
+        imgui.Text(u8 'пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
         imgui.Separator()
-        imgui.CenterText(u8('Список добавленых функций в версии ') .. u8(version) .. ':')
+        imgui.CenterText(u8('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ') .. u8(version) .. ':')
         imgui.Text(textnewupdate)
         imgui.Separator()
-        if imgui.Button(u8'Не обновляться', imgui.ImVec2(250 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+        if imgui.Button(u8'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(250 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
             updateWin[0] = false
         end
         imgui.SameLine()
-        if imgui.Button(u8'Загрузить обновление', imgui.ImVec2(250 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+        if imgui.Button(u8'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(250 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
             downloadFile(updateUrl, helper_path)
             updateWin[0] = false
         end
@@ -4220,7 +4220,7 @@ imgui.OnFrame(
 function check_update()
     function readJsonFile(filePath)
         if not doesFileExist(filePath) then
-            print("Ошибка: Файл " .. filePath .. " не существует")
+            print("пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ " .. filePath .. " пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             return nil
         end
         local file = io.open(filePath, "r")
@@ -4228,13 +4228,13 @@ function check_update()
         file:close()
         local jsonData = decodeJson(content)
         if not jsonData then
-            print("Ошибка: Неверный формат JSON в файле " .. filePath)
+            print("пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ JSON пїЅ пїЅпїЅпїЅпїЅпїЅ " .. filePath)
             return nil
         end
         return jsonData
     end
 
-    msg('{ffffff}Начинаю проверку на наличие обновлений...')
+    msg('{ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...')
     local pathupdate = getWorkingDirectory():gsub('\\','/') .. "/MVDHelper/infoupdate.json"
     os.remove(pathupdate)
     local url = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/infoupdate.json"
@@ -4244,13 +4244,13 @@ function check_update()
         local uVer = updateInfo.current_version
         local uText = updateInfo.update_info
         if thisScript().version ~= uVer then
-            msg('{ffffff}Доступно обновление!')
+            msg('{ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
             updateUrl = "https://raw.githubusercontent.com/Sashe4kaRezon/MVD-Helper-Mobile/main/MVDHelper.lua"
             version = uVer
             textnewupdate = uText
             updateWin[0] = true
         else
-            msg('{ffffff}Обновление не нужно, у вас актуальная версия!')
+            msg('{ffffff}пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!')
         end
     end
 end
@@ -4294,16 +4294,16 @@ end
 imgui.OnFrame(function() return logsWin[0] end, function(player)
     imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
     imgui.SetNextWindowSize(imgui.ImVec2(700, 200), imgui.Cond.FirstUseEver)
-    imgui.Begin(u8 "Логи", logsWin)
+    imgui.Begin(u8 "пїЅпїЅпїЅпїЅ", logsWin)
     for _, log in ipairs(logs) do
-        if log.type == "Штраф" then
+        if log.type == "пїЅпїЅпїЅпїЅпїЅ" then
             imgui.Text(u8(string.format(
-                "Время: %s | Тип: %s | Игрок: %s | Сумма: %s",
+                "пїЅпїЅпїЅпїЅпїЅ: %s | пїЅпїЅпїЅ: %s | пїЅпїЅпїЅпїЅпїЅ: %s | пїЅпїЅпїЅпїЅпїЅ: %s",
                 log.time, log.type, log.player, log.amount
             )))
         else
             imgui.Text(u8(string.format(
-                "Время: %s | Тип: %s | Игрок: %s",
+                "пїЅпїЅпїЅпїЅпїЅ: %s | пїЅпїЅпїЅ: %s | пїЅпїЅпїЅпїЅпїЅ: %s",
                 log.time, log.type, log.player)))
         end
     end
@@ -4320,19 +4320,19 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(200, 150), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Выдача розыска", windowTwo)
-        imgui.InputInt(u8 'ID игрока с которым будете взаимодействовать', id, 10)
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", windowTwo)
+        imgui.InputInt(u8 'ID пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', id, 10)
 
         for i = 1, #tableUk["Text"] do
-            if imgui.Button(u8(tableUk["Text"][i] .. ' Уровень розыска: ' .. tostring(tableUk["Ur"][i]))) then
+            if imgui.Button(u8(tableUk["Text"][i] .. ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. tostring(tableUk["Ur"][i]))) then
                 lua_thread.create(function()
-                    sampSendChat("/do Рация висит на бронежелете.")
+                    sampSendChat("/do пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                     wait(1500)
-                    sendMe(" сорвав с грудного держателя рацию, сообщил данные о сапекте")
+                    sendMe(" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                     wait(1500)
                     sampSendChat("/su " .. id[0] .. " " .. tostring(tableUk["Ur"][i]) .. " " .. tableUk["Text"][i])
                     wait(1500)
-                    sampSendChat("/do Спустя время диспетчер объявил сапекта в федеральный розыск.")
+                    sampSendChat("/do пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
                 end)
             end
         end
@@ -4379,36 +4379,36 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
 
     if page == 1 then
         if changingInfo then
-            imgui.Text(u8 'Ваш ник: ' .. nickname)
-            imgui.Text(u8 'Ваша организация: ')
+            imgui.Text(u8 'пїЅпїЅпїЅ пїЅпїЅпїЅ: ' .. nickname)
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ')
             imgui.SameLine()
-            imgui.InputText("##орга", orga, 255)
-            imgui.Text(u8 'Ваша должность: ')
+            imgui.InputText("##пїЅпїЅпїЅпїЅ", orga, 255)
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ')
             imgui.SameLine()
-            imgui.InputText("##должность", dolzh, 255)
+            imgui.InputText("##пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", dolzh, 255)
 
-            if imgui.Button(u8 "Сохранить данные") then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ") then
                 mainIni.Info.org = u8(u8:decode(ffi.string(orga)))
                 mainIni.Info.dl = u8(u8:decode(ffi.string(dolzh)))
                 if not deliting_script then saveIni() end
-                msg("Настроки успешно сохранены!")
+                msg("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
                 changingInfo = false
             end
         else
-            imgui.Text(u8 'Ваш ник: ' .. nickname)
-            imgui.Text(u8 'Ваша организация: ' .. mainIni.Info.org)
-            imgui.Text(u8 'Ваша должность: ' .. mainIni.Info.dl)
-            if imgui.Button(u8 "Изменить данные") then
+            imgui.Text(u8 'пїЅпїЅпїЅ пїЅпїЅпїЅ: ' .. nickname)
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. mainIni.Info.org)
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' .. mainIni.Info.dl)
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ") then
                 changingInfo = true
             end
         end
-        if imgui.Button(u8 ' Настроить Умный Розыск') then
+        if imgui.Button(u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ') then
             setUkWindow[0] = not setUkWindow[0]
         end
         imgui.Separator()
-        imgui.ToggleButton(u8 'Авто отыгровка оружия', u8 'Авто отыгровка оружия', autogun)
+        imgui.ToggleButton(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', autogun)
         if autogun[0] then
-            if imgui.Button(u8 "Настройки отыгровок оружий") then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ") then
                 gunsWindow[0] = not gunsWindow[0]
             end
             mainIni.settings.autoRpGun = true
@@ -4462,49 +4462,49 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
             mainIni.settings.autoRpGun = false
         end
         imgui.Separator()
-        imgui.ToggleButton(u8 'Авто-Акцент', u8 'Авто-Акцент', AutoAccentBool)
+        imgui.ToggleButton(u8 'пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ', u8 'пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ', AutoAccentBool)
         if AutoAccentBool[0] then
             AutoAccentCheck = true
             mainIni.settings.autoAccent = true
         else
             mainIni.settings.autoAccent = false
         end
-        imgui.InputText(u8 'Акцент', AutoAccentInput, 255)
+        imgui.InputText(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ', AutoAccentInput, 255)
         AutoAccentText = u8:decode(ffi.string(AutoAccentInput))
         mainIni.Accent.accent = AutoAccentText
         imgui.Separator()
-        if imgui.ToggleButton(u8 'Отображение кнопки 10-55', u8 'Отображение кнопки 10-55', button_megafon) then
+        if imgui.ToggleButton(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 10-55', u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 10-55', button_megafon) then
             mainIni.settings.button = button_megafon[0]
             megafon[0] = button_megafon[0]
         end
         imgui.Separator()
-        imgui.ToggleButton(u8(mainIni.settings.ObuchalName) .. u8 ' работает', u8(mainIni.settings.ObuchalName) .. u8 ' отдыхает', joneV)
+        imgui.ToggleButton(u8(mainIni.settings.ObuchalName) .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', u8(mainIni.settings.ObuchalName) .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', joneV)
         if joneV[0] then
             mainIni.settings.Jone = true
         else
             mainIni.settings.Jone = false
         end
-        if imgui.InputText(u8 "Имя обучальщика", ObuchalName, 255) then
+        if imgui.InputText(u8 "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", ObuchalName, 255) then
             Obuchal = u8:decode(ffi.string(ObuchalName))
             mainIni.settings.ObuchalName = Obuchal
         end
         imgui.Separator()
-        if imgui.Button(u8 "Настройки окна") then
+        if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ") then
             menuSizes[0] = not menuSizes[0]
         end
         imgui.ColSeparator('F94242', 100)
-        if imgui.ColoredButton(u8"Удалить скрипт", 'F94242', 90) then
-            imgui.OpenPopup(u8'Вы уверены что хотите удалить скрипт и все его настройки?')
+        if imgui.ColoredButton(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 'F94242', 90) then
+            imgui.OpenPopup(u8'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?')
         end
-        if imgui.ColoredButton(u8"Сбросить настройки скрипта", 'F94242', 90) then
-            imgui.OpenPopup(u8'Вы уверены что хотите удалить все настройки скрипта?')
+        if imgui.ColoredButton(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 'F94242', 90) then
+            imgui.OpenPopup(u8'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ?')
         end
-        if imgui.ColoredButton(u8"Перезагрузить скрипт", 'F94242', 90) then
+        if imgui.ColoredButton(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", 'F94242', 90) then
             thisScript():reload()
         end
-        if imgui.BeginPopupModal(u8'Вы уверены что хотите удалить скрипт и все его настройки?', _) then
+        if imgui.BeginPopupModal(u8'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?', _) then
             imgui.SetWindowSizeVec2(imgui.ImVec2(750, 300))
-            if imgui.Button(u8'Да', imgui.ImVec2(280, 80)) then
+            if imgui.Button(u8'пїЅпїЅ', imgui.ImVec2(280, 80)) then
                 deliting_script = true
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper/buttons.json")
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper/Binder.json")
@@ -4514,19 +4514,19 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper")
                 os.remove(getWorkingDirectory():gsub('\\','/').."/config/MVDHelper.ini")
                 os.remove(helper_path)
-                msg("Скрипт удален. Если вы его удалили из-за багов или других недочетов пожалуйста сообщите об этом в лс @Sashe4ka_ReZ")
+                msg("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ @Sashe4ka_ReZ")
                 thisScript():reload()
                 imgui.CloseCurrentPopup()
             end
             imgui.SameLine()
-            if imgui.Button(u8'Нет', imgui.ImVec2(280, 80)) then
+            if imgui.Button(u8'пїЅпїЅпїЅ', imgui.ImVec2(280, 80)) then
                 imgui.CloseCurrentPopup()
             end
             imgui.End()
         end
-        if imgui.BeginPopupModal(u8'Вы уверены что хотите удалить все настройки скрипта?', _) then
+        if imgui.BeginPopupModal(u8'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ?', _) then
             imgui.SetWindowSizeVec2(imgui.ImVec2(750, 300))
-            if imgui.Button(u8'Да', imgui.ImVec2(280, 80)) then
+            if imgui.Button(u8'пїЅпїЅ', imgui.ImVec2(280, 80)) then
                 deliting_script = true
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper/buttons.json")
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper/Binder.json")
@@ -4535,12 +4535,12 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper/infoupdate.json")
                 os.remove(getWorkingDirectory():gsub('\\','/').."/MVDHelper")
                 os.remove(getWorkingDirectory():gsub('\\','/').."/config/MVDHelper.ini")
-                msg("Настройки скрипта сброшены.")
+                msg("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
                 thisScript():reload()
                 imgui.CloseCurrentPopup()
             end
             imgui.SameLine()
-            if imgui.Button(u8'Нет', imgui.ImVec2(280, 80)) then
+            if imgui.Button(u8'пїЅпїЅпїЅ', imgui.ImVec2(280, 80)) then
                 imgui.CloseCurrentPopup()
             end
             imgui.End()
@@ -4548,58 +4548,58 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
         imgui.ColSeparator('F94242', 100)
         if not deliting_script then saveIni() end
     elseif page == 8 then
-        if imgui.Button(u8 'Меню патрулирования') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             patroolhelpmenu[0] = true
         end
         imgui.SameLine()
-        if imgui.Button(u8 'Панель рук-ва фракции') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             leaderPanel[0] = true
         end
 
 
-        if imgui.Button(u8 'Лог штрафов, аррестов') then
+        if imgui.Button(u8 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             logsWin[0] = true
         end
         imgui.SameLine()
-        if imgui.Button(u8 'Счетчик онлайна') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             settingsonline[0] = true
         end
         imgui.SameLine()
-        if imgui.Button(u8 'Вспомогательное окно') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ') then
             suppWindow[0] = not suppWindow[0]
         end
-        if imgui.Button(u8 'Выдача розыска') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ') then
             windowTwo[0] = not windowTwo[0]
         end
-        imgui.ToggleButton(u8 "Точка на конце /me НЕ стоит", u8 "Точка на конце /me стоит", tochkaMe)
+        imgui.ToggleButton(u8 "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ /me пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", u8 "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ /me пїЅпїЅпїЅпїЅпїЅ", tochkaMe)
     
-    elseif page == 2 then -- Биндер
+    elseif page == 2 then -- пїЅпїЅпїЅпїЅпїЅпїЅ
         if imgui.BeginChild('##1', imgui.ImVec2(589 * MONET_DPI_SCALE, 303 * MONET_DPI_SCALE), true) then
             imgui.Columns(3)
-            imgui.CenterColumnText(u8"Команда")
+            imgui.CenterColumnText(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 170 * MONET_DPI_SCALE)
             imgui.NextColumn()
-            imgui.CenterColumnText(u8"Описание")
+            imgui.CenterColumnText(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 300 * MONET_DPI_SCALE)
             imgui.NextColumn()
-            imgui.CenterColumnText(u8"Действие")
+            imgui.CenterColumnText(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 150 * MONET_DPI_SCALE)
             imgui.Columns(1)
             imgui.Separator()
             imgui.Columns(3)
             imgui.CenterColumnText(u8 "/binder")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Открыть главное меню биндера")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Недоступно")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.Columns(1)
             imgui.Separator()
             imgui.Columns(3)
             imgui.CenterColumnText(u8 "/stop")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Остановить любую отыгровку из биндера")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.NextColumn()
-            imgui.CenterColumnText(u8 "Недоступно")
+            imgui.CenterColumnText(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.Columns(1)
             imgui.Separator()
             for index, command in ipairs(settings.commands) do
@@ -4625,7 +4625,7 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                             sampUnregisterChatCommand(command.cmd)
                         end
                         if imgui.IsItemHovered() then
-                            imgui.SetTooltip(u8 "Отключение команды /" .. command.cmd)
+                            imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                         end
                     else
                         if imgui.SmallButton(fa.TOGGLE_OFF .. '##' .. command.cmd) then
@@ -4634,7 +4634,7 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                             register_command(command.cmd, command.arg, command.text, tonumber(command.waiting))
                         end
                         if imgui.IsItemHovered() then
-                            imgui.SetTooltip(u8 "Включение команды /" .. command.cmd)
+                            imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                         end
                     end
                     imgui.SameLine()
@@ -4660,23 +4660,23 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                         BinderWindow[0] = true
                     end
                     if imgui.IsItemHovered() then
-                        imgui.SetTooltip(u8 "Изменение команды /" .. command.cmd)
+                        imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                     end
                     imgui.SameLine()
                     if imgui.SmallButton(fa.TRASH_CAN .. '##' .. command.cmd) then
-                        imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' Предупреждение ##' .. command.cmd)
+                        imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ##' .. command.cmd)
                     end
                     if imgui.IsItemHovered() then
-                        imgui.SetTooltip(u8 "Удаление команды /" .. command.cmd)
+                        imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /" .. command.cmd)
                     end
-                    if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' Предупреждение ##' .. command.cmd, _, imgui.WindowFlags.NoResize) then
-                        imgui.CenterText(u8 'Вы действительно хотите удалить команду /' .. u8(command.cmd) .. '?')
+                    if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ##' .. command.cmd, _, imgui.WindowFlags.NoResize) then
+                        imgui.CenterText(u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /' .. u8(command.cmd) .. '?')
                         imgui.Separator()
-                        if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Нет, отменить', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                        if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                             imgui.CloseCurrentPopup()
                         end
                         imgui.SameLine()
-                        if imgui.Button(fa.TRASH_CAN .. u8 ' Да, удалить', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                        if imgui.Button(fa.TRASH_CAN .. u8 ' пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                             command.enable = false
                             command.deleted = true
                             sampUnregisterChatCommand(command.cmd)
@@ -4691,10 +4691,10 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
             end
             imgui.EndChild()
         end
-        if imgui.Button(fa.CIRCLE_PLUS .. u8 ' Создать новую команду##new_cmd', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+        if imgui.Button(fa.CIRCLE_PLUS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ##new_cmd', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
             local new_cmd = {
                 cmd = '',
-                description = 'Новая команда созданная вами',
+                description = 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ',
                 text = '',
                 arg = '',
                 enable = true,
@@ -4717,13 +4717,13 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
         end
         if imgui.BeginChild("buttons", imgui.ImVec2(589 * MONET_DPI_SCALE, 150), true) then
             imgui.Columns(3)
-            imgui.CenterColumnText(u8"Название кнопки")
+            imgui.CenterColumnText(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 170 * MONET_DPI_SCALE)
             imgui.NextColumn()
-            imgui.CenterColumnText(u8"Текст")
+            imgui.CenterColumnText(u8"пїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 300 * MONET_DPI_SCALE)
             imgui.NextColumn()
-            imgui.CenterColumnText(u8"Действие")
+            imgui.CenterColumnText(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.SetColumnWidth(-1, 150 * MONET_DPI_SCALE)
             imgui.Columns(1)
             imgui.Separator()
@@ -4739,12 +4739,12 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 if imgui.SmallButton(fa.PEN_TO_SQUARE .. '##' .. name) then
                     newButtonText = imgui.new.char[255](u8(name))
                     newButtonCommand = imgui.new.char[255](u8(arrayToText(command)))
-                    imgui.OpenPopup(fa.CIRCLE_PLUS .. u8 ' Изменение кнопки на экране')            
+                    imgui.OpenPopup(fa.CIRCLE_PLUS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ')            
                 end
-                if imgui.BeginPopupModal(fa.CIRCLE_PLUS .. u8 ' Изменение кнопки на экране', _, imgui.WindowFlags.NoResize) then
-                    imgui.InputText(u8"Название кнопки", newButtonText, 255)
-                    imgui.InputTextMultiline(u8"Текст", newButtonCommand, 2555)
-                    if imgui.Button(u8"Сохранить", imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+                if imgui.BeginPopupModal(fa.CIRCLE_PLUS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', _, imgui.WindowFlags.NoResize) then
+                    imgui.InputText(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", newButtonText, 255)
+                    imgui.InputTextMultiline(u8"пїЅпїЅпїЅпїЅпїЅ", newButtonCommand, 2555)
+                    if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                         deleteButton(name)
                         addNewButton(u8:decode(ffi.string(newButtonText)), u8:decode(ffi.string(newButtonCommand)))
                         imgui.CloseCurrentPopup()
@@ -4752,21 +4752,21 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 end
                 imgui.SameLine()
                 if imgui.SmallButton(fa.TRASH_CAN .. '##' .. name) then
-                    imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' Предупреждение ##' .. name)
+                    imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ##' .. name)
                 end
                 if imgui.IsItemHovered() then
-                    imgui.SetTooltip(u8 "Удаление кнопки " .. name)
+                    imgui.SetTooltip(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ " .. name)
                 end
                 imgui.Columns(1)
                 imgui.Separator()
-                if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' Предупреждение ##' .. name, _, imgui.WindowFlags.NoResize) then
-                    imgui.CenterText(u8 'Вы действительно хотите удалить кнопку ' .. u8(name) .. '?')
+                if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ##' .. name, _, imgui.WindowFlags.NoResize) then
+                    imgui.CenterText(u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ' .. u8(name) .. '?')
                     imgui.Separator()
-                    if imgui.Button(fa.CIRCLE_XMARK .. u8 ' Нет, отменить', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                    if imgui.Button(fa.CIRCLE_XMARK .. u8 ' пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                         imgui.CloseCurrentPopup()
                     end
                     imgui.SameLine()
-                    if imgui.Button(fa.TRASH_CAN .. u8 ' Да, удалить', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
+                    if imgui.Button(fa.TRASH_CAN .. u8 ' пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(200 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
                         deleteButton(name)
                     end
                     imgui.End()
@@ -4774,31 +4774,31 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
             end
             imgui.EndChild()
         end
-            if imgui.Button(fa.CIRCLE_PLUS .. u8" Новая кнопка") then
-                imgui.OpenPopup(fa.CIRCLE_PLUS .. u8 ' Создание новой кнопки на экране')            
+            if imgui.Button(fa.CIRCLE_PLUS .. u8" пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ") then
+                imgui.OpenPopup(fa.CIRCLE_PLUS .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ')            
             end
             
 
-    elseif page == 3 then -- Рация депортамента
+    elseif page == 3 then -- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         imgui.BeginChild('##depbuttons',
             imgui.ImVec2((imgui.GetWindowWidth() * 0.35) - imgui.GetStyle().FramePadding.x * 2, 0), true,
             imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.NoScrollWithMouse)
-        imgui.TextColoredRGB(u8 'Тэг вашей организации', 1)
+        imgui.TextColoredRGB(u8 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 1)
         if imgui.InputText('##myorgnamedep', orgname, 255) then
             departsettings.myorgname = u8:decode(str(orgname))
         end
-        imgui.TextColoredRGB(u8 'Тэг с кем связываетесь')
+        imgui.TextColoredRGB(u8 'пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
         imgui.InputText('##toorgnamedep', otherorg, 255)
         imgui.Separator()
-        if imgui.Button(u8 'Рация упала.') then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.') then
             if #str(departsettings.myorgname) > 0 then
-                sampSendChat('/d [' .. (str(departsettings.myorgname)) .. '] - [Всем]: Рация упала.')
+                sampSendChat('/d [' .. (str(departsettings.myorgname)) .. '] - [пїЅпїЅпїЅпїЅ]: пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.')
             else
-                msg('У Вас что-то не указано.')
+                msg('пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.')
             end
         end
         imgui.Separator()
-        imgui.TextColoredRGB(u8 'Частота (не Обязательно)')
+        imgui.TextColoredRGB(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)')
         imgui.PushItemWidth(200)
         imgui.InputText('##frequencydep', departsettings.frequency, 255)
         imgui.PopItemWidth()
@@ -4808,10 +4808,10 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
         imgui.SameLine()
 
         imgui.BeginChild('##deptext', imgui.ImVec2(-1, -1), true, imgui.WindowFlags.NoScrollbar)
-        imgui.TextColoredRGB(u8 'История сообщений департамента {808080}(?)')
+        imgui.TextColoredRGB(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ {808080}(?)')
         imgui.Hint('mytagfind depart',
-            u8 'Если в чате департамента будет тэг \'' ..
-            (str(departsettings.myorgname)) .. u8 '\'\nв этот список добавится это сообщение')
+            u8 'пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ \'' ..
+            (str(departsettings.myorgname)) .. u8 '\'\nпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
         imgui.Separator()
         imgui.BeginChild('##deptextlist',
             imgui.ImVec2(-1,
@@ -4823,7 +4823,7 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
         imgui.SetNextItemWidth(imgui.GetWindowWidth() - 100 * MDS - imgui.GetStyle().FramePadding.x * 2)
         imgui.InputText('##myorgtextdep', departsettings.myorgtext, 255)
         imgui.SameLine()
-        if imgui.Button(u8 'Отправить', imgui.ImVec2(0, 30 * MDS)) then
+        if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', imgui.ImVec2(0, 30 * MDS)) then
             if #str(departsettings.myorgname) > 0 then
                 if #str(departsettings.frequency) == 0 then
                     sampSendChat(('/d [%s] - [%s] %s'):format(str(departsettings.myorgname),
@@ -4835,26 +4835,26 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 end
                 imgui.StrCopy(departsettings.myorgtext, '')
             else
-                msg('У вас что-то не указано!')
+                msg('пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!')
             end
         end
         imgui.EndChild()
-    elseif page == 5 then -- Заметки
+    elseif page == 5 then -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         allNotes()
         imgui.Separator()
-        if imgui.Button(u8 "Добавить новую заметку", imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+        if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
             imgui.StrCopy(newNoteTitle, "")
             imgui.StrCopy(newNoteContent, "")
-            imgui.OpenPopup(u8 "Добавить новую заметку")
+            imgui.OpenPopup(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             showAddNotePopup[0] = true
         end
-        if imgui.BeginPopupModal(u8 "Редактировать заметку", showEditWindow, imgui.WindowFlags.AlwaysAutoResize) then
-            imgui.Text(u8 'Название заметки')
+        if imgui.BeginPopupModal(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", showEditWindow, imgui.WindowFlags.AlwaysAutoResize) then
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
             imgui.InputText(u8 "##nazvanie", editNoteTitle, 256)
-            imgui.Text(u8 "Текст заметки")
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
             imgui.InputTextMultiline(u8 "##2663737374", editNoteContent, 1024,
                 imgui.ImVec2(579 * MONET_DPI_SCALE, 173 * MONET_DPI_SCALE))
-            if imgui.Button(u8 "Сохранить", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
                 notes[selectedNote].title = ffi.string(editNoteTitle)
                 notes[selectedNote].content = ffi.string(editNoteContent)
                 showEditWindow[0] = false
@@ -4863,18 +4863,18 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 saveNotesToFile()
             end
             imgui.SameLine()
-            if imgui.Button(u8 "Отменить", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
                 showEditWindow[0] = false
                 imgui.CloseCurrentPopup()
             end
             imgui.EndPopup()
         end
-        if imgui.BeginPopupModal(u8 "Добавить новую заметку", showAddNotePopup, imgui.WindowFlags.AlwaysAutoResize) then
-            imgui.Text(u8 'Название новой заметки')
+        if imgui.BeginPopupModal(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", showAddNotePopup, imgui.WindowFlags.AlwaysAutoResize) then
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
             imgui.InputText(u8 "##nazvanie2", newNoteTitle, 256)
-            imgui.Text(u8 'Текст новой заметки')
+            imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
             imgui.InputTextMultiline(u8 "##123123123", newNoteContent, 1024, imgui.ImVec2(-1, 100))
-            if imgui.Button(u8 "Сохранить", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
                 table.insert(notes, { title = ffi.string(newNoteTitle), content = ffi.string(newNoteContent) })
                 imgui.StrCopy(newNoteTitle, "")
                 imgui.StrCopy(newNoteContent, "")
@@ -4883,10 +4883,10 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
                 imgui.CloseCurrentPopup()
             end
             imgui.SameLine()
-            if imgui.Button(u8 "Закрыть", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(2), 36)) then
                 imgui.CloseCurrentPopup()
             end
-            if imgui.Button(u8 "Удалить", imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+            if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                 imgui.StrCopy(newNoteTitle, "")
                 imgui.StrCopy(newNoteContent, "")
                 showAddNotePopup[0] = false
@@ -4894,15 +4894,15 @@ local mainMenuFrame = imgui.OnFrame(function() return window[0] end,
             end
             imgui.EndPopup()
         end
-    elseif page == 6 then -- Информация
-        imgui.Text(u8 'Версия: ' .. thisScript().version)
-        imgui.Text(u8 'Разработчики: @Sashe4ka_ReZ')
-        imgui.Text(u8 'ТГ канал: t.me/lua_arz')
+    elseif page == 6 then -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ: ' .. thisScript().version)
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: @Sashe4ka_ReZ')
+        imgui.Text(u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: t.me/lua_arz')
         if imgui.IsItemClicked() then
             openLink("https://t.me/lua_arz")
         end
-        imgui.Text(u8 'Поддержать: Временно не доступно')
-        imgui.Text(u8 'Спонсор: arzfun.com')
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ')
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: arzfun.com')
     end
     imgui.EndChild()
     imgui.End()
@@ -4915,20 +4915,20 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(200, 150), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Вспомогательное окошко", suppWindow,
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", suppWindow,
             imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.AlwaysAutoResize)
 
-        imgui.Text(u8 'Время: ' .. os.date('%H:%M:%S'))
-        imgui.Text(u8 'Месяц: ' .. os.date('%B'))
-        imgui.Text(u8 'Полная дата: ' .. arr.day .. '.' .. arr.month .. '.' .. arr.year)
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅ: ' .. os.date('%H:%M:%S'))
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅ: ' .. os.date('%B'))
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: ' .. arr.day .. '.' .. arr.month .. '.' .. arr.year)
         local positionX, positionY, positionZ = getCharCoordinates(PLAYER_PED)
-        imgui.Text(u8 'Район:' .. u8(calculateZone(positionX, positionY, positionZ)))
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅ:' .. u8(calculateZone(positionX, positionY, positionZ)))
         local p_city = getCityPlayerIsIn(PLAYER_PED)
-        if p_city == 1 then pCity = u8 'Лос - Сантос' end
-        if p_city == 2 then pCity = u8 'Сан - Фиерро' end
-        if p_city == 3 then pCity = u8 'Лас - Вентурас' end
-        if getActiveInterior() ~= 0 then pCity = u8 'Вы находитесь в интерьере!' end
-        imgui.Text(u8 'Город: ' .. (pCity or u8 'Неизвестно'))
+        if p_city == 1 then pCity = u8 'пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ' end
+        if p_city == 2 then pCity = u8 'пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ' end
+        if p_city == 3 then pCity = u8 'пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' end
+        if getActiveInterior() ~= 0 then pCity = u8 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!' end
+        imgui.Text(u8 'пїЅпїЅпїЅпїЅпїЅ: ' .. (pCity or u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ'))
         imgui.End()
     end
 )
@@ -4948,39 +4948,39 @@ imgui.OnFrame(
 
             if page == 8 then
                 imgui.SetWindowFocus()
-                imgui.Text(u8 "Это - страничка быстрого взаимодействия.")
-                imgui.Text(u8 "Так же это окошко открывается при двойном нажатии на игрока(работает коряво)")
-                if imgui.Button(u8 'Далее >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+                imgui.Text(u8 "пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
+                imgui.Text(u8 "пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)")
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                     page = 2
                 end
             elseif page == 2 then
                 imgui.SetWindowFocus()
-                imgui.Text(u8 "А это - одна из самых выжных вкладок!\nЭто биндер, в котором ты можешь\nсоздавать свои команды\nа так же изменять готовые!")
-                if imgui.Button(u8 'Далее >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+                imgui.Text(u8 "пїЅ пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!\nпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ\nпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                     page = 3
                 end
             elseif page == 3 then
                 imgui.SetWindowFocus()
-                imgui.Text(u8 "Это - вкладка гос. волны\nТут ты можешь связываться с организациями\nФункций пока что мало, они будут добавляться!")
-                if imgui.Button(u8 'Далее >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+                imgui.Text(u8 "пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ\nпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                     page = 5
                 end
             elseif page == 5 then
                 imgui.SetWindowFocus()
-                imgui.Text(u8 "Это - вкладка с заметками. Здесь ты можешь написать все что угодно и посмотреть это в любой момент")
-                if imgui.Button(u8 'Далее >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+                imgui.Text(u8 "пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ")
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                     page = 6
                 end
             elseif page == 6 then
                 imgui.SetWindowFocus()
-                imgui.Text(u8 "Тут находится инф-я о МВД хелпере")
-                if imgui.Button(u8 'Далее >>') then
+                imgui.Text(u8 "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ >>') then
                     page = 1
                 end
-            elseif page == 1 then -- если значение tab == 1
+            elseif page == 1 then -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ tab == 1
                 imgui.SetWindowFocus()
-                imgui.Text(u8 "Это - вкладка в которой ты можешь меня выключить. На этой странице есть настройка УК.\nТам ты можешь скачать для себя УК или настроить его!\nЕще тут есть выбор темы MVD Helper. \nТы можешь выбрать MoonMonet и настроить свой цвет!")
-                if imgui.Button(u8 'Выключить меня', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+                imgui.Text(u8 "пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ.\nпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ!\nпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ MVD Helper. \nпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ MoonMonet пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!")
+                if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                     joneV[0] = false
                     mainIni.settings.Jone = false
                     if not deliting_script then saveIni() end
@@ -4988,9 +4988,9 @@ imgui.OnFrame(
             
             end
         else
-            imgui.Text(u8 "Привет! Я " ..
-                u8(mainIni.settings.ObuchalName) .. u8 ".\nЯ помогу тебе научится работать с\nхелпером.")
-            if imgui.Button(u8 'Далее >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
+            imgui.Text(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ! пїЅ " ..
+                u8(mainIni.settings.ObuchalName) .. u8 ".\nпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")
+            if imgui.Button(u8 'пїЅпїЅпїЅпїЅпїЅ >>', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
                 window[0] = true
             end
             imgui.End()
@@ -5001,14 +5001,14 @@ imgui.OnFrame(
     function() return megafon[0] end,
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 8.5, sizeY / 2.1), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-        imgui.Begin("Мегафон дааа", megafon,
+        imgui.Begin("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", megafon,
             imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoTitleBar +
             imgui.WindowFlags.NoBackground)
         imgui.SameLine()
         if imgui.Button(fa.BULLHORN, imgui.ImVec2(75 * MONET_DPI_SCALE, 25 * MONET_DPI_SCALE)) then
-            sampSendChat('/m Водитель, снизьте скорость и прижмитесь к обочине.')
-            sampSendChat('/m После остановки заглушите двигатель, держите руки на руле и не выходите из транспорта.')
-            sampSendChat('/m В случае неподчинения по вам будет открыт огонь!')
+            sampSendChat('/m пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.')
+            sampSendChat('/m пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.')
+            sampSendChat('/m пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!')
         end
         imgui.End()
     end
@@ -5028,32 +5028,32 @@ imgui.OnFrame(
     function(player)
         imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(500, 500), imgui.Cond.FirstUseEver)
-        imgui.Begin(u8 "Начало", startWindow)
+        imgui.Begin(u8 "пїЅпїЅпїЅпїЅпїЅпїЅ", startWindow)
         if start.step == 1 then
             if start.custom == nil then
-                imgui.Text(u8"Привет! Кажется ты впервые запускаешь скрипт. Давай вместе настроем его.")
-                imgui.Text(u8"Выбери режим настройки: ")
-                if imgui.Button(u8"Автоматическая(по твоей статистике) "..fa["WAND_MAGIC"]) then
+                imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.")
+                imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ")
+                if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) "..fa["WAND_MAGIC"]) then
                     start.custom = "auto"
                 end
-                if imgui.Button(u8"Ручная "..fa["PEN"]) then
+                if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅ "..fa["PEN"]) then
                     start.custom = "ruch"
                 end
 
             elseif start.custom == "auto" then
                 while not nickname do
-                    imgui.TextDisabled(u8"Получаем информацию из статистики...")
+                    imgui.TextDisabled(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...")
                 end
-                imgui.Text(u8"Информация из статистики получена. Проверьте правильность")
+                imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                 imgui.Separator()
-                imgui.Text(u8"Ваш Nick_Name:" .. nickname)
-                if u8:decode(org) == 'Вы не состоите в ПД' then
-                    imgui.Text(u8"Кажется, вы не состоите в МЮ. Но вы все равно можете использовать хелпер.")
+                imgui.Text(u8"пїЅпїЅпїЅ Nick_Name:" .. nickname)
+                if u8:decode(org) == 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ' then
+                    imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ. пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
                 else
-                    imgui.Text(u8"Ваша организация: " .. org .. u8"(сокращенно - " .. org_g .. ")")
-                    imgui.Text(u8"Ваша должность: " .. dl .. "[".. rang_n .."]")
+                    imgui.Text(u8"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " .. org .. u8"(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - " .. org_g .. ")")
+                    imgui.Text(u8"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " .. dl .. "[".. rang_n .."]")
                 end
-                if imgui.Button(u8"Продолжить "..fa["RIGHT_LONG"]) then
+                if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "..fa["RIGHT_LONG"]) then
                     mainIni.Info.org = org_g
                     mainIni.Info.rang_n = rang_n
                     mainIni.Info.dl = dl
@@ -5066,48 +5066,48 @@ imgui.OnFrame(
             end
 
         elseif start.step == 2 then
-            imgui.Text(u8"Отлично! Теперь давай настроим главное окно скрипта!")
-            imgui.Text(u8"Ты сможешь выбрать размеры окна, цвет, размеры навигационного меню и др.")
-            if imgui.Button(u8"Открыть настройки и окно") then
+            imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
+            imgui.Text(u8"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ.")
+            if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ") then
                 menuSizes[0] = true
                 window[0] = true
             end
-            if imgui.Button(u8"Завершить и продолжить "..fa["RIGHT_LONG"]) then
+            if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "..fa["RIGHT_LONG"]) then
                 window[0] = false
                 menuSizes[0] = false
                 start.step = 3
             end
 
         elseif start.step == 3 then
-            imgui.Text(u8"Отлично! Теперь давай настроим самое главное для копа - Уголовный кодекс.")
-            if imgui.Button(u8"Настроить") then
+            imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
+            if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") then
                 setUkWindow[0] = not setUkWindow[0]
             end
-            if imgui.Button(u8"Готово, продолжить "..fa["RIGHT_LONG"]) then
+            if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "..fa["RIGHT_LONG"]) then
                 setUkWindow[0] = false
                 start.step = 4
             end
 
         elseif start.step == 4 then
-            imgui.Text(u8"Уже почти закончили! Осталось чуть-чуть")
-            imgui.Text(u8"Теперь давай настроим автоматическую рп отыгровку оружия.")
-            imgui.ToggleButton(u8 'Авто отыгровка оружия', u8 'Авто отыгровка оружия', autogun)
+            imgui.Text(u8"пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ")
+            imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.")
+            imgui.ToggleButton(u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', u8 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', autogun)
             if autogun[0] then
                 mainIni.settings.autoRpGun = true
                 if not deliting_script then saveIni() end
-                if imgui.Button(u8 "Открыть настройки отыгровок оружий") then
+                if imgui.Button(u8 "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ") then
                     gunsWindow[0] = not gunsWindow[0]
                 end
             end
-            if imgui.Button(u8"Продолжить "..fa["RIGHT_LONG"]) then
+            if imgui.Button(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "..fa["RIGHT_LONG"]) then
                 start.step = 5
             end
 
         elseif start.step == 5 then
-            imgui.Text(u8"Поздровляю, настройка хелпера завершена. Все прочие мелкие настройки ты можешь изменить во вкладке настроки в главном меню.")
-            imgui.Text(u8"Если хочешь посмотреть обучение по главному меню, то попроси Мастурбека!")
-            imgui.ToggleButton(u8(mainIni.settings.ObuchalName) .. u8 ' работает', u8(mainIni.settings.ObuchalName) .. u8 ' отдыхает', joneV)
-            if imgui.Button(fa["XMARK"].. u8" Закрыть это окно " .. fa["XMARK"]) then
+            imgui.Text(u8"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.")
+            imgui.Text(u8"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!")
+            imgui.ToggleButton(u8(mainIni.settings.ObuchalName) .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', u8(mainIni.settings.ObuchalName) .. u8 ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', joneV)
+            if imgui.Button(fa["XMARK"].. u8" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ " .. fa["XMARK"]) then
                 startWindow[0] = false
             end
         end
@@ -5144,11 +5144,11 @@ function main()
             command_stop = true
         else
             sampAddChatMessage(
-                '[Binder] {ffffff}Ошибка, сейчас нету активной отыгровки!', message_color)
+                '[Binder] {ffffff}пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!', message_color)
         end 
     end)
     registerCommandsFrom(settings.commands)
-    msg("Скрипт успешно загружен! Telegram-канал: @lua_arz. При поддержке arzfun.com")
+    msg("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! Telegram-пїЅпїЅпїЅпїЅпїЅ: @lua_arz. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ arzfun.com")
     if spawn then
         sampSendChat("/stats")
     end 
@@ -5173,7 +5173,7 @@ function main()
                     wait(500)
                 end
             else
-                msg("Игрок должен быть в зоне стрима!")
+                msg("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!")
                 search = false
             end
         end
@@ -5188,13 +5188,13 @@ function cmd_z(id)
             local playerId = tonumber(id)
             if playerId ~= nil and sampIsPlayerConnected(playerId) then
                 pid = playerId
-                msg('Ищу игрока.') 
+                msg('пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.') 
             else
                 search = false
-                msg('Либо вы ввели неправильный аргумент, либо игрок не онлайн.') 
+                msg('пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.') 
             end
         else
-            msg('Остановил поиск.') 
+            msg('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.') 
         end
     else
 
